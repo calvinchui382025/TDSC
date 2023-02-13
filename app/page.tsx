@@ -18,19 +18,15 @@ const VideoContainer = styled('div')({
   display: 'flex',
   justifyContent: 'center',
   overflow: 'hidden',
-  // maxWidth: '100vw',
   height: '100vh',
+  width: 'calc(100vw - 17px)',
+  '@media (max-width: 600px)': {
+    width: '100vw',
+  },
 })
 const Video = styled('video')({
-  // transform: 'scale(2)',
-  // overflow: 'hidden',
-  // objectFit: 'cover',
-  '@media (min-width: 2312px)': {
-    transform: 'scale(2)',
-  }, 
-  '@media (max-width: 600px)': {
-    transform: 'scale(1)',
-  }
+  transform: 'scale(2)',
+  objectFit: 'cover',
 })
 const TitleText = styled(Typography)({
   position: 'absolute',
@@ -71,7 +67,7 @@ export default function HomePage() {
       { 
         years.map((year) => {
           // eslint-disable-next-line react/jsx-key
-          return <div>{year}</div>
+          return <div key={year}>{year}</div>
         })
       }
     </HomeRoot>
