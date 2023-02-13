@@ -12,7 +12,7 @@ import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import Typography from '@mui/material/Typography';
 import Link from 'next/link';
-import {StyledListItemButton, StyledAppBar} from './NavBarStyles';
+import {StyledListItemButton, StyledAppBar, StyledDrawer} from './NavBarStyles';
 
 interface Props {
   /**
@@ -22,7 +22,7 @@ interface Props {
   window?: () => Window;
 }
 
-const navItems = ['home', 'who', 'what', 'proficiency', 'gear'];
+const navItems = ['home', 'who', 'what', 'proficiency', 'gear', 'contact'];
 
 export default function DrawerAppBar(props: Props) {
   const { window } = props;
@@ -35,7 +35,7 @@ export default function DrawerAppBar(props: Props) {
     //======================================================
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
+    <StyledDrawer onClick={handleDrawerToggle}>
       <Typography variant="h6" sx={{ my: 2 }}>
         TDSC
       </Typography>
@@ -64,7 +64,7 @@ export default function DrawerAppBar(props: Props) {
           }
         )}
       </List>
-    </Box>
+    </StyledDrawer>
   );
 
   const container = window !== undefined ? () => window().document.body : undefined;

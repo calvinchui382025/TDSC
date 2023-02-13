@@ -2,6 +2,7 @@
 
 import styled from "@emotion/styled"
 import ListItemButton from '@mui/material/ListItemButton';
+import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 //======================================================
 export const StyledAppBar = styled('div')({
@@ -33,3 +34,10 @@ export const StyledButton = styled(Button)({
   },
 })
 
+export const StyledDrawer = styled(Box)({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  textAlign: 'center',
+  width: '20vw',
+})
