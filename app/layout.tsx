@@ -2,16 +2,11 @@
 
 import styled from '@emotion/styled'
 import NavBar from './Components/NavBar'
-import Image from 'next/image'
-
 //======================================================
 const Root = styled('div')({
   display: 'flex',
   flexDirection: 'column',
-  // width: '100vw',
   height: '100vh',
-  backgroundImages: 'url(/backgroundimage2.jpeg)',
-  // minHeight: '100vh',
 })
 
 //======================================================
