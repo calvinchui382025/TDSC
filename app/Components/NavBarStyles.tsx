@@ -10,6 +10,7 @@ export const StyledAppBar = styled('div')({
   width: '100%',
   position: 'fixed',
   top: 0,
+  zIndex: 100,
 })
 export const StyledListItemButton = styled(ListItemButton)({
   backgroundColor: 'transparent',
