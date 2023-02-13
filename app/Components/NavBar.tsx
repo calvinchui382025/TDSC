@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from 'react';
+import Image from 'next/image';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -16,6 +17,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Link from 'next/link';
+import {StyledListItemButton, StyledButton, StyledAppBar} from './NavBarStyles';
 
 interface Props {
   /**
@@ -24,6 +26,7 @@ interface Props {
    */
   window?: () => Window;
 }
+
 
 const drawerWidth = 240;
 const navItems = ['home', 'who', 'what', 'proficiency', 'gear'];
@@ -50,7 +53,8 @@ export default function DrawerAppBar(props: Props) {
           if (item === 'home') to = '/'
           return (
             <ListItem key={item} disablePadding>
-              <ListItemButton 
+              <StyledListItemButton 
+                // @ts-ignore
                 component={Link}
                 href={to}
                 // to={to}
@@ -58,7 +62,7 @@ export default function DrawerAppBar(props: Props) {
                 sx={{ textAlign: 'center' }}
                 >
                 <ListItemText primary={item} />
-              </ListItemButton>
+              </StyledListItemButton>
               {/* <Link href={to}>
                 {item}
               </Link> */}
@@ -75,7 +79,9 @@ export default function DrawerAppBar(props: Props) {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar component="nav">
+      <StyledAppBar
+      // @ts-ignore
+      component="nav">
         <Toolbar>
           <IconButton
             color="inherit"
@@ -86,31 +92,32 @@ export default function DrawerAppBar(props: Props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography
+          {/* <Typography
             variant="h6"
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
             Texas Defensive Shooting Club
-          </Typography>
+          </Typography> */}
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => {
               let to = `/${item.toLowerCase()}`;
               if (item === 'home') to = '/'
               return (
-                <Button 
+                <StyledButton 
                   key={item} 
                   sx={{ color: '#fff' }}
+                  // @ts-ignore
                   component={Link}
                   href={to}
                 >
                   {item}
-                </Button>
+                </StyledButton>
               )
               })}
           </Box>
         </Toolbar>
-      </AppBar>
+      </StyledAppBar>
       <Box component="nav">
         <Drawer
           container={container}
