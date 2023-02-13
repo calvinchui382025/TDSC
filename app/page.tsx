@@ -35,15 +35,18 @@ const TitleText = styled(Typography)({
   left: '50%',
   transform: 'translate(-50%, -50%)',
   textAlign: 'center',
-  color: 'e7e7e7',
+  color: '#e7e7e7',
   opacity: 0.9,
-  fontSize: '5rem',
-  // textShadow: '1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000',
+  fontSize: '10vw',
+  fontWeight: 600,
   animation: `${fadeIn} 3s`,
   zIndex: 2,
+  fontFamily: 'Barlow Condensed, sans-serif', 
+  
   '@media (max-width: 600px)': {
     fontSize: '2rem',
   },
+
 })
 const Gradient = styled('div')({
   position: 'absolute',
