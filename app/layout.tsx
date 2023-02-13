@@ -1,5 +1,16 @@
-import Link from 'next/link'
+"use client"
 
+import styled from '@emotion/styled'
+import NavBar from './Components/NavBar'
+//======================================================
+const Root = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  width: '100%',
+  height: '100%',
+  // minHeight: '100vh',
+})
+//======================================================
 export default function RootLayout({
   children,
 }: {
@@ -9,8 +20,9 @@ export default function RootLayout({
     <html>
       <head />
       <body>
-        <main>
-          <nav>
+        <Root>
+          <NavBar />
+          {/* <nav>
             <Link href='/'>
               Home
             </Link>
@@ -26,9 +38,9 @@ export default function RootLayout({
             <Link href='/gear'>
               Gear Requirements
             </Link>
-          </nav>
+          </nav> */}
           {children}
-        </main>
+        </Root>
       </body>
     </html>
   )
