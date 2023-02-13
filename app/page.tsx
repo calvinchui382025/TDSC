@@ -1,7 +1,7 @@
 'use client'
 
 import { styled, Typography } from '@mui/material';
-import { fadeIn } from './utils';
+import { fadeIn, mainColor } from './utils';
 
 //======================================================
 // array of years since 1900
@@ -13,6 +13,7 @@ const HomeRoot = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
+  backgroundColor: mainColor
 })
 const VideoContainer = styled('div')({
   display: 'flex',
@@ -34,14 +35,31 @@ const TitleText = styled(Typography)({
   left: '50%',
   transform: 'translate(-50%, -50%)',
   textAlign: 'center',
-  color: 'white',
+  color: 'e7e7e7',
+  opacity: 0.9,
   fontSize: '5rem',
-  textShadow: '1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000',
+  // textShadow: '1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000',
+  animation: `${fadeIn} 3s`,
+  zIndex: 2,
   '@media (max-width: 600px)': {
     fontSize: '2rem',
   },
-
-  animation: `${fadeIn} 3s`
+})
+const Gradient = styled('div')({
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: '100%',
+  height: '100%',
+  // background: 'linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.5) 100%)',
+  backgroundImage: `linear-gradient(180deg, rgba(37, 27, 74, 0) 42%, ${mainColor} 93%)`,
+  zIndex: 1,
+})
+const Row = styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+  width: '100%',
 })
 //======================================================
 export default function HomePage() {
@@ -64,6 +82,7 @@ export default function HomePage() {
         >
           TEXAS DEFENSIVE SHOOTING CLUB
       </TitleText>
+      <Gradient />
       { 
         years.map((year) => {
           // eslint-disable-next-line react/jsx-key
