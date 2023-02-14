@@ -39,7 +39,7 @@ const TitleText = styled(HomeText)({
   fontSize: '10vw',
   fontWeight: 600,
   animation: `${fadeIn} 3s`,
-  zIndex: 2,
+  zIndex: 5,
   fontFamily: 'Barlow Condensed, sans-serif', 
   
   '@media (max-width: 600px)': {
