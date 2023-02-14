@@ -2,6 +2,7 @@
 
 import styled from '@emotion/styled'
 import NavBar from './Components/NavBar'
+import { mainColor } from './utils'
 //======================================================
 const Root = styled('div')({
   display: 'flex',
@@ -16,7 +17,8 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
       <head />
       <body 
         style={{
-          margin: 0 
+          margin: 0,
+          backgroundColor: mainColor,
         }}
       >
         <Root>
