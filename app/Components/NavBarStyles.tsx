@@ -42,6 +42,7 @@ export const StyledDrawer = styled(Box)({
   justifyContent: 'center',
   textAlign: 'center',
   width: '20vw',
+  backgroundColor: 'transparent',
 })
 
 export const HamburgerIconButton = styled(IconButton)({
