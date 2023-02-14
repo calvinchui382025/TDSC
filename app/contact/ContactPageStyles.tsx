@@ -131,7 +131,7 @@ export const MediaAlignedDiv = styled('div')({
   flexDirection: 'row',
   alignItems: 'left',
   justifyContent: 'left',
-  alignItems: 'center',
+  // alignItems: 'center',
   paddingTop: 50,
   color: 'gainsboro',
   '@media (max-width: 900px)': {
