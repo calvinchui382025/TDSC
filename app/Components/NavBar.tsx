@@ -12,7 +12,7 @@ import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import Typography from '@mui/material/Typography';
 import Link from 'next/link';
-import {StyledListItemButton, StyledAppBar, StyledDrawer, HamburgerIconButton} from './NavBarStyles';
+import {StyledListItemButton, StyledAppBar, HamburgerIconButton, StyledDrawerBox, StyledDrawer} from './NavBarStyles';
 
 interface Props {
   /**
@@ -43,8 +43,8 @@ export default function DrawerAppBar(props: Props) {
     //======================================================
 
   const drawer = (
-    <StyledDrawer onClick={handleDrawerToggle}>
-      <Typography variant="h6" sx={{ my: 2 }}>
+    <StyledDrawerBox onClick={handleDrawerToggle}>
+      <Typography variant="h6" sx={{ my: 2, color: 'gainsboro' }}>
         TDSC
       </Typography>
       <Divider />
@@ -72,11 +72,10 @@ export default function DrawerAppBar(props: Props) {
           }
         )}
       </List>
-    </StyledDrawer>
+    </StyledDrawerBox>
   );
 
   const container = window !== undefined ? () => window().document.body : undefined;
-
 
   return (
     <StyledAppBar>
@@ -92,7 +91,7 @@ export default function DrawerAppBar(props: Props) {
         <MenuIcon style={{color:'white'}}/>
       </HamburgerIconButton>
 
-      <Drawer
+      <StyledDrawer
         container={container}
         variant="temporary"
         open={mobileOpen}
@@ -103,7 +102,7 @@ export default function DrawerAppBar(props: Props) {
         anchor={'right'}
       >
         {drawer}
-      </Drawer>
+      </StyledDrawer>
 
   </StyledAppBar>
   );
