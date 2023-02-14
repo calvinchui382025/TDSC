@@ -4,6 +4,7 @@ import styled from "@emotion/styled"
 import ListItemButton from '@mui/material/ListItemButton';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import { IconButton } from '@mui/material';
 //======================================================
 export const StyledAppBar = styled('div')({
   display: 'flex',
@@ -41,4 +42,10 @@ export const StyledDrawer = styled(Box)({
   justifyContent: 'center',
   textAlign: 'center',
   width: '20vw',
+})
+
+export const HamburgerIconButton = styled(IconButton)({
+  height: 75,
+  width: 75,
+  paddingRight: 14
 })

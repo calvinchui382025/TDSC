@@ -12,7 +12,7 @@ import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import Typography from '@mui/material/Typography';
 import Link from 'next/link';
-import {StyledListItemButton, StyledAppBar, StyledDrawer} from './NavBarStyles';
+import {StyledListItemButton, StyledAppBar, StyledDrawer, HamburgerIconButton} from './NavBarStyles';
 
 interface Props {
   /**
@@ -80,9 +80,9 @@ export default function DrawerAppBar(props: Props) {
           height={75} 
         />
       </IconButton>
-      <IconButton onClick={handleDrawerToggle}>
-        <MenuIcon />
-      </IconButton>
+      <HamburgerIconButton onClick={handleDrawerToggle}>
+        <MenuIcon style={{color:'white'}}/>
+      </HamburgerIconButton>
 
       <Drawer
         container={container}
