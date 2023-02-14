@@ -8,6 +8,7 @@ export const ContactRoot = styled('div')({
   backgroundColor: 'gainsboro',
   height: '100%',
   display: 'flex',
+  flexGrow: 1,
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
@@ -28,7 +29,7 @@ export const PrimaryCard = styled(Card)({
     flexDirection: 'column',
     height: '100%',
     width: '90%',
-    marginTop: 80
+    // marginTop: 80
   },
 })
 
@@ -85,6 +86,7 @@ export const DecorationCard = styled(Card)({
     width: '80%',
     marginBottom: 5,
     height: 'auto',
+    minHeight: 150,
   },
 })
 
