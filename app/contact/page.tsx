@@ -4,6 +4,7 @@ import styled from "@emotion/styled"
 import { useState } from "react"
 import { Box, Typography, TextField, Button, Card, FormGroup, FormControlLabel, Checkbox, FormLabel, IconButton, Link } from "@mui/material"
 import { PrimaryCard, ContactFormCard, CustomTextField, CustomTypography, DecorationCard, AlignedBox, MessageTextField, StyledCheckboxGroup, MediaAlignedDiv, StyledFormGroup } from "./ContactPageStyles"
+import { mainColor } from "app/utils";
 import FacebookIcon from '@mui/icons-material/Facebook';
 import EmailIcon from '@mui/icons-material/Email';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
@@ -38,31 +39,31 @@ export default function ContactPage() {
   };
 
   return (
-    <div style={{backgroundColor: 'gainsboro', height: '100%'}}>
+    <div style={{backgroundColor: mainColor, height: '100%'}}>
       <PrimaryCard>
         <DecorationCard>
-          <Typography sx={{color: 'gainsboro'}} variant="h4">Contact Information</Typography>
-          <Typography sx={{color: 'gainsboro'}} variant="body1">Fill up the form and we will get back to you as soon as we can!</Typography>
+          <Typography sx={{color: 'gainsboro', fontWeight: '700'}} variant="h4">Contact Information</Typography>
+          <Typography sx={{color: 'gainsboro', fontWeight: '600'}} variant="body1">Fill up the form and we will get back to you as soon as we can!</Typography>
           <MediaAlignedDiv>
             <IconButton color="primary" aria-label="call" component="label">
             <input hidden type="tel" />
-              <LocalPhoneIcon style={{marginRight: 8}} />
+              <LocalPhoneIcon style={{marginRight: 8, fontSize: 40}} />
             </IconButton>
-            <Typography variant="h6">Phone: 123-456-7890</Typography>
+            <Typography variant="h6" sx={{fontWeight: '700', paddingTop: 1.5}}>Phone: 123-456-7890</Typography>
           </MediaAlignedDiv>
           <MediaAlignedDiv>
             <IconButton color="primary" aria-label="call" component="label" onClick={() => window.open('mailto:rdpistolclub@gmail.com')}>
-              <EmailIcon style={{marginRight: 8}} />
+              <EmailIcon style={{marginRight: 8, fontSize: 40}} />
             </IconButton>
-            <Typography variant="h6">Email: </Typography>
+            <Typography variant="h6" sx={{fontWeight: '700', paddingTop: 1.5}}>Email: </Typography>
           </MediaAlignedDiv>
           <MediaAlignedDiv>
             <IconButton color="primary" aria-label="call" component="label">
               <Link href="https://www.facebook.com/TDSClub.org/" target="_blank" >
-                <FacebookIcon style={{marginRight: 8}} />
+                <FacebookIcon style={{marginRight: 8, fontSize: 40}} />
               </Link>
             </IconButton>
-            <Typography variant="h6">Like us on Facebook!</Typography>
+            <Typography variant="h6" sx={{fontWeight: '700', paddingTop: 1.5}}>Like us on Facebook!</Typography>
           </MediaAlignedDiv>
         </DecorationCard>
         <ContactFormCard>
@@ -72,11 +73,10 @@ export default function ContactPage() {
               <CustomTextField variant="standard" label="Last Name" value={lastName} onChange={(e) => setLastName(e.target.value)}></CustomTextField>
             </AlignedBox>
             <AlignedBox>
-              
               <CustomTextField variant="standard" label="Email" value={email} onChange={(e) => setEmail(e.target.value)}></CustomTextField>
               <CustomTextField variant="standard" label="Phone Number" value={phone} onChange={(e) => setPhone(e.target.value)}></CustomTextField>
             </AlignedBox>
-            <Typography variant="h6">What would you like to know about?</Typography>
+            <Typography variant="h6" sx={{fontWeight: '700', paddingTop: 1.5, paddingBottom: 2}}>What would you like to know about?</Typography>
             <StyledCheckboxGroup>
               <FormControlLabel
                   control={
