@@ -28,6 +28,7 @@ const navItems = [
   // 'what', 
   // 'proficiency', 
   // 'gear', 
+  'calendar',
   'locations',
   'contact',
 ];
