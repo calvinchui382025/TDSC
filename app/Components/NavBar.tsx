@@ -22,7 +22,15 @@ interface Props {
   window?: () => Window;
 }
 
-const navItems = ['home', 'who', 'what', 'proficiency', 'gear', 'contact'];
+const navItems = [
+  'home', 
+  // 'who', 
+  // 'what', 
+  // 'proficiency', 
+  // 'gear', 
+  'locations',
+  'contact',
+];
 
 export default function DrawerAppBar(props: Props) {
   const { window } = props;
