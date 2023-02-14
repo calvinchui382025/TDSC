@@ -1,0 +1,38 @@
+export const locations = [
+  {
+    range: 'Wallis-Orchard Gun Range',
+    cost: "$30",
+    street: '12206 Reinecke Road',
+    city: 'Wallis',
+    state: 'TX',
+    zip: '77485',
+    phone: '713-829-1901',
+    description: 'Texas Defensive Shooting Club shoots every Saturday morning at Wallis-Orchard Gun Range. 1st saturday of each month is EDC (Every Day Carry) Shoot 2nd Saturday of each month is 2 Gun Shoot 3rd Saturday of each month is 2 Gun Shoot 4th Saturday of each month is 2 Gun Shoot',
+    lat: 29.61956987312184,
+    lng: -96.00511493214641,
+  },
+  {
+    range: 'G2G Family Shooting Range',
+    cost: '$20',
+    street: '25635 Southwest Freeway',
+    city: 'Rosenberg',
+    state: 'TX',
+    zip: '77471',
+    phone: '832-595-8415',
+    description: 'Texas Defensive Shooting Club shoots every Wednesday evening at G2G Family Shooting Range. Registration starts at 6:15pm Safety Briefing is at 6:45pm Hammer Down is at 7:00pm',
+    lat: 29.536622245457856, 
+    lng: -95.76785290331114,
+  },
+  {
+    range: 'Big Kountry Indoor Shooting Range',
+    cost: '$20',
+    street: '2100 FM 2004',
+    city: 'Richmond',
+    state: 'TX',
+    zip: '77351',
+    phone: '979-265-4044',
+    description: 'Texas Defensive Shooting Club shoots every Monday evening at Big Kountry Indoor Shooting Range - Richwood. The shoots will consist of drills, skills, and scenarios that mimic real life events. ',
+    lat: 29.078769337988888, 
+    lng: -95.41112182608667,
+  }
+]
