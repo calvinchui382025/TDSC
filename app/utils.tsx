@@ -1,6 +1,6 @@
 import { keyframes } from '@mui/material';
 //======================================================
-export const mainColor = '#191970' // midnight blue
+export const mainColor = '#050030' // midnight blue
 //======================================================
 export const fadeIn = keyframes`
 0%    {
