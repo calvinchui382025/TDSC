@@ -184,7 +184,7 @@ export default function HomePage() {
             autoPlay
             muted
             loop
-            playsinline
+            playsInline
           >
             <source
               src='/Videos/pexels-walking-in-woods.mp4'
@@ -208,7 +208,7 @@ export default function HomePage() {
             autoPlay
             muted
             loop
-            playsinline
+            playsInline
           >
             <source
               src='/Videos/pexels-man-holding-gun.mp4'
@@ -230,7 +230,7 @@ export default function HomePage() {
             autoPlay
             muted
             loop
-            playsinline
+            playsInline
           >
             <source
               src='/Videos/pexels-loading-mag.mp4'
