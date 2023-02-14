@@ -5,7 +5,7 @@ import { Card, Typography, Button, TextField, FormGroup } from '@mui/material';
 import { mainColor } from "app/utils";
 
 export const ContactRoot = styled('div')({
-  backgroundColor: 'gainsboro',
+  backgroundColor: mainColor,
   height: '100%',
   display: 'flex',
   flexGrow: 1,
