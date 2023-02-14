@@ -48,6 +48,7 @@ export const ContactFormCard = styled('div')({
   '@media (max-width: 900px)': {
     width: '100%',
     paddingTop: 0,
+    height: 'auto',
   },
 })
 
