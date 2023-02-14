@@ -3,8 +3,6 @@
 import { styled, Typography } from '@mui/material';
 import { fadeIn, mainColor } from './utils';
 //======================================================
-// array of years since 1900
-const years = Array.from(new Array(121), (val, index) => index + 1900);
 // const backgroundVideoWidth = 2312
 //======================================================
 const HomeRoot = styled('div')({
@@ -12,7 +10,6 @@ const HomeRoot = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  backgroundColor: mainColor
 })
 const HeroVideoContainer = styled('div')({
   display: 'flex',
