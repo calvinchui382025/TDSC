@@ -53,14 +53,14 @@ const TitleText = styled(HomeText)({
 })
 const Gradient = styled('div')({
   position: 'absolute',
-  top: '50%',
+  top: '52%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: '100%',
   height: '100%',
   // background: 'linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.5) 100%)',
   backgroundImage: `linear-gradient(180deg, rgba(37, 27, 74, 0) 42%, ${mainColor} 93%)`,
-  zIndex: 1,
+  zIndex: 2,
 })
 const Row = styled('div')({
   display: 'flex',
@@ -80,6 +80,7 @@ const GradientDivider = styled('div')({
   width: '80%',
   height: '1px',
   background: 'linear-gradient(90deg, #f52a72, #6b41f8)',
+  zIndex: 5
 })
 const PrepareTextContainer = styled('div')({
   display: 'flex',
@@ -134,11 +135,17 @@ const PrepareSubTextTitle = styled(HomeText)({
   fontSize: '3vw',
   fontWeight: 500,
   textAlign: 'center',
+  '@media (max-width: 600px)': {
+    fontSize: '0.9rem',
+  },
 })
 const PrepareSubText = styled(HomeText)({
   fontSize: '1.5vw',
   fontWeight: 400,
   textAlign: 'center',
+  '@media (max-width: 600px)': {
+    fontSize: '0.8rem',
+  },
 })
 //======================================================
 export default function HomePage() {
