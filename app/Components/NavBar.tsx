@@ -13,7 +13,6 @@ import Typography from '@mui/material/Typography';
 import Link from 'next/link';
 import {StyledListItemButton, StyledAppBar, StyledDrawer, HamburgerIconButton, StyledAppBarSubContainer, ListTextStyled, StyledExitIcon, StyledExitButton, AuxDrawerButtons} from './NavBarStyles';
 
-
 const navItems = [
   'home', //short bit of all pages
   'about', // who what and bios

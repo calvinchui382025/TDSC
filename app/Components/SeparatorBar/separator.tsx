@@ -22,7 +22,18 @@ const Separator = ({data}) => {
           color: 'white',
           fontSize: '3rem',
           textTransform: 'uppercase',
+          margin: 0,
+          padding: 0,
         }}>{data.title}</h1>
+        <h1 style={{
+          fontFamily: 'sans-serif',
+          color: 'white',
+          fontSize: '2rem',
+          textTransform: 'uppercase',
+          margin: 10,
+          padding: 5,
+        }}>{data.content}</h1>
+        {data.dom}
       </ParallaxContainer>
     </CustomParallax>
 )};

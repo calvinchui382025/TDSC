@@ -11,6 +11,7 @@ export const CustomParallax = styled(Parallax)({
 export const ParallaxContainer = styled('div')({
   display: 'flex',
   justifyContent: 'center',
+  flexDirection: 'column',
   alignItems: 'center',
   position: 'absolute',
   width: '100%',

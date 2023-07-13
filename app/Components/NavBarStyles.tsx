@@ -14,11 +14,13 @@ export const StyledAppBar = styled('div')({
   position: 'fixed',
   top: 0,
   zIndex: 100,
+  // backgroundColor: 'gainsboro',
 })
 
 export const StyledAppBarSubContainer = styled('div')({
   display: 'flex',
   justifyContent: 'space-between',
+  // backgroundColor: 'gainsboro',
   width: '70%',
   position: 'fixed',
   top: 0,
