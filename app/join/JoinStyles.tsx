@@ -18,9 +18,14 @@ export const JoinPrimaryTypography = styled('h1')({
   fontFamily: 'sans-serif',
   color: 'grey',
   fontSize: '2rem',
-  // textTransform: 'uppercase',
   margin: 5,
   padding: 0,
+  '@media (max-width: 1100px)': {
+    fontSize: '1.5rem',
+  },
+  '@media (max-width: 600px)': {
+    fontSize: '1.2rem',
+  },
 })
 
 export const JoinSecondaryTypography = styled('h1')({
@@ -28,7 +33,14 @@ export const JoinSecondaryTypography = styled('h1')({
   color: 'grey',
   fontSize: '1.5rem',
   width: '60%',
-  // textTransform: 'uppercase',
   margin: 20,
   padding: 0,
+  '@media (max-width: 1100px)': {
+    width: '80%',
+    fontSize: '1rem',
+  },
+  '@media (max-width: 600px)': {
+    width: '95%',
+    fontSize: '0.9rem',
+  },
 })

@@ -15,11 +15,11 @@ export const AboutRoot = styled('div')({
 })
 
 export const BiosGrid = styled('div')({
+  justifyItems: 'center',
   paddingTop: '2rem',
   paddingBottom: '2rem',
   display: 'grid',
   gridTemplateColumns: 'repeat(3, 1fr)',
-  gridGap: '10px',
   '@media (max-width: 768px)': {
     gridTemplateColumns: 'repeat(2, 1fr)',
   },
@@ -30,7 +30,11 @@ export const BiosGrid = styled('div')({
 
 export const BiosCard = styled('div')({
   backgroundColor: 'white',
-  padding: '20px',
+  padding: '1.5rem',
+  width: '60%',
+  justifyContent: 'center',
+  alignItems: 'center',
+  textAlign: 'center',
 })
 
 export const WhoWeAreContainer = styled('div')({

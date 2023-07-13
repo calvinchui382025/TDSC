@@ -15,19 +15,26 @@ export const peopleList = [
   {
     name: 'Greg Baker',
     title: 'G2G',
-    description: 'NA',
+    description: 'Certified NRA Instructor Rifle/ Pistol/ Shotgun/ Range Safety Officer',
+    descriptiontwo: 'Advanced Glock Armorer',
+    descriptionthree: 'State of Texas License to Carry Instructor',
+    descriptionfour: 'Advanced training- Green Ops including red dot training',
     picture: 'https://media.istockphoto.com/id/526947869/vector/man-silhouette-profile-picture.jpg?s=612x612&w=0&k=20&c=5I7Vgx_U6UPJe9U2sA2_8JFF4grkP7bNmDnsLXTYlSc=',
   },
   {
     name: 'Mark Kimpler',
     title: 'WOGR',
     description: 'Certified NRA Range Safety Officer',
+    descriptiontwo: 'Advanced training- Green Ops including red dot training',
+    descriptionthree: 'TDSC Leader/ Instructor',
     picture: 'https://media.istockphoto.com/id/526947869/vector/man-silhouette-profile-picture.jpg?s=612x612&w=0&k=20&c=5I7Vgx_U6UPJe9U2sA2_8JFF4grkP7bNmDnsLXTYlSc=',
   },
   {
     name: 'Gregg Wingert',
     title: 'WOGR',
-    description: 'Certified NRA Instructor',
+    description: 'Certified NRA Instructor- Rifle/ Pistol/ Personal Home Defense/ Range Safety Officer',
+    descriptiontwo: 'State of Texas License to Carry Instructor',
+    descriptionthree: 'Advanced training from various instructors including Clint Smith, Bill Blowers, Tim Oxley; Green Ops including red dot training',
     picture: 'https://media.istockphoto.com/id/526947869/vector/man-silhouette-profile-picture.jpg?s=612x612&w=0&k=20&c=5I7Vgx_U6UPJe9U2sA2_8JFF4grkP7bNmDnsLXTYlSc=',
   },
 ]
@@ -86,9 +93,12 @@ export default function AboutPage() {
         {peopleList.map((person) => (
           <BiosCard key={person.name}>
             <img src={person.picture} style={{height: '250px', borderRadius: '10px'}}/>
-            <h2 style={{fontFamily: 'sans-serif',}}>{person.name}</h2>
-            <h3 style={{fontFamily: 'sans-serif',}}>{person.title}</h3>
-            <p style={{fontFamily: 'sans-serif',}}>{person.description}</p>
+            <h2 style={{fontFamily: 'sans-serif', margin: 5}}>{person.name}</h2>
+            <h3 style={{fontFamily: 'sans-serif', margin: 5}}>{person.title}</h3>
+            <p style={{fontFamily: 'sans-serif', margin: 5}}>{person.description}</p>
+            <p style={{fontFamily: 'sans-serif', margin: 5}}>{person.descriptiontwo}</p>
+            <p style={{fontFamily: 'sans-serif', margin: 5}}>{person.descriptionthree}</p>
+            <p style={{fontFamily: 'sans-serif', margin: 5}}>{person.descriptionfour}</p>
           </BiosCard>
         ))}
       </BiosGrid>
