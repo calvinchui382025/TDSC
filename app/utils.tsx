@@ -5,6 +5,8 @@ import { useEffect } from "react";
 import Separator from "./Components/SeparatorBar/separator";
 import { pageSeparatorData } from "./about/page";
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
+import { ContactComponent } from "./Components/contactcomponent";
+import { PaypalSubscribeComponent } from "./Components/paypalcomponents";
 
 //======================================================
 // export const mainColor = '#050030' // midnight blue
@@ -27,7 +29,7 @@ export const fadeIn = keyframes`
 
 
 //======================================================
-//     reusable components
+
 //======================================================
 
 //======================================================
@@ -35,7 +37,6 @@ export const fadeIn = keyframes`
 const ActivityImage = 'https://www.clackamas.us/sites/default/files/2019-06/gun-range.jpg'
 const CaliberImage = 'https://media.istockphoto.com/id/1413053043/photo/two-9mm-pistols-hold-slides-on-a-wooden-table.webp?b=1&s=170667a&w=0&k=20&c=W_NbM0AV6Io5VXLM7aqNnaD8-XHoPVGNjWP-XzBjpBQ='
 const TransparentImage = 'https://cdn11.bigcommerce.com/s-9de6f3ck5f/images/stencil/original/image-manager/gun-wall-builder-homepage-banner-edited-1-3-.png?t=1671692930'
-
 
 export const activitySeparatorData = {
   title: 'What we do',
