@@ -16,7 +16,7 @@ export const JoinRoot = styled('div')({
 
 export const JoinPrimaryTypography = styled('h1')({
   fontFamily: 'sans-serif',
-  color: 'grey',
+  color: 'gainsboro',
   fontSize: '2rem',
   margin: 5,
   padding: 0,
@@ -30,7 +30,7 @@ export const JoinPrimaryTypography = styled('h1')({
 
 export const JoinSecondaryTypography = styled('h1')({
   fontFamily: 'sans-serif',
-  color: 'grey',
+  color: 'gainsboro',
   fontSize: '1.5rem',
   width: '60%',
   margin: 20,

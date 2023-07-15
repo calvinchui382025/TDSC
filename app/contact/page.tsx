@@ -3,11 +3,14 @@
 import styled from "@emotion/styled"
 import { useState } from "react"
 import { Box, Typography, TextField, Button, Card, FormGroup, FormControlLabel, Checkbox, FormLabel, IconButton, Link } from "@mui/material"
-import { PrimaryCard, ContactFormCard, CustomTextField, CustomTypography, DecorationCard, AlignedBox, MessageTextField, StyledCheckboxGroup, MediaAlignedDiv, StyledFormGroup } from "./ContactPageStyles"
+import { PrimaryCard, ContactFormCard, CustomTextField, CustomTypography, DecorationCard, AlignedBox, MessageTextField, StyledCheckboxGroup, MediaAlignedDiv, StyledFormGroup, ContactRoot, ContactPrimaryTypography, ContactSecondaryTypography } from "./ContactPageStyles"
 import { mainColor } from "app/utils";
 import FacebookIcon from '@mui/icons-material/Facebook';
 import EmailIcon from '@mui/icons-material/Email';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import Separator from "app/Components/SeparatorBar/separator"
+import { ContactSeparatorData } from "app/join/page"
+import { Footer } from "app/Components/footer/footer"
 
 export default function ContactPage() {
   const [firstName, setFirstName] = useState("")
@@ -22,7 +25,7 @@ export default function ContactPage() {
     setChecked(event.target.value);
   }
 
-
+  
   const formData = {
     "First Name": firstName,
     "Last Name": lastName,
@@ -39,8 +42,33 @@ export default function ContactPage() {
   };
 
   return (
-    <div style={{backgroundColor: mainColor, height: '100%'}}>
-      <PrimaryCard>
+    <ContactRoot>
+      <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        backgroundColor: 'black',
+        width: '70%',
+        height: '15vh',
+      }}
+      >
+        <ContactPrimaryTypography
+        style={{
+          width: '60%',
+        }}
+        >
+          Have any questions?
+        </ContactPrimaryTypography>
+        <ContactSecondaryTypography>
+          Reach out to use and we will get back to you as soon as we can!
+        </ContactSecondaryTypography>
+      </div>
+      <Separator data={ContactSeparatorData}/>
+      <Footer />
+      {/* <PrimaryCard>
         <DecorationCard>
           <Typography sx={{color: 'gainsboro', fontWeight: '700'}} variant="h4">Contact Information</Typography>
           <Typography sx={{color: 'gainsboro', fontWeight: '600'}} variant="body1">Fill up the form and we will get back to you as soon as we can!</Typography>
@@ -145,7 +173,7 @@ export default function ContactPage() {
             }
           </StyledFormGroup>
         </ContactFormCard>
-      </PrimaryCard>
-    </div>
+      </PrimaryCard> */}
+    </ContactRoot>
   )
 }

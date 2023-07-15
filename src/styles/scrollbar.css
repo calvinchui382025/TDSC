@@ -1,0 +1,27 @@
+/* scrollbar.css */
+
+/* Target the scrollbar track */
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+/* Target the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+/* Target the scrollbar thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Target the scrollbar thumb when active (being dragged) */
+::-webkit-scrollbar-thumb:active {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Target the scrollbar corner */
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}

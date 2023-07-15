@@ -10,11 +10,15 @@ export const AboutRoot = styled('div')({
   alignItems: 'center',
   width: '100%',
   marginTop: '5rem',
+  position: 'absolute',
   // backgroundColor: 'gainsboro',
   // border: '1px solid white',
 })
 
 export const BiosGrid = styled('div')({
+  width: '80%',
+  position: 'relative',
+  top: -100,
   justifyItems: 'center',
   paddingTop: '2rem',
   paddingBottom: '2rem',

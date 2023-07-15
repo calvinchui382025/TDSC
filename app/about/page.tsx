@@ -4,6 +4,8 @@ import Separator from "app/Components/SeparatorBar/separator";
 import { AboutRoot, BiosCard, BiosGrid, WhoWeAreContainer } from "./AboutStyles";
 import { Button } from "@mui/material";
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import { Footer } from "app/Components/footer/footer";
+import { ContactSeparatorData } from "app/join/page";
 
 export const LeftShootingPic = "https://coyotecreekoutdoors.com/wp-content/uploads/2023/01/Indoor-gun-range.jpg"
 export const BannerRange = 'https://www.frcbr.com/sites/default/files/styles/slider-homepage/public/slides/homepage-slider/ss-the-line-c.jpg?itok=CwXfRslZ'
@@ -50,7 +52,14 @@ export default function AboutPage() {
   return (
     <AboutRoot>
       <WhoWeAreContainer>
-        <img src={LeftShootingPic} style={{height: '80%', borderRadius: '10px'}}/>
+        <img src={LeftShootingPic}
+        style={{
+          height: '80%',
+          padding: '2px',
+          background: 'linear-gradient(to right, rgb(37, 83, 185), rgb(102, 164, 255))',
+          borderRadius: '12px',
+        }}
+        />
         <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start', height: '80%', width: '30%'}}>
           <h1 style={{color: 'white', fontFamily: 'sans-serif',}}>Who we are</h1>
           <h3 style={{color: 'white', fontFamily: 'sans-serif',}}>
@@ -60,9 +69,11 @@ export default function AboutPage() {
           </h3>
           <Button
           style={{
-            color: 'white',
+            color: 'gainsboro',
             fontWeight: 'bold',
             backgroundColor: 'grey',
+            border: '2px solid',
+            backgroundImage: 'linear-gradient(to right, rgb(37, 83, 185), rgb(102, 164, 255))'
           }}
           >
             Join now! <KeyboardArrowRightIcon />
@@ -78,21 +89,30 @@ export default function AboutPage() {
           </h3>
           <Button
           style={{
-            color: 'white',
+            color: 'gainsboro',
             fontWeight: 'bold',
             backgroundColor: 'grey',
+            border: '2px solid',
+            backgroundImage: 'linear-gradient(to right, rgb(37, 83, 185), rgb(102, 164, 255))'
           }}
           >
             Join now! <KeyboardArrowRightIcon />
           </Button>
         </div>
-        <img src={RightShootingPic} style={{height: '80%', borderRadius: '10px'}}/>
+        <img src={RightShootingPic}
+        style={{
+          height: '80%',
+          padding: '2px',
+          background: 'linear-gradient(to right, rgb(37, 83, 185), rgb(102, 164, 255))',
+          borderRadius: '12px',
+        }}
+        />
       </WhoWeAreContainer>
       <Separator data={pageSeparatorData}/>
       <BiosGrid>
         {peopleList.map((person) => (
           <BiosCard key={person.name}>
-            <img src={person.picture} style={{height: '250px', borderRadius: '10px'}}/>
+            <img src={person.picture}style={{height: '250px', borderRadius: '10px'}}/>
             <h2 style={{fontFamily: 'sans-serif', margin: 5}}>{person.name}</h2>
             <h3 style={{fontFamily: 'sans-serif', margin: 5}}>{person.title}</h3>
             <p style={{fontFamily: 'sans-serif', margin: 5}}>{person.description}</p>
@@ -102,6 +122,8 @@ export default function AboutPage() {
           </BiosCard>
         ))}
       </BiosGrid>
+      <Separator data={ContactSeparatorData}/>
+      <Footer />
     </AboutRoot>
   )
 }

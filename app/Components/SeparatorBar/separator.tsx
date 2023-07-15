@@ -10,7 +10,7 @@ const Separator = ({data}) => {
       height: `${data.separatorheight}`,
     }}
     bgImage={data.image}
-    strength={800}
+    strength={950}
     >
       <ParallaxContainer
       style={{
