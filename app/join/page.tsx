@@ -4,12 +4,12 @@ import react, { useEffect } from "react"
 import styled from "@emotion/styled"
 import Separator from "app/Components/SeparatorBar/separator";
 import { JoinPrimaryTypography, JoinRoot, JoinSecondaryTypography } from "./JoinStyles";
-import { LeftShootingPic } from "app/about/page";
 import { Footer } from "app/Components/footer/footer";
 import { ContactComponent } from "app/Components/contactcomponent";
 import { PaypalDonateComponent, PaypalSubscribeComponent } from "app/Components/paypalcomponents";
-export const ContactBannerJoin = 'https://flintriverindoorshootingrange.com/wp-content/uploads/2021/05/three-1-a.jpg'
-export const JoinBanner = 'https://preview.free3d.com/img/2019/07/2400324917364000180/l7bb2nw3.jpg'
+
+const ContactBannerJoin = 'https://flintriverindoorshootingrange.com/wp-content/uploads/2021/05/three-1-a.jpg'
+const JoinBanner = 'https://preview.free3d.com/img/2019/07/2400324917364000180/l7bb2nw3.jpg'
 
 export const ContactSeparatorData = {
   content: 'Contact us!',
