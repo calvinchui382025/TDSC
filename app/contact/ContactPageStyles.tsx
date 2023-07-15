@@ -54,31 +54,54 @@ export const PrimaryCard = styled(Card)({
   alignItems: 'center',
   width: '70%',
   height: '70%',
-  margin: 'auto',
-  marginTop: 100,
+  // margin: 'auto',
+  // marginTop: 100,
   padding: 10,
   borderRadius: 10,
   '@media (max-width: 900px)': {
     flexDirection: 'column',
     height: '100%',
+    width: '90%',
+    // marginTop: 80
   },
 })
 
-export const ContactFormCard = styled(Card)({
+export const ContactFormCard = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'top',
   alignItems: 'center',
-  paddingTop: 25,
-  backgroundColor: 'transparent',
+  // padding: 24,
+  margin: 24,
+  // backgroundColor: 'transparent',
   border: 'none',
   boxShadow: 'none',
-  width: '68%',
+  width: '67%',
   height: '100%',
   // backgroundColor: 'grey',
   '@media (max-width: 900px)': {
     width: '100%',
     paddingTop: 0,
+    height: 'auto',
+  },
+})
+
+export const ContactContainer = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'top',
+  // alignItems: 'center',
+  '@media (max-width: 900px)': {
+    flexDirection: 'row',
+    width: '100%',
+    paddingTop: 0,
+    justifyContent: 'center',
+  },
+})
+
+export const ContactText = styled(Typography)({
+  '@media (max-width: 900px)': {
+    display: 'none',
   },
 })
 
@@ -94,8 +117,9 @@ export const DecorationCard = styled(Card)({
   borderRadius: 10,
   '@media (max-width: 1000px)': {
     width: '80%',
-    height: '45%',
     marginBottom: 5,
+    height: 'auto',
+    minHeight: 150,
   },
 })
 
@@ -109,10 +133,11 @@ export const CustomTextField = styled(TextField)({
 })
 
 export const MessageTextField = styled(TextField)({
-  width: '72%',
-  marginBottom: 20,
-  margin: 20,
-  height: 200,
+  // width: '72%',
+  // marginBottom: 20,
+  // margin: 20,
+  // height: 200,
+  margin: '20px 0px',
 })
 
 export const CustomTypography = styled(Typography)({
@@ -120,15 +145,16 @@ export const CustomTypography = styled(Typography)({
 })
 
 export const AlignedBox = styled('div')({
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'space-between',
+  // display: 'flex',
+  // flexDirection: 'row',
+  width: '100%',
+  // justifyContent: 'space-between',
   '@media (max-width: 900px)': {
     flexDirection: 'column',
   },
 })
 
-export const StyledFormGroup = styled(FormGroup)({
+export const StyledFormGroup = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
@@ -140,6 +166,7 @@ export const MediaAlignedDiv = styled('div')({
   flexDirection: 'row',
   alignItems: 'left',
   justifyContent: 'left',
+  // alignItems: 'center',
   paddingTop: 50,
   color: 'gainsboro',
   '@media (max-width: 900px)': {

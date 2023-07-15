@@ -45,7 +45,7 @@ const TitleText = styled(HomeText)({
   fontSize: '10vw',
   fontWeight: 600,
   animation: `${fadeIn} 3s`,
-  zIndex: 2,
+  zIndex: 5,
   fontFamily: 'Barlow Condensed, sans-serif', 
   
   '@media (max-width: 600px)': {
@@ -162,6 +162,7 @@ export default function HomePage() {
           autoPlay
           muted
           loop 
+          playsInline
         >
           <source 
             src='/Videos/pexels-range.mp4' 
@@ -188,6 +189,7 @@ export default function HomePage() {
             autoPlay
             muted
             loop
+            playsInline
           >
             <source
               src='/Videos/pexels-walking-in-woods.mp4'
@@ -211,6 +213,7 @@ export default function HomePage() {
             autoPlay
             muted
             loop
+            playsInline
           >
             <source
               src='/Videos/pexels-man-holding-gun.mp4'
@@ -232,6 +235,7 @@ export default function HomePage() {
             autoPlay
             muted
             loop
+            playsInline
           >
             <source
               src='/Videos/pexels-loading-mag.mp4'
