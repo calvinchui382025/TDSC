@@ -1,10 +1,16 @@
 'use client'
 
 import { styled, Typography } from '@mui/material';
-import { fadeIn, mainColor } from './utils';
+import { ActivitiesComponent, fadeIn, mainColor } from './utils';
+import { Footer } from './Components/footer/footer';
+import Separator from './Components/SeparatorBar/separator';
+import { ContactSeparatorData } from './join/page';
+import { pageSeparatorData, peopleList } from './about/page';
+import { BiosCard, BiosGrid } from './about/AboutStyles';
 //======================================================
 // const backgroundVideoWidth = 2312
 //======================================================
+
 const HomeRoot = styled('div')({
   width: '100%',
   display: 'flex',
@@ -79,7 +85,7 @@ const FlippedRow = styled(Row)({
 const GradientDivider = styled('div')({
   width: '80%',
   height: '1px',
-  background: 'linear-gradient(90deg, #f52a72, #6b41f8)',
+  background: 'linear-gradient(90deg, rgb(37, 83, 185), rgb(102, 164, 255))',
   zIndex: 5
 })
 const PrepareTextContainer = styled('div')({
@@ -115,7 +121,7 @@ const PrepareVideoContainer = styled('div')({
 const PrepareVideo = styled('video')({
   objectFit: 'cover',
   padding: '1px',
-  background: 'linear-gradient(to right, orange, red)',
+  background: 'linear-gradient(to right, rgb(37, 83, 185), rgb(102, 164, 255))',
   borderRadius: '12px',
 })
 
@@ -170,14 +176,13 @@ export default function HomePage() {
           TEXAS DEFENSIVE SHOOTING CLUB
       </TitleText>
       <GradientDivider />
-
       <Row>
         <PrepareTextContainer>
           <Gradient />
           <PrepareText variant='h2'>PREPARE TO PROTECT</PrepareText>
         </PrepareTextContainer>
       </Row>
-
+      <ActivitiesComponent />
       <Row>
         <PrepareVideoContainer>
           <PrepareVideo
@@ -245,6 +250,8 @@ export default function HomePage() {
           </PrepareSubText>
         </PrepareSubTextContainer>
       </Row>
+      {/* <Separator data={ContactSeparatorData}/> */}
+      {/* <Footer /> */}
     </HomeRoot>
   )
 }
