@@ -12,7 +12,7 @@ const BannerRange = 'https://www.frcbr.com/sites/default/files/styles/slider-hom
 const RightShootingPic = 'https://www.alphakoncepts.com/wp-content/uploads/2023/04/AlphaConcepts-Shotgun-2023-04-15-93-scaled.jpg'
 const RangePicture = 'https://flintriverindoorshootingrange.com/wp-content/uploads/2021/05/three-1-a.jpg'
 
-export const peopleList = [
+const peopleList = [
   {
     name: 'Greg Baker',
     title: 'G2G',
@@ -40,7 +40,7 @@ export const peopleList = [
   },
 ]
 
-export const pageSeparatorData = {
+const pageSeparatorData = {
   title: 'Bios',
   // content: 'Meet our ',
   image: BannerRange,
