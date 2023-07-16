@@ -11,14 +11,13 @@ import { PaypalDonateComponent, PaypalSubscribeComponent } from "app/Components/
 const ContactBannerJoin = 'https://flintriverindoorshootingrange.com/wp-content/uploads/2021/05/three-1-a.jpg'
 const JoinBanner = 'https://preview.free3d.com/img/2019/07/2400324917364000180/l7bb2nw3.jpg'
 
-export const ContactSeparatorData = {
+const ContactSeparatorData = {
   content: 'Contact us!',
   image: ContactBannerJoin,
   separatorheight: '75vh',
   dom: <ContactComponent />,
 }
-
-export const JoinSeparatorData = {
+const JoinSeparatorData = {
   title: 'Annual membership fee',
   content: '$75',
   image: JoinBanner,
