@@ -55,6 +55,17 @@ export const StyledDrawer = styled(Drawer)({
   backgroundColor: 'transparent',
 })
 
+export const DrawerBackground = styled('div')({
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  textAlign: "center",
+  gap: "2rem",
+  padding: "1rem",
+  backgroundColor: 'black',
+})
+
 export const HamburgerIconButton = styled(IconButton)({
   height: 75,
   width: 75,

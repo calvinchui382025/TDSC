@@ -11,7 +11,7 @@ import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import Typography from '@mui/material/Typography';
 import Link from 'next/link';
-import {StyledListItemButton, StyledAppBar, StyledDrawer, HamburgerIconButton, StyledAppBarSubContainer, ListTextStyled, StyledExitIcon, StyledExitButton, AuxDrawerButtons} from './NavBarStyles';
+import {StyledListItemButton, StyledAppBar, StyledDrawer, HamburgerIconButton, StyledAppBarSubContainer, ListTextStyled, StyledExitIcon, StyledExitButton, AuxDrawerButtons, DrawerBackground} from './NavBarStyles';
 
 const navItems = [
   'home', //short bit of all pages
@@ -96,18 +96,7 @@ export default function DrawerAppBar() {
           onClick={handleDrawerToggle}
           anchor="top"
         >
-          <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            textAlign: "center",
-            gap: "2rem",
-            padding: "1rem",
-            backgroundColor: 'black',
-          }}
-          >
+          <DrawerBackground>
             <AuxDrawerButtons>
               <StyledExitButton>
                 <Image src="/TDSCImage2.png" alt="logo" width={75} height={75} />
@@ -119,7 +108,7 @@ export default function DrawerAppBar() {
             <div>
               <LinkItems />
             </div>
-          </div>
+          </DrawerBackground>
         </StyledDrawer>
       </StyledAppBarSubContainer>
     </StyledAppBar>

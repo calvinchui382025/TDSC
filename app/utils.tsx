@@ -6,6 +6,7 @@ import Separator from "./Components/SeparatorBar/separator";
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 import { ContactComponent } from "./Components/contactcomponent";
 import { PaypalSubscribeComponent } from "./Components/paypalcomponents";
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 //======================================================
 // export const mainColor = '#050030' // midnight blue
@@ -29,13 +30,32 @@ export const fadeIn = keyframes`
 
 //======================================================
 
+const ContactBannerJoin = 'https://flintriverindoorshootingrange.com/wp-content/uploads/2021/05/three-1-a.jpg'
+const JoinBanner = 'https://preview.free3d.com/img/2019/07/2400324917364000180/l7bb2nw3.jpg'
+
+//======================================================
+
+export const ContactSeparatorData = {
+  content: 'Contact us!',
+  image: ContactBannerJoin,
+  separatorheight: '75vh',
+  dom: <ContactComponent />,
+}
+
+export const JoinSeparatorData = {
+  title: 'Annual membership fee',
+  content: '$75',
+  image: JoinBanner,
+  separatorheight: '55vh',
+  dom: <PaypalSubscribeComponent/>,
+}
+
 //======================================================
 
 //======================================================
 
 const ActivityImage = 'https://www.clackamas.us/sites/default/files/2019-06/gun-range.jpg'
 const CaliberImage = 'https://media.istockphoto.com/id/1413053043/photo/two-9mm-pistols-hold-slides-on-a-wooden-table.webp?b=1&s=170667a&w=0&k=20&c=W_NbM0AV6Io5VXLM7aqNnaD8-XHoPVGNjWP-XzBjpBQ='
-const TransparentImage = 'https://cdn11.bigcommerce.com/s-9de6f3ck5f/images/stencil/original/image-manager/gun-wall-builder-homepage-banner-edited-1-3-.png?t=1671692930'
 
 export const activitySeparatorData = {
   title: 'What we do',
@@ -57,7 +77,7 @@ const ActivitiesInfo = [
   },
   {
     title: '3 Gun Shoots',
-    description: 'Join TDSC for an exciting and unforgettable 3 Gun Shoot where you experience shooting a handgun, rifle, and shotgun while moving from one stage to another, engaging targets with each firearm. See our calendar for shoot schedule and locations.',
+    description: 'TDSC offers  handgun and rifle (carbine) shoots involving cardboard and steel targets, props, walls, clays, and a duelling tree. See our calendar for shoot schedule and locations.',
     icon: <SupervisorAccountIcon style={{fontSize: 70, color: 'rgb(37, 83, 185)'}}/>
   },
   {
@@ -132,14 +152,23 @@ export const ActivitiesComponent = () => {
     <>
       <Separator data={activitySeparatorData}/>
       <ActivityGrid>
-        {ActivitiesInfo.map((activity) => (
-          <ActivityCard key={activity.title}>
-            {activity.icon}
-            {/* <img src={activity.picture}style={{height: '250px', borderRadius: '10px'}}/> */}
-            <ActivityTitle>{activity.title}</ActivityTitle>
-            <ActivityDesc>{activity.description}</ActivityDesc>
-          </ActivityCard>
-        ))}
+        {ActivitiesInfo.map((activity) => {
+          return (
+            <ActivityCard key={activity.title}>
+              {activity.icon}
+              <ActivityTitle>{activity.title}</ActivityTitle>
+              <ActivityDesc>{activity.description}</ActivityDesc>
+              <Button
+                style={{
+                  color: 'rgb(102, 164, 255)',
+                  fontWeight: 'bold',
+                }}
+              >
+                Join now! <KeyboardArrowRightIcon style={{backgroundImage: 'linear-gradient(to right, rgb(37, 83, 185), rgb(102, 164, 255)', borderRadius: '50%', color: greyColorCustomLight, marginLeft: 7}}/>
+              </Button>
+            </ActivityCard>
+          );
+        })}
       </ActivityGrid>
     </>
   )
