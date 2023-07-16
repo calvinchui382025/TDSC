@@ -3,7 +3,6 @@ import styled from "@emotion/styled";
 import { Button, FormControl, TextField, keyframes } from '@mui/material';
 import { useEffect } from "react";
 import Separator from "./Components/SeparatorBar/separator";
-import { pageSeparatorData } from "./about/page";
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 import { ContactComponent } from "./Components/contactcomponent";
 import { PaypalSubscribeComponent } from "./Components/paypalcomponents";
