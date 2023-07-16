@@ -4,12 +4,14 @@ import { styled, Typography } from '@mui/material';
 import { ActivitiesComponent, fadeIn, mainColor } from './utils';
 import { Footer } from './Components/footer/footer';
 import Separator from './Components/SeparatorBar/separator';
-import { ContactSeparatorData } from './join/page';
-import { pageSeparatorData, peopleList } from './about/page';
+import { ContactSeparatorData } from './utils';
 import { BiosCard, BiosGrid } from './about/AboutStyles';
 //======================================================
 // const backgroundVideoWidth = 2312
 //======================================================
+
+const TransparentImage = 'https://cdn11.bigcommerce.com/s-9de6f3ck5f/images/stencil/original/image-manager/gun-wall-builder-homepage-banner-edited-1-3-.png?t=1671692930'
+
 
 const HomeRoot = styled('div')({
   width: '100%',
@@ -183,6 +185,7 @@ export default function HomePage() {
         </PrepareTextContainer>
       </Row>
       <ActivitiesComponent />
+      {/* <img src={TransparentImage} alt='test' height='600' width='600' /> */}
       <Row>
         <PrepareVideoContainer>
           <PrepareVideo
@@ -250,8 +253,8 @@ export default function HomePage() {
           </PrepareSubText>
         </PrepareSubTextContainer>
       </Row>
-      {/* <Separator data={ContactSeparatorData}/> */}
-      {/* <Footer /> */}
+      <Separator data={ContactSeparatorData}/>
+      <Footer />
     </HomeRoot>
   )
 }

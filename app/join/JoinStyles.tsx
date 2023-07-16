@@ -14,6 +14,17 @@ export const JoinRoot = styled('div')({
   backgroundColor: 'black',
 })
 
+export const JoinHeader = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  textAlign: 'center',
+  backgroundColor: 'black',
+  width: '70%',
+  height: '35vh',
+})
+
 export const JoinPrimaryTypography = styled('h1')({
   fontFamily: 'sans-serif',
   color: 'gainsboro',

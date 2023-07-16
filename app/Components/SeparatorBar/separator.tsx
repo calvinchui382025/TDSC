@@ -4,6 +4,12 @@ import secondary from './banner3.jpg';
 import { CustomParallax, ParallaxContainer, ParallaxContent, ParallaxTitle } from './SeparatorStyles';
 
 const Separator = ({data}) => {
+  if (!data) {
+    return null; // Return null or handle the case when data is undefined or null
+  }
+
+  const { separatorheight, image, title, content, dom } = data;
+  
   return (
     <CustomParallax
     style={{

@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { Card, Typography } from '@mui/material';
+import { greyColorCustomDark } from 'app/utils';
 //======================================================
 export const LocationRoot = styled('div')({
   width: '100%',
@@ -8,7 +9,8 @@ export const LocationRoot = styled('div')({
   flexDirection: 'column',
   alignItems: 'center',
   // justifyContent: 'center',
-  marginTop: '40px',
+  marginTop: '10vh',
+  marginBottom: '10vh',
 });
 
 export const WholeCard = styled(Card)({
@@ -16,7 +18,7 @@ export const WholeCard = styled(Card)({
   height: '50%',
   minHeight: '600px',
   borderRadius: '24px',
-  backgroundColor: '#151a26',
+  backgroundColor: greyColorCustomDark,
   color: 'white',
   padding: '24px',
   margin: '24px',
