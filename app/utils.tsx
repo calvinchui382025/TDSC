@@ -7,6 +7,12 @@ import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 import { ContactComponent } from "./Components/contactcomponent";
 import { PaypalSubscribeComponent } from "./Components/paypalcomponents";
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import { Timeline, TimelineConnector, TimelineContent, TimelineDot, TimelineItem, TimelineOppositeContent, TimelineSeparator } from "@mui/lab";
+import { locations } from "./locations/data";
+import { CardMapContainer } from "./locations/locationStyles";
+import GoogleMapReact from "google-map-react";
+import { mapStyles } from "./locations/mapStyles";
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 //======================================================
 // export const mainColor = '#050030' // midnight blue
@@ -14,6 +20,8 @@ export const mainColor = 'rgb(36,40,43)' // midnight blue
 export const greyColorCustom = 'rgb(36,40,43)'
 export const greyColorCustomDark = 'rgb(27,31,34)'
 export const greyColorCustomLight = 'rgb(45,49,52)'
+
+export const mainGradient = 'linear-gradient(to right, rgb(37, 83, 185), rgb(102, 164, 255))'
 //======================================================
 export const fadeIn = keyframes`
 0%    {
@@ -76,11 +84,6 @@ const ActivitiesInfo = [
     icon: <SupervisorAccountIcon style={{fontSize: 70, color: 'rgb(37, 83, 185)'}}/>
   },
   {
-    title: '3 Gun Shoots',
-    description: 'TDSC offers  handgun and rifle (carbine) shoots involving cardboard and steel targets, props, walls, clays, and a duelling tree. See our calendar for shoot schedule and locations.',
-    icon: <SupervisorAccountIcon style={{fontSize: 70, color: 'rgb(37, 83, 185)'}}/>
-  },
-  {
     title: 'Private Instruction',
     description: 'TDSC offers private instruction for individuals and groups.  Contact us for more information.',
     icon: <SupervisorAccountIcon style={{fontSize: 70, color: 'rgb(37, 83, 185)'}}/>
@@ -95,8 +98,7 @@ const ActivityGrid = styled('div')({
   paddingTop: '2rem',
   paddingBottom: '2rem',
   display: 'grid',
-  gap: '1.25rem',
-  gridTemplateColumns: 'repeat(4, 1fr)',
+  gridTemplateColumns: 'repeat(3, 1fr)',
   '@media (max-width: 1268px)': {
     gridTemplateColumns: 'repeat(2, 1fr)',
   },
@@ -111,25 +113,21 @@ const ActivityCard = styled('div')({
   backgroundColor: greyColorCustomLight,
   padding: '1.5rem',
   width: '15vw',
-  height: '25vh',
   justifyContent: 'flex-start',
   alignItems: 'center',
   textAlign: 'center',
   borderRadius: '12px',
   border: '1px solid',
   borderColor: 'grey',
-  //hover
   '&:hover': {
     border: '1px solid rgb(37, 83, 185)',
     transition: 'all 0.2s ease-in-out',
   },
   '@media (max-width: 1268px)': {
     width: '30vw',
-    height: '25vh',
   },
   '@media (max-width: 480px)': {
     width: '65vw',
-    height: '25vh',
   },
 })
 
@@ -175,3 +173,190 @@ export const ActivitiesComponent = () => {
 }
 
 //======================================================
+
+const TimelineContainer = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  marginBottom: '2.5rem',
+})
+
+const TimelineTitle = styled('h1')({
+  fontFamily: 'sans-serif',
+  margin: 5,
+  color: 'gainsboro',
+  textTransform: 'uppercase',
+  fontSize: 'xx-large',
+})
+
+const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+
+const MyMarker = ({ text }: any) => (
+  <LocationOnIcon fontSize='large' style={{color:'red'}}/>
+)
+
+export const BasicTimeline = () => {
+  const handleMarkerClick = (location) => {
+    console.log('clicked')
+  }
+  return (
+    <TimelineContainer>
+      <TimelineTitle>Locations</TimelineTitle>
+      <Timeline>
+        {locations.map((location, index) => {
+          const { range, cost, street, city, state, zip, phone, description, lat, lng } = location
+          return (
+          <TimelineItem key={index}>
+            <TimelineOppositeContent
+              color="white"
+              style={{
+                border: '2px solid rgb(102, 164, 255)',
+                width: '500px',
+                height: '300px',
+                margin: '15px',
+                borderRadius: '12px',
+                backgroundColor: greyColorCustomLight,
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+              }}
+            >
+              <h3 style={{margin: 0}}>{location.range}</h3>
+              <p>{location.description}</p>
+              <p>{location.cost}</p>
+            </TimelineOppositeContent>
+            <TimelineSeparator>
+              <TimelineDot />
+              {index < locations.length - 1 && <TimelineConnector />} {/* Render the connector for all items except the last one */}
+            </TimelineSeparator>
+            <TimelineContent
+              color="white"
+              style={{
+                border: '2px solid rgb(102, 164, 255)',
+                width: '500px',
+                height: '300px',
+                margin: '15px',
+                borderRadius: '12px',
+                backgroundColor: greyColorCustomLight,
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <CardMapContainer>
+                <GoogleMapReact
+                  bootstrapURLKeys={{ 
+                    key: String(apiKey) 
+                  }}
+                  defaultCenter={{lat, lng}}
+                  defaultZoom={15}
+                  options={{
+                    disableDefaultUI: true,
+                    keyboardShortcuts: false,
+                    styles: mapStyles,
+                  }}
+                  onClick={() => handleMarkerClick(location)}
+                >
+                  <MyMarker
+                    lat={lat}
+                    lng={lng}
+                    text={range}
+                  />
+                </GoogleMapReact>
+              </CardMapContainer>
+            </TimelineContent>
+          </TimelineItem>
+        )})}
+      </Timeline>
+    </TimelineContainer>
+  );
+}
+
+
+
+      {/* <TimelineItem>
+        <TimelineOppositeContent
+        color="white"
+        style={{
+          border: '2px solid rgb(102, 164, 255)',
+          width: '500px',
+          height: '200px',
+          margin: '15px',
+          borderRadius: '12px',
+          backgroundColor: greyColorCustomLight,
+        }}>
+          test
+        </TimelineOppositeContent>
+        <TimelineSeparator>
+          <TimelineDot />
+          <TimelineConnector />
+        </TimelineSeparator>
+        <TimelineContent
+        color="white"
+        style={{
+          border: '2px solid red',
+          width: '500px',
+          height: '200px',
+          margin: '15px'
+        }}>
+          Eat
+        </TimelineContent>
+      </TimelineItem>
+      <TimelineItem>
+        <TimelineOppositeContent
+        color="white"
+        style={{
+          border: '2px solid rgb(102, 164, 255)',
+          width: '500px',
+          height: '200px',
+          margin: '15px',
+          borderRadius: '12px',
+          backgroundColor: greyColorCustomLight,
+        }}>
+          09:30 am
+        </TimelineOppositeContent>
+        <TimelineSeparator>
+          <TimelineDot />
+          <TimelineConnector />
+        </TimelineSeparator>
+        <TimelineContent
+        color="white"
+        style={{
+          border: '2px solid red',
+          width: '500px',
+          height: '200px',
+          margin: '15px'
+        }}>
+          Eat
+        </TimelineContent>
+      </TimelineItem>
+      <TimelineItem>
+        <TimelineOppositeContent
+        color="white"
+        style={{
+          border: '2px solid rgb(102, 164, 255)',
+          width: '500px',
+          height: '200px',
+          margin: '15px',
+          borderRadius: '12px',
+          backgroundColor: greyColorCustomLight,
+        }}>
+          09:30 am
+        </TimelineOppositeContent>
+        <TimelineSeparator>
+          <TimelineDot />
+          <TimelineConnector />
+        </TimelineSeparator>
+        <TimelineContent
+        color="white"
+        style={{
+          border: '2px solid red',
+          width: '500px',
+          height: '200px',
+          margin: '15px'
+        }}>
+          Eat
+        </TimelineContent>
+      </TimelineItem> */}
