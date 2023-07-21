@@ -1,17 +1,18 @@
 'use client'
 
 import { styled, Typography } from '@mui/material';
-import { ActivitiesComponent, fadeIn, mainColor } from './utils';
+import { ActivitiesComponent, BasicTimeline, fadeIn, JoinSeparatorData, mainColor } from './utils';
 import { Footer } from './Components/footer/footer';
 import Separator from './Components/SeparatorBar/separator';
 import { ContactSeparatorData } from './utils';
 import { BiosCard, BiosGrid } from './about/AboutStyles';
+import { JoinHeader, JoinPrimaryTypography, JoinSecondaryTypography } from './join/JoinStyles';
+import { PaypalDonateComponent } from './Components/paypalcomponents';
 //======================================================
 // const backgroundVideoWidth = 2312
 //======================================================
 
 const TransparentImage = 'https://cdn11.bigcommerce.com/s-9de6f3ck5f/images/stencil/original/image-manager/gun-wall-builder-homepage-banner-edited-1-3-.png?t=1671692930'
-
 
 const HomeRoot = styled('div')({
   width: '100%',
@@ -185,6 +186,13 @@ export default function HomePage() {
         </PrepareTextContainer>
       </Row>
       <ActivitiesComponent />
+      <BasicTimeline />
+      <Separator data={JoinSeparatorData}/>
+      <JoinHeader style={{width: '100vw', marginBottom: '2.5rem',}}>
+        <JoinPrimaryTypography>Help Our Cause</JoinPrimaryTypography>
+        <JoinSecondaryTypography>Your support and contributions will enable us to meet our goals and improve conditions. Your generous donation will fund our mission.</JoinSecondaryTypography>
+        <PaypalDonateComponent />
+      </JoinHeader>
       {/* <img src={TransparentImage} alt='test' height='600' width='600' /> */}
       <Row>
         <PrepareVideoContainer>

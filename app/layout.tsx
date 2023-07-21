@@ -3,6 +3,7 @@
 import styled from '@emotion/styled'
 import NavBar from './Components/NavBar'
 import { mainColor } from './utils'
+import { ToastContainer } from 'react-toastify';
 //======================================================
 const Root = styled('div')({
   display: 'flex',
@@ -25,6 +26,7 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
           <NavBar />
           {children}
         </Root>
+        <ToastContainer />
       </body>
     </html>
   )

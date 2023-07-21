@@ -9,10 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emailjs/browser": "^3.11.0",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mui/icons-material": "^5.11.0",
-    "@mui/material": "^5.11.8",
+    "@mui/lab": "^5.0.0-alpha.137",
+    "@mui/material": "^5.14.1",
     "@next/font": "13.1.6",
     "@paypal/react-paypal-js": "^8.1.0",
     "@types/google-map-react": "^2.1.7",

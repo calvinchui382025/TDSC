@@ -18,7 +18,7 @@ export const WholeCard = styled(Card)({
   height: '50%',
   minHeight: '600px',
   borderRadius: '24px',
-  backgroundColor: greyColorCustomDark,
+  backgroundColor: 'rgb(27,31,34)',
   color: 'white',
   padding: '24px',
   margin: '24px',

@@ -1,11 +1,12 @@
 "use client"
 
+import { useState, useEffect } from "react";
 import Separator from "app/Components/SeparatorBar/separator";
-import { AboutRoot, BiosCard, BiosGrid, WhoWeAreContainer } from "./AboutStyles";
+import { AboutImage, AboutRoot, BiosCard, BiosGrid, WhatWeDoTextContainer, WhoWeAreContainer, WhoWeAreTextContainer } from "./AboutStyles";
 import { Button } from "@mui/material";
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { Footer } from "app/Components/footer/footer";
-import { ContactSeparatorData } from "app/utils";
+import { ContactSeparatorData, greyColorCustomLight, mainGradient } from "app/utils";
 
 const LeftShootingPic = "https://coyotecreekoutdoors.com/wp-content/uploads/2023/01/Indoor-gun-range.jpg"
 const BannerRange = 'https://www.frcbr.com/sites/default/files/styles/slider-homepage/public/slides/homepage-slider/ss-the-line-c.jpg?itok=CwXfRslZ'
@@ -48,20 +49,26 @@ const pageSeparatorData = {
 }
 
 export default function AboutPage() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    function handleResize() {
+      setIsMobile(window.innerWidth < 768);
+    }
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
   return (
     <AboutRoot>
       <WhoWeAreContainer>
-        <img src={LeftShootingPic}
-        style={{
-          height: '80%',
-          padding: '2px',
-          background: 'linear-gradient(to right, rgb(37, 83, 185), rgb(102, 164, 255))',
-          borderRadius: '12px',
-        }}
-        />
-        <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start', height: '80%', width: '30%'}}>
-          <h1 style={{color: 'white', fontFamily: 'sans-serif',}}>Who we are</h1>
-          <h3 style={{color: 'white', fontFamily: 'sans-serif',}}>
+        <AboutImage src={LeftShootingPic} />
+        <WhoWeAreTextContainer>
+          <h1 style={{color: 'white', fontFamily: 'sans-serif'}}>Who we are</h1>
+          <h3 style={{color: 'white', fontFamily: 'sans-serif', display: 'inline-block'}}>
             We are Texas Defensive Shooting Club (TDSC)- Our mission is to lead shooters to become well
             acquainted with their weapon systems, advance speed and accuracy proficiency and promote
             gun safety in order to increase the chance of survival in a deadly threat encounter.
@@ -72,17 +79,18 @@ export default function AboutPage() {
             fontWeight: 'bold',
             backgroundColor: 'grey',
             border: '2px solid',
-            backgroundImage: 'linear-gradient(to right, rgb(37, 83, 185), rgb(102, 164, 255))'
+            backgroundImage: mainGradient,
           }}
           >
             Join now! <KeyboardArrowRightIcon />
           </Button>
-        </div>
+        </WhoWeAreTextContainer>
       </WhoWeAreContainer>
       <WhoWeAreContainer>
-        <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-end', height: '80%', width: '30%'}}>
-          <h1 style={{color: 'white', fontFamily: 'sans-serif',}}>What we do</h1>
-          <h3 style={{color: 'white', textAlign: 'right', fontFamily: 'sans-serif',}}>
+        {isMobile && <AboutImage src={RightShootingPic} />}
+        <WhatWeDoTextContainer>
+          <h1 style={{color: 'white', fontFamily: 'sans-serif'}}>What we do</h1>
+          <h3 style={{color: 'white', fontFamily: 'sans-serif', textAlign: 'right'}}>
             TDSC trains/leads defensive and tactical drills combined with practical scenarios running pistols
             and carbines using various targets and props.
           </h3>
@@ -92,32 +100,33 @@ export default function AboutPage() {
             fontWeight: 'bold',
             backgroundColor: 'grey',
             border: '2px solid',
-            backgroundImage: 'linear-gradient(to right, rgb(37, 83, 185), rgb(102, 164, 255))'
+            backgroundImage: mainGradient
           }}
           >
             Join now! <KeyboardArrowRightIcon />
           </Button>
-        </div>
-        <img src={RightShootingPic}
-        style={{
-          height: '80%',
-          padding: '2px',
-          background: 'linear-gradient(to right, rgb(37, 83, 185), rgb(102, 164, 255))',
-          borderRadius: '12px',
-        }}
-        />
+        </WhatWeDoTextContainer>
+        {!isMobile && <AboutImage src={RightShootingPic} />}
       </WhoWeAreContainer>
       <Separator data={pageSeparatorData}/>
       <BiosGrid>
         {peopleList.map((person) => (
           <BiosCard key={person.name}>
-            <img src={person.picture}style={{height: '250px', borderRadius: '10px'}}/>
-            <h2 style={{fontFamily: 'sans-serif', margin: 5}}>{person.name}</h2>
-            <h3 style={{fontFamily: 'sans-serif', margin: 5}}>{person.title}</h3>
-            <p style={{fontFamily: 'sans-serif', margin: 5}}>{person.description}</p>
-            <p style={{fontFamily: 'sans-serif', margin: 5}}>{person.descriptiontwo}</p>
-            <p style={{fontFamily: 'sans-serif', margin: 5}}>{person.descriptionthree}</p>
-            <p style={{fontFamily: 'sans-serif', margin: 5}}>{person.descriptionfour}</p>
+            <img src={person.picture}style={{height: '20vh', borderRadius: '10px'}}/>
+            <h2 style={{fontFamily: 'sans-serif', margin: 5, color: 'gainsboro'}}>{person.name}</h2>
+            <h3 style={{fontFamily: 'sans-serif', margin: 5, color: 'gainsboro'}}>{person.title}</h3>
+            <p style={{fontFamily: 'sans-serif', margin: 5, color: 'gainsboro'}}>{person.description}</p>
+            <p style={{fontFamily: 'sans-serif', margin: 5, color: 'gainsboro'}}>{person.descriptiontwo}</p>
+            <p style={{fontFamily: 'sans-serif', margin: 5, color: 'gainsboro'}}>{person.descriptionthree}</p>
+            <p style={{fontFamily: 'sans-serif', margin: 5, color: 'gainsboro'}}>{person.descriptionfour}</p>
+            <Button
+              style={{
+                color: 'rgb(102, 164, 255)',
+                fontWeight: 'bold',
+              }}
+            >
+              Contact <KeyboardArrowRightIcon style={{backgroundImage: 'linear-gradient(to right, rgb(37, 83, 185), rgb(102, 164, 255)', borderRadius: '50%', color: greyColorCustomLight, marginLeft: 7}}/>
+            </Button>
           </BiosCard>
         ))}
       </BiosGrid>
