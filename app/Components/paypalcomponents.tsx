@@ -19,51 +19,6 @@ const PaypalContainer = styled('div')({
   },
 })
 
-const SubscribeButtonWrapper = ({ type }) => {
-	const [{ options }, dispatch] = usePayPalScriptReducer();
-
-	useEffect(() => {
-        dispatch({
-            type: "resetOptions",
-            value: {
-                ...options,
-                intent: "subscription",
-            },
-        });
-    }, [type]);
-
-	return (<PayPalButtons
-		createSubscription={(data, actions) => {
-			return actions.subscription
-				.create({
-					plan_id: "P-3RX065706M3469222L5IFM4I",
-				})
-				.then((orderId) => {
-					// Your code here after create the order
-					return orderId;
-				});
-		}}
-		style={{
-			label: "subscribe",
-		}}
-	/>);
-}
-
-export const PaypalSubscribeComponent = () => (
-  <PaypalContainer>
-    <PayPalScriptProvider
-      options={{
-        clientId: "test",
-        components: "buttons",
-        intent: "subscription",
-        vault: true,
-      }}
-    >
-      <SubscribeButtonWrapper type="subscription" />
-    </PayPalScriptProvider>
-  </PaypalContainer>
-);
-
 //======================================================
 
 
@@ -125,7 +80,11 @@ const DonateButtonWrapper = ({ currency }) => {
 }
 
 export const PaypalDonateComponent = () => (
-  <PaypalContainer>
+  <PaypalContainer
+  style={{
+    zIndex: 99,
+  }}
+  >
       <PayPalScriptProvider
         options={{
             "clientId": "test",

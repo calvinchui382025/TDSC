@@ -5,7 +5,6 @@ import { useEffect } from "react";
 import Separator from "./Components/SeparatorBar/separator";
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 import { ContactComponent } from "./Components/contactcomponent";
-import { PaypalSubscribeComponent } from "./Components/paypalcomponents";
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { Timeline, TimelineConnector, TimelineContent, TimelineDot, TimelineItem, TimelineOppositeContent, TimelineSeparator } from "@mui/lab";
 import { locations } from "./locations/data";
@@ -13,6 +12,7 @@ import { CardMapContainer } from "./locations/locationStyles";
 import GoogleMapReact from "google-map-react";
 import { mapStyles } from "./locations/mapStyles";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import { Reveal } from "./Components/Reveal";
 
 //======================================================
 // export const mainColor = '#050030' // midnight blue
@@ -39,7 +39,6 @@ export const fadeIn = keyframes`
 //======================================================
 
 const ContactBannerJoin = 'https://flintriverindoorshootingrange.com/wp-content/uploads/2021/05/three-1-a.jpg'
-const JoinBanner = 'https://preview.free3d.com/img/2019/07/2400324917364000180/l7bb2nw3.jpg'
 
 //======================================================
 
@@ -48,14 +47,6 @@ export const ContactSeparatorData = {
   image: ContactBannerJoin,
   separatorheight: '75vh',
   dom: <ContactComponent />,
-}
-
-export const JoinSeparatorData = {
-  title: 'Annual membership fee',
-  content: '$75',
-  image: JoinBanner,
-  separatorheight: '55vh',
-  dom: <PaypalSubscribeComponent/>,
 }
 
 //======================================================
@@ -90,6 +81,14 @@ const ActivitiesInfo = [
   }
 ]
 
+const ActivityContainer = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  width: '70%',
+})
+
 const ActivityGrid = styled('div')({
   width: '80%',
   position: 'relative',
@@ -98,6 +97,7 @@ const ActivityGrid = styled('div')({
   paddingTop: '2rem',
   paddingBottom: '2rem',
   display: 'grid',
+  flexWrap: 'wrap', 
   gridTemplateColumns: 'repeat(3, 1fr)',
   '@media (max-width: 1268px)': {
     gridTemplateColumns: 'repeat(2, 1fr)',
@@ -119,15 +119,19 @@ const ActivityCard = styled('div')({
   borderRadius: '12px',
   border: '1px solid',
   borderColor: 'grey',
+  height: '33vh',
+  // flex: '1 1 30%',
   '&:hover': {
     border: '1px solid rgb(37, 83, 185)',
     transition: 'all 0.2s ease-in-out',
   },
   '@media (max-width: 1268px)': {
+    // flex: '1 1 45%',
     width: '30vw',
   },
   '@media (max-width: 480px)': {
     width: '65vw',
+    // flex: '1 1 90%',
   },
 })
 
@@ -149,25 +153,30 @@ export const ActivitiesComponent = () => {
   return (
     <>
       <Separator data={activitySeparatorData}/>
-      <ActivityGrid>
-        {ActivitiesInfo.map((activity) => {
-          return (
-            <ActivityCard key={activity.title}>
-              {activity.icon}
-              <ActivityTitle>{activity.title}</ActivityTitle>
-              <ActivityDesc>{activity.description}</ActivityDesc>
-              <Button
-                style={{
-                  color: 'rgb(102, 164, 255)',
-                  fontWeight: 'bold',
-                }}
-              >
-                Join now! <KeyboardArrowRightIcon style={{backgroundImage: 'linear-gradient(to right, rgb(37, 83, 185), rgb(102, 164, 255)', borderRadius: '50%', color: greyColorCustomLight, marginLeft: 7}}/>
-              </Button>
-            </ActivityCard>
-          );
-        })}
-      </ActivityGrid>
+      <ActivityContainer>
+        <ActivityGrid>
+          {ActivitiesInfo.map((activity) => {
+            return (
+              <Reveal>
+                <ActivityCard key={activity.title}>
+                  {activity.icon}
+                  <ActivityTitle>{activity.title}</ActivityTitle>
+                  <ActivityDesc>{activity.description}</ActivityDesc>
+                  <Button
+                    style={{
+                      color: 'rgb(102, 164, 255)',
+                      fontWeight: 'bold',
+                    }}
+                  href="/join"
+                  >
+                    Join now! <KeyboardArrowRightIcon style={{backgroundImage: 'linear-gradient(to right, rgb(37, 83, 185), rgb(102, 164, 255)', borderRadius: '50%', color: greyColorCustomLight, marginLeft: 7}}/>
+                  </Button>
+                </ActivityCard>
+              </Reveal>
+            );
+          })}
+        </ActivityGrid>
+      </ActivityContainer>
     </>
   )
 }
@@ -207,67 +216,69 @@ export const BasicTimeline = () => {
         {locations.map((location, index) => {
           const { range, cost, street, city, state, zip, phone, description, lat, lng } = location
           return (
-          <TimelineItem key={index}>
-            <TimelineOppositeContent
-              color="white"
-              style={{
-                border: '2px solid rgb(102, 164, 255)',
-                width: '500px',
-                height: '300px',
-                margin: '15px',
-                borderRadius: '12px',
-                backgroundColor: greyColorCustomLight,
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-              }}
-            >
-              <h3 style={{margin: 0}}>{location.range}</h3>
-              <p>{location.description}</p>
-              <p>{location.cost}</p>
-            </TimelineOppositeContent>
-            <TimelineSeparator>
-              <TimelineDot />
-              {index < locations.length - 1 && <TimelineConnector />} {/* Render the connector for all items except the last one */}
-            </TimelineSeparator>
-            <TimelineContent
-              color="white"
-              style={{
-                border: '2px solid rgb(102, 164, 255)',
-                width: '500px',
-                height: '300px',
-                margin: '15px',
-                borderRadius: '12px',
-                backgroundColor: greyColorCustomLight,
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <CardMapContainer>
-                <GoogleMapReact
-                  bootstrapURLKeys={{ 
-                    key: String(apiKey) 
-                  }}
-                  defaultCenter={{lat, lng}}
-                  defaultZoom={15}
-                  options={{
-                    disableDefaultUI: true,
-                    keyboardShortcuts: false,
-                    styles: mapStyles,
-                  }}
-                  onClick={() => handleMarkerClick(location)}
-                >
-                  <MyMarker
-                    lat={lat}
-                    lng={lng}
-                    text={range}
-                  />
-                </GoogleMapReact>
-              </CardMapContainer>
-            </TimelineContent>
-          </TimelineItem>
+          <Reveal>
+            <TimelineItem key={index}>
+              <TimelineOppositeContent
+                color="white"
+                style={{
+                  border: '2px solid rgb(102, 164, 255)',
+                  width: '500px',
+                  height: '300px',
+                  margin: '15px',
+                  borderRadius: '12px',
+                  backgroundColor: greyColorCustomLight,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                }}
+              >
+                <h3 style={{margin: 0}}>{location.range}</h3>
+                <p>{location.description}</p>
+                <p>{location.cost}</p>
+              </TimelineOppositeContent>
+              <TimelineSeparator>
+                <TimelineDot />
+                {index < locations.length - 1 && <TimelineConnector />} {/* Render the connector for all items except the last one */}
+              </TimelineSeparator>
+              <TimelineContent
+                color="white"
+                style={{
+                  border: '2px solid rgb(102, 164, 255)',
+                  width: '500px',
+                  height: '300px',
+                  margin: '15px',
+                  borderRadius: '12px',
+                  backgroundColor: greyColorCustomLight,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <CardMapContainer>
+                  <GoogleMapReact
+                    bootstrapURLKeys={{ 
+                      key: String(apiKey) 
+                    }}
+                    defaultCenter={{lat, lng}}
+                    defaultZoom={15}
+                    options={{
+                      disableDefaultUI: true,
+                      keyboardShortcuts: false,
+                      styles: mapStyles,
+                    }}
+                    onClick={() => handleMarkerClick(location)}
+                  >
+                    <MyMarker
+                      lat={lat}
+                      lng={lng}
+                      text={range}
+                    />
+                  </GoogleMapReact>
+                </CardMapContainer>
+              </TimelineContent>
+            </TimelineItem>
+          </Reveal>
         )})}
       </Timeline>
     </TimelineContainer>

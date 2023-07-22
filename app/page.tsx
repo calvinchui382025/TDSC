@@ -1,13 +1,15 @@
 'use client'
 
 import { styled, Typography } from '@mui/material';
-import { ActivitiesComponent, BasicTimeline, fadeIn, JoinSeparatorData, mainColor } from './utils';
+import { ActivitiesComponent, BasicTimeline, fadeIn, mainColor } from './utils';
 import { Footer } from './Components/footer/footer';
 import Separator from './Components/SeparatorBar/separator';
 import { ContactSeparatorData } from './utils';
 import { BiosCard, BiosGrid } from './about/AboutStyles';
 import { JoinHeader, JoinPrimaryTypography, JoinSecondaryTypography } from './join/JoinStyles';
 import { PaypalDonateComponent } from './Components/paypalcomponents';
+import JoinPaypalSep from './Components/JoinPaypalSep';
+import { Reveal } from './Components/Reveal';
 //======================================================
 // const backgroundVideoWidth = 2312
 //======================================================
@@ -19,6 +21,8 @@ const HomeRoot = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
+  // marginTop: '10vh',
+  // overflowX: 'hidden',
 })
 const HeroVideoContainer = styled('div')({
   display: 'flex',
@@ -186,13 +190,15 @@ export default function HomePage() {
         </PrepareTextContainer>
       </Row>
       <ActivitiesComponent />
-      <BasicTimeline />
-      <Separator data={JoinSeparatorData}/>
-      <JoinHeader style={{width: '100vw', marginBottom: '2.5rem',}}>
-        <JoinPrimaryTypography>Help Our Cause</JoinPrimaryTypography>
-        <JoinSecondaryTypography>Your support and contributions will enable us to meet our goals and improve conditions. Your generous donation will fund our mission.</JoinSecondaryTypography>
-        <PaypalDonateComponent />
-      </JoinHeader>
+      {/* <BasicTimeline /> */}
+      <JoinPaypalSep />
+      <Reveal>
+        <JoinHeader style={{width: '100vw', marginBottom: '2.5rem',}}>
+          <JoinPrimaryTypography>Help Our Cause</JoinPrimaryTypography>
+          <JoinSecondaryTypography>Your support and contributions will enable us to meet our goals and improve conditions. Your generous donation will fund our mission.</JoinSecondaryTypography>
+          <PaypalDonateComponent />
+        </JoinHeader>
+      </Reveal>
       {/* <img src={TransparentImage} alt='test' height='600' width='600' /> */}
       <Row>
         <PrepareVideoContainer>
@@ -208,14 +214,16 @@ export default function HomePage() {
             />
           </PrepareVideo>
         </PrepareVideoContainer>
-        <PrepareSubTextContainer>
-          <PrepareSubTextTitle>Every Day Carry Shoots</PrepareSubTextTitle>
-          <PrepareSubText>
-            TDSC provides one-on-one and group instruction on drills and skills, 
-            using real life scenarios to become proficient with the firearm you 
-            carry every day and the way you carry it
-          </PrepareSubText>
-        </PrepareSubTextContainer>
+        <Reveal>
+          <PrepareSubTextContainer>
+            <PrepareSubTextTitle>Every Day Carry Shoots</PrepareSubTextTitle>
+            <PrepareSubText>
+              TDSC provides one-on-one and group instruction on drills and skills, 
+              using real life scenarios to become proficient with the firearm you 
+              carry every day and the way you carry it
+            </PrepareSubText>
+          </PrepareSubTextContainer>
+        </Reveal>
       </Row>
 
       <FlippedRow>
@@ -232,12 +240,14 @@ export default function HomePage() {
             />
           </PrepareVideo>
         </PrepareVideoContainer>
-        <PrepareSubTextContainer>
-          <PrepareSubTextTitle>2 Gun Shoots</PrepareSubTextTitle>
-          <PrepareSubText>
-            TDSC offers  handgun and rifle (carbine) shoots involving cardboard and steel targets, props, walls, clays, and a duelling tree. See our calendar for shoot schedule and locations.
-          </PrepareSubText>
-        </PrepareSubTextContainer>
+        <Reveal>
+          <PrepareSubTextContainer>
+            <PrepareSubTextTitle>2 Gun Shoots</PrepareSubTextTitle>
+            <PrepareSubText>
+              TDSC offers  handgun and rifle (carbine) shoots involving cardboard and steel targets, props, walls, clays, and a duelling tree. See our calendar for shoot schedule and locations.
+            </PrepareSubText>
+          </PrepareSubTextContainer>
+        </Reveal>
       </FlippedRow>
 
       <Row>
@@ -254,15 +264,17 @@ export default function HomePage() {
             />
           </PrepareVideo>
         </PrepareVideoContainer>
-        <PrepareSubTextContainer>
-          <PrepareSubTextTitle>3 Gun Shoots</PrepareSubTextTitle>
-          <PrepareSubText>
-            Join TDSC for an exciting and unforgettable 3 Gun Shoot where you experience shooting a handgun, rifle, and shotgun while moving from one stage to another, engaging targets with each firearm. See our calendar for shoot schedule and locations.
-          </PrepareSubText>
-        </PrepareSubTextContainer>
+        <Reveal>
+          <PrepareSubTextContainer>
+            <PrepareSubTextTitle>3 Gun Shoots</PrepareSubTextTitle>
+            <PrepareSubText>
+              Join TDSC for an exciting and unforgettable 3 Gun Shoot where you experience shooting a handgun, rifle, and shotgun while moving from one stage to another, engaging targets with each firearm. See our calendar for shoot schedule and locations.
+            </PrepareSubText>
+          </PrepareSubTextContainer>
+        </Reveal>
       </Row>
       <Separator data={ContactSeparatorData}/>
-      <Footer />
+      {/* <Footer /> */}
     </HomeRoot>
   )
 }
