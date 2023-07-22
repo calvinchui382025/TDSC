@@ -13,7 +13,10 @@ export const StyledAppBar = styled('div')({
   display: 'flex',
   justifyContent: 'center',
   width: '100%',
-  height: '10vh',
+  height: '7vh',
+  '@media (max-width: 3000px)': {
+    height: '7vh',
+  },
   position: 'fixed',
   top: 0,
   zIndex: 100,

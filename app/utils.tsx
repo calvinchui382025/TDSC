@@ -216,7 +216,9 @@ export const BasicTimeline = () => {
         {locations.map((location, index) => {
           const { range, cost, street, city, state, zip, phone, description, lat, lng } = location
           return (
-          <Reveal>
+          <Reveal
+            key={randomIntGenerator()}
+          >
             <TimelineItem key={index}>
               <TimelineOppositeContent
                 color="white"
@@ -285,89 +287,6 @@ export const BasicTimeline = () => {
   );
 }
 
-
-
-      {/* <TimelineItem>
-        <TimelineOppositeContent
-        color="white"
-        style={{
-          border: '2px solid rgb(102, 164, 255)',
-          width: '500px',
-          height: '200px',
-          margin: '15px',
-          borderRadius: '12px',
-          backgroundColor: greyColorCustomLight,
-        }}>
-          test
-        </TimelineOppositeContent>
-        <TimelineSeparator>
-          <TimelineDot />
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent
-        color="white"
-        style={{
-          border: '2px solid red',
-          width: '500px',
-          height: '200px',
-          margin: '15px'
-        }}>
-          Eat
-        </TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineOppositeContent
-        color="white"
-        style={{
-          border: '2px solid rgb(102, 164, 255)',
-          width: '500px',
-          height: '200px',
-          margin: '15px',
-          borderRadius: '12px',
-          backgroundColor: greyColorCustomLight,
-        }}>
-          09:30 am
-        </TimelineOppositeContent>
-        <TimelineSeparator>
-          <TimelineDot />
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent
-        color="white"
-        style={{
-          border: '2px solid red',
-          width: '500px',
-          height: '200px',
-          margin: '15px'
-        }}>
-          Eat
-        </TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineOppositeContent
-        color="white"
-        style={{
-          border: '2px solid rgb(102, 164, 255)',
-          width: '500px',
-          height: '200px',
-          margin: '15px',
-          borderRadius: '12px',
-          backgroundColor: greyColorCustomLight,
-        }}>
-          09:30 am
-        </TimelineOppositeContent>
-        <TimelineSeparator>
-          <TimelineDot />
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent
-        color="white"
-        style={{
-          border: '2px solid red',
-          width: '500px',
-          height: '200px',
-          margin: '15px'
-        }}>
-          Eat
-        </TimelineContent>
-      </TimelineItem> */}
+  export const randomIntGenerator = () => {
+    return Math.floor(Math.random() * 1000000000)
+  }

@@ -60,7 +60,7 @@ const TitleText = styled(HomeText)({
   },
 
   '@media (min-width: 1920px)': {
-    fontSize: '8vw',
+    fontSize: '7vw',
   },
 
 })
@@ -193,7 +193,14 @@ export default function HomePage() {
       {/* <BasicTimeline /> */}
       <JoinPaypalSep />
       <Reveal>
-        <JoinHeader style={{width: '100vw', marginBottom: '2.5rem',}}>
+        <JoinHeader 
+          style={{
+            // width: '100vw', marginBottom: '2.5rem'
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+          }}
+        >
           <JoinPrimaryTypography>Help Our Cause</JoinPrimaryTypography>
           <JoinSecondaryTypography>Your support and contributions will enable us to meet our goals and improve conditions. Your generous donation will fund our mission.</JoinSecondaryTypography>
           <PaypalDonateComponent />
