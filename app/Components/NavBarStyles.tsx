@@ -70,9 +70,7 @@ export const DrawerBackground = styled('div')({
 })
 
 export const HamburgerIconButton = styled(IconButton)({
-  height: 75,
   width: 75,
-  paddingRight: 14
 })
 
 export const ListTextStyled = styled('h1')({
