@@ -1,7 +1,7 @@
 "use client"
 
-import styled from "@emotion/styled"
-import { useState } from "react"
+// import styled from "@emotion/styled"
+// import { useState } from "react"
 import { ContactRoot, ContactPrimaryTypography, ContactSecondaryTypography, ContactHeader } from "./ContactPageStyles"
 
 import Separator from "app/Components/SeparatorBar/separator"

@@ -12,7 +12,7 @@ export const Reveal = ({ children, width = "fit-content" }: Props) => {
   const isInView = useInView(ref, { once: true }); // once: true means animation only happens once
 
   const mainControls = useAnimation()
-  const slideControls = useAnimation()
+  // const slideControls = useAnimation()
 
   useEffect(() => {
     if (isInView) {

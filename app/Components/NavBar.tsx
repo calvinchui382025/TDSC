@@ -1,15 +1,15 @@
 "use client"
 import * as React from 'react';
 import Image from 'next/image';
-import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
-import Drawer from '@mui/material/Drawer';
+// import Box from '@mui/material/Box';
+// import Divider from '@mui/material/Divider';
+// import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
+// import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
+// import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
-import Typography from '@mui/material/Typography';
+// import Typography from '@mui/material/Typography';
 import Link from 'next/link';
 import {StyledListItemButton, StyledAppBar, StyledDrawer, HamburgerIconButton, StyledAppBarSubContainer, ListTextStyled, StyledExitIcon, StyledExitButton, AuxDrawerButtons, DrawerBackground} from './NavBarStyles';
 

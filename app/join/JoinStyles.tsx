@@ -1,8 +1,10 @@
 "use client"
 
-import react from "react"
+// import react from "react"
 import styled from "@emotion/styled"
-import { greyColorCustomDark, greyColorCustomLight, mainGradient } from "app/utils"
+import { 
+  // greyColorCustomDark, greyColorCustomLight, 
+  mainGradient } from "app/utils"
 import { Button } from "@mui/material"
 
 export const JoinRoot = styled('div')({

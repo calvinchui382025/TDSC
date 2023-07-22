@@ -9,9 +9,9 @@ import {
     usePayPalScriptReducer,
     PayPalMarks,
 } from "@paypal/react-paypal-js";
-import { Parallax } from 'react-parallax';
-import main from './banner2.jpg';
-import secondary from './banner3.jpg';
+// import { Parallax } from 'react-parallax';
+// import main from './banner2.jpg';
+// import secondary from './banner3.jpg';
 import { CustomParallax, ParallaxContainer, ParallaxContent, ParallaxTitle } from './SeparatorBar/SeparatorStyles';
 
 const JoinBanner = 'https://preview.free3d.com/img/2019/07/2400324917364000180/l7bb2nw3.jpg'

@@ -1,11 +1,13 @@
 'use client'
 
 import { styled, Typography } from '@mui/material';
-import { ActivitiesComponent, BasicTimeline, fadeIn, mainColor } from './utils';
-import { Footer } from './Components/footer/footer';
+import { ActivitiesComponent, 
+  // BasicTimeline, 
+  fadeIn, mainColor } from './utils';
+// import { Footer } from './Components/footer/footer';
 import Separator from './Components/SeparatorBar/separator';
 import { ContactSeparatorData } from './utils';
-import { BiosCard, BiosGrid } from './about/AboutStyles';
+// import { BiosCard, BiosGrid } from './about/AboutStyles';
 import { JoinHeader, JoinPrimaryTypography, JoinSecondaryTypography } from './join/JoinStyles';
 import { PaypalDonateComponent } from './Components/paypalcomponents';
 import JoinPaypalSep from './Components/JoinPaypalSep';
@@ -14,7 +16,7 @@ import { Reveal } from './Components/Reveal';
 // const backgroundVideoWidth = 2312
 //======================================================
 
-const TransparentImage = 'https://cdn11.bigcommerce.com/s-9de6f3ck5f/images/stencil/original/image-manager/gun-wall-builder-homepage-banner-edited-1-3-.png?t=1671692930'
+// const TransparentImage = 'https://cdn11.bigcommerce.com/s-9de6f3ck5f/images/stencil/original/image-manager/gun-wall-builder-homepage-banner-edited-1-3-.png?t=1671692930'
 
 const HomeRoot = styled('div')({
   width: '100%',
