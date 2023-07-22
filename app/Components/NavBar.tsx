@@ -19,6 +19,7 @@ const navItems = [
   'join', //join now and sign up
   'locations', //chapters gear and proficiency requirements + calibers
   'contact',
+  'admin',
 ];
 
 export default function DrawerAppBar() {
