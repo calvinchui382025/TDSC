@@ -79,7 +79,7 @@ export const JoinSecondaryTypography = styled('h1')({
 export const Learnmorecontainer = styled('div')({
   overflow: 'hidden',
   width: '100%',
-  height: '60vh',
+  height: '70vh',
   backgroundColor: 'rgb(34,38,41)',
   display: 'flex',
   flexDirection: 'column',

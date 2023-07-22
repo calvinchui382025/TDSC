@@ -10,9 +10,12 @@ export const ContactRoot = styled('div')({
   flexDirection: 'column',
   alignItems: 'center',
   width: '100%',
-  marginTop: '10vh',
   color: 'white',
   backgroundColor: 'black',
+  marginTop: '7vh',
+  '@media (max-width: 3000px)': {
+    marginTop: '7vh',
+  },
 })
 
 export const ContactHeader = styled('div')({
@@ -23,7 +26,7 @@ export const ContactHeader = styled('div')({
   textAlign: 'center',
   backgroundColor: 'black',
   width: '70%',
-  height: '15vh',
+  height: '25vh',
 })
 
 export const ContactPrimaryTypography = styled('h1')({
@@ -35,9 +38,13 @@ export const ContactPrimaryTypography = styled('h1')({
   padding: 0,
   '@media (max-width: 1100px)': {
     fontSize: '1.5rem',
+    margin: 3,
+    width: '75%',
   },
   '@media (max-width: 600px)': {
     fontSize: '1.2rem',
+    margin: 0,
+    width: '85%',
   },
 })
 

@@ -102,9 +102,6 @@ const ActivityGrid = styled('div')({
   flexWrap: 'wrap', 
   gridTemplateColumns: 'repeat(3, 1fr)',
   '@media (max-width: 1268px)': {
-    gridTemplateColumns: 'repeat(2, 1fr)',
-  },
-  '@media (max-width: 480px)': {
     gridTemplateColumns: 'repeat(1, 1fr)',
   },
 })
@@ -122,6 +119,7 @@ const ActivityCard = styled('div')({
   border: '1px solid',
   borderColor: 'grey',
   height: '33vh',
+  marginBottom: '10px',
   // flex: '1 1 30%',
   '&:hover': {
     border: '1px solid rgb(37, 83, 185)',

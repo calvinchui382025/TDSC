@@ -20,7 +20,7 @@ export default function ContactPage() {
         </ContactSecondaryTypography>
       </ContactHeader>
       <Separator data={ContactSeparatorData}/>
-      <Footer />
+      {/* <Footer /> */}
     </ContactRoot>
   )
 }
