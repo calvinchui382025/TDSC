@@ -16,7 +16,7 @@ import { greyColorCustom, greyColorCustomDark, greyColorCustomLight } from "app/
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 
-import EmailBlastModal from './EmailBlastModal'
+import EmailBlastModal from './email/EmailBlastModal'
 
 function createData(
   email: string,

@@ -11,6 +11,15 @@ import { TransitionProps } from '@mui/material/transitions';
 import styled from '@emotion/styled';
 import { FormControl, InputLabel, Select, MenuItem, TextField } from '@mui/material';
 import { randomIntGenerator } from 'app/utils';
+// import nodemailer from 'nodemailer';
+import "setimmediate"
+
+// import { render } from '@react-email/render';
+import { EmailTemplate } from './EmailTemplate';
+import axios from 'axios';
+
+// @ts-ignore
+// import { Html } from '@react-email/html';
 //======================================================
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -26,7 +35,7 @@ const ContentWrapper = styled('div') ({
   flexDirection: 'column',
   alignItems: 'center',
   // justifyContent: 'center',
-  width: '100%',
+  // width: '100%',
   height: '100%',
   margin: '0.5rem',
 })
@@ -58,7 +67,18 @@ export default function FullScreenDialog( props: any ) {
     closeFunc(false);
   };
 
-  const handleSend = () => {
+  function handleSend() {
+    const sendEmailRes = axios.post('/api', {
+        emailHtml: EmailTemplate,
+      }).then((res) => {
+        console.log(res);
+        console.log(res.data);
+      }).catch((err) => {
+        console.log(err);
+      });
+    console.log('sendEmailRes', sendEmailRes)
+
+    // SendMail(EmailTemplate);
     closeFunc(false);
   }
 
