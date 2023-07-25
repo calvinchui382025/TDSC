@@ -12,6 +12,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 // import Typography from '@mui/material/Typography';
 import Link from 'next/link';
 import {StyledListItemButton, StyledAppBar, StyledDrawer, HamburgerIconButton, StyledAppBarSubContainer, ListTextStyled, StyledExitIcon, StyledExitButton, AuxDrawerButtons, DrawerBackground} from './NavBarStyles';
+import { useRouter } from 'next/navigation';
 
 const navItems = [
   'home', //short bit of all pages
@@ -23,8 +24,11 @@ const navItems = [
 ];
 
 export default function DrawerAppBar() {
+  const router = useRouter()
+
   const [isMobile, setIsMobile] = React.useState(false);
   const [drawerOpen, setDrawerOpen] = React.useState(false);
+
 
   const handleDrawerToggle = () => {
     setDrawerOpen(!drawerOpen);
@@ -41,6 +45,11 @@ export default function DrawerAppBar() {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+  const handleIconPress = () => {
+    const to = `/admin`;
+    router.push(to);
+  }
   
   const LinkItems = () => {
     return (
@@ -76,7 +85,9 @@ export default function DrawerAppBar() {
   return (
     <StyledAppBar>
       <StyledAppBarSubContainer>
-        <IconButton>
+        <IconButton 
+          onClick={handleIconPress}
+        >
           <Image src="/TDSCImage2.png" alt="logo" width={75} height={75} />
         </IconButton>
         {isMobile ? (
