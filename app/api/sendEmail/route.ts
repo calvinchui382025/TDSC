@@ -45,16 +45,36 @@ import { render } from '@react-email/render';
 // }
 
 export async function GET(req, res) {
-  console.log({req});
-  
+  // console.log({req});
+  console.log(1);
   return {
     body: 'GET!',
   };
 }
 
-export async function POST(req, res) {
+const password = process?.env?.TEST_EMAIL_PASSWORD || '';
 
-  console.log({req});
+console.log({password});
+
+
+export async function POST(req, res) {
+  console.log('sending email...')
+  const { emailHtml } = req.body;
+  
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'vorstellen281',
+        pass: password,
+      },
+    });
+  
+    await transporter.sendMail({
+      from: 'vorstellen281@gmail.com',
+      to: 'snyperiflex@yahoo.com',
+      subject: 'test email',
+      html: emailHtml,
+    });
   
   return {
     body: 'POST!',

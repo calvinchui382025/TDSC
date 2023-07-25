@@ -68,7 +68,7 @@ export default function FullScreenDialog( props: any ) {
   };
 
   function handleSend() {
-    const sendEmailRes = axios.post('/api', {
+    const sendEmailRes = axios.post('/api/sendEmail', {
         emailHtml: EmailTemplate,
       }).then((res) => {
         console.log(res);

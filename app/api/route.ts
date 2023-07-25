@@ -8,8 +8,7 @@ export async function GET(req, res) {
 
 export async function POST(req, res) {
 
-  console.log({req});
-  
+  console.log('please')
   return {
     body: 'POST!',
   };
