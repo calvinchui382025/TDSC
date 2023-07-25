@@ -15,7 +15,10 @@ import GoogleMapReact from "google-map-react";
 import { mapStyles } from "./locations/mapStyles";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { Reveal } from "./Components/Reveal";
-
+//======================================================
+export const randomIntGenerator = () => {
+  return Math.floor(Math.random() * 1000000000)
+}
 //======================================================
 // export const mainColor = '#050030' // midnight blue
 export const mainColor = 'rgb(36,40,43)' // midnight blue
@@ -157,7 +160,9 @@ export const ActivitiesComponent = () => {
         <ActivityGrid>
           {ActivitiesInfo.map((activity) => {
             return (
-              <Reveal>
+              <Reveal
+                key={randomIntGenerator()}
+              >
                 <ActivityCard key={activity.title}>
                   {activity.icon}
                   <ActivityTitle>{activity.title}</ActivityTitle>
@@ -287,6 +292,3 @@ export const BasicTimeline = () => {
   );
 }
 
-  export const randomIntGenerator = () => {
-    return Math.floor(Math.random() * 1000000000)
-  }
