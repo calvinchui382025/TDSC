@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Separator from "app/Components/SeparatorBar/separator";
-import { AboutImage, AboutRoot, BiosCard, BiosGrid, WhatWeDoTextContainer, WhoWeAreContainer, WhoWeAreTextContainer } from "./AboutStyles";
+import { AboutButton, AboutImage, AboutRoot, BiosCard, BiosGrid, StyledDescription, StyledName, StyledTitle, WhatWeDoTextContainer, WhoWeAreContainer, WhoWeAreTextContainer } from "./AboutStyles";
 import { Button } from "@mui/material";
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 // import { Footer } from "app/Components/footer/footer";
@@ -12,12 +12,13 @@ import { Reveal } from "app/Components/Reveal";
 const LeftShootingPic = "https://coyotecreekoutdoors.com/wp-content/uploads/2023/01/Indoor-gun-range.jpg"
 const BannerRange = 'https://www.frcbr.com/sites/default/files/styles/slider-homepage/public/slides/homepage-slider/ss-the-line-c.jpg?itok=CwXfRslZ'
 const RightShootingPic = 'https://www.alphakoncepts.com/wp-content/uploads/2023/04/AlphaConcepts-Shotgun-2023-04-15-93-scaled.jpg'
-const RangePicture = 'https://flintriverindoorshootingrange.com/wp-content/uploads/2021/05/three-1-a.jpg'
+// const RangePicture = 'https://flintriverindoorshootingrange.com/wp-content/uploads/2021/05/three-1-a.jpg'
 
 const peopleList = [
   {
     name: 'Greg Baker',
     title: 'G2G',
+    subtitle: 'Founder',
     description: 'Certified NRA Instructor Rifle/ Pistol/ Shotgun/ Range Safety Officer',
     descriptiontwo: 'Advanced Glock Armorer',
     descriptionthree: 'State of Texas License to Carry Instructor',
@@ -43,7 +44,7 @@ const peopleList = [
 ]
 
 const pageSeparatorData = {
-  title: 'Bios',
+  title: 'Club leader bios',
   // content: 'Meet our ',
   image: BannerRange,
   separatorheight: '25vh',
@@ -75,17 +76,9 @@ export default function AboutPage() {
               acquainted with their weapon systems, advance speed and accuracy proficiency and promote
               gun safety in order to increase the chance of survival in a deadly threat encounter.
             </h3>
-            <Button
-            style={{
-              color: 'gainsboro',
-              fontWeight: 'bold',
-              backgroundColor: 'grey',
-              border: '2px solid',
-              backgroundImage: mainGradient,
-            }}
-            >
+            <AboutButton>
               Join now! <KeyboardArrowRightIcon />
-            </Button>
+            </AboutButton>
           </WhoWeAreTextContainer>
         </WhoWeAreContainer>
       </Reveal>
@@ -98,17 +91,9 @@ export default function AboutPage() {
               TDSC trains/leads defensive and tactical drills combined with practical scenarios running pistols
               and carbines using various targets and props.
             </h3>
-            <Button
-            style={{
-              color: 'gainsboro',
-              fontWeight: 'bold',
-              backgroundColor: 'grey',
-              border: '2px solid',
-              backgroundImage: mainGradient
-            }}
-            >
+            <AboutButton>
               Join now! <KeyboardArrowRightIcon />
-            </Button>
+            </AboutButton>
           </WhatWeDoTextContainer>
           {!isMobile && <AboutImage src={RightShootingPic} />}
         </WhoWeAreContainer>
@@ -118,12 +103,13 @@ export default function AboutPage() {
         {peopleList.map((person) => (
           <BiosCard key={person.name}>
             <img src={person.picture}style={{height: '20vh', borderRadius: '10px'}}/>
-            <h2 style={{fontFamily: 'sans-serif', margin: 5, color: 'gainsboro'}}>{person.name}</h2>
-            <h3 style={{fontFamily: 'sans-serif', margin: 5, color: 'gainsboro'}}>{person.title}</h3>
-            <p style={{fontFamily: 'sans-serif', margin: 5, color: 'gainsboro'}}>{person.description}</p>
-            <p style={{fontFamily: 'sans-serif', margin: 5, color: 'gainsboro'}}>{person.descriptiontwo}</p>
-            <p style={{fontFamily: 'sans-serif', margin: 5, color: 'gainsboro'}}>{person.descriptionthree}</p>
-            <p style={{fontFamily: 'sans-serif', margin: 5, color: 'gainsboro'}}>{person.descriptionfour}</p>
+            <StyledName>{person.name}</StyledName>
+            <StyledTitle>{person.title}</StyledTitle>
+            <StyledDescription>{person.subtitle}</StyledDescription>
+            <StyledDescription>{person.description}</StyledDescription>
+            <StyledDescription>{person.descriptiontwo}</StyledDescription>
+            <StyledDescription>{person.descriptionthree}</StyledDescription>
+            <StyledDescription>{person.descriptionfour}</StyledDescription>
             <Button
               style={{
                 color: 'rgb(102, 164, 255)',

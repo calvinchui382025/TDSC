@@ -1,8 +1,9 @@
 "use client"
 
-import react from "react"
+// import react from "react"
 import styled from "@emotion/styled"
 import { greyColorCustomLight, mainGradient } from "app/utils"
+import { Button } from "@mui/material"
 
 export const AboutRoot = styled('div')({
   display: 'flex',
@@ -90,4 +91,30 @@ export const WhatWeDoTextContainer = styled('div')({
   '@media (max-width: 768px)': {
     width: '70%',
   }
+})
+
+export const StyledDescription = styled('p')({
+  fontFamily: 'sans-serif',
+  margin: 5,
+  color: 'gainsboro',
+})
+
+export const StyledTitle = styled('h3')({
+  fontFamily: 'sans-serif',
+  margin: 5,
+  color: 'gainsboro',
+})
+
+export const StyledName = styled('h2')({
+  fontFamily: 'sans-serif',
+  margin: 5,
+  color: 'gainsboro',
+})
+
+export const AboutButton = styled(Button)({
+  color: 'gainsboro',
+  fontWeight: 'bold',
+  backgroundColor: 'grey',
+  border: '2px solid',
+  backgroundImage: mainGradient,
 })
