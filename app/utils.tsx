@@ -92,6 +92,9 @@ const ActivityContainer = styled('div')({
   justifyContent: 'center',
   alignItems: 'center',
   width: '70%',
+  '@media (max-width: 1268px)': {
+    width: '100%',
+  },
 })
 
 const ActivityGrid = styled('div')({
@@ -106,6 +109,7 @@ const ActivityGrid = styled('div')({
   gridTemplateColumns: 'repeat(3, 1fr)',
   '@media (max-width: 1268px)': {
     gridTemplateColumns: 'repeat(1, 1fr)',
+    top: 0,
   },
 })
 
@@ -113,7 +117,7 @@ const ActivityCard = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   backgroundColor: greyColorCustomLight,
-  padding: '1.5rem',
+  padding: '1rem',
   width: '15vw',
   justifyContent: 'flex-start',
   alignItems: 'center',
@@ -123,18 +127,17 @@ const ActivityCard = styled('div')({
   borderColor: 'grey',
   height: '33vh',
   marginBottom: '10px',
-  // flex: '1 1 30%',
   '&:hover': {
     border: '1px solid rgb(37, 83, 185)',
     transition: 'all 0.2s ease-in-out',
   },
   '@media (max-width: 1268px)': {
-    // flex: '1 1 45%',
     width: '30vw',
+    height: 'auto',
+    // padding: 0,
   },
   '@media (max-width: 480px)': {
     width: '65vw',
-    // flex: '1 1 90%',
   },
 })
 

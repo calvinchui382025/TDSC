@@ -30,6 +30,8 @@ export const JoinHeader = styled('div')({
   height: '35vh',
   '@media (max-width: 600px)': {
     width: '90%',
+    height: 'auto',
+    padding: '12px 0px 0px 0px',
   },
 })
 

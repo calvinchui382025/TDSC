@@ -82,10 +82,9 @@ const Row = styled('div')({
   flexDirection: 'row',
   width: '100%',
   justifyContent: 'center',
-  // padding: '24px 0px',
-
   '@media (max-width: 600px)': {
     flexDirection: 'column',
+    alignItems: 'center',
   },
 })
 const FlippedRow = styled(Row)({
@@ -119,12 +118,11 @@ const PrepareVideoContainer = styled('div')({
   justifyContent: 'center',
   overflow: 'hidden',
   width: '100%',
-  maxWidth: '100%',
+  maxWidth: '50vw',
   height: '50vh',
-  padding: '24px',
+  margin: '24px 0px',
   '@media (max-width: 600px)': {
     width: 'auto',
-
   },
 })
 const PrepareVideo = styled('video')({
@@ -133,17 +131,16 @@ const PrepareVideo = styled('video')({
   background: 'linear-gradient(to right, rgb(37, 83, 185), rgb(102, 164, 255))',
   borderRadius: '12px',
 })
-
 const PrepareSubTextContainer = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
   width: '100%',
-  padding: '24px',
+  height: '50vh',
+  maxWidth: '50vw',
   '@media (max-width: 600px)': {
     width: 'auto',
-
   },
 })
 const PrepareSubTextTitle = styled(HomeText)({
@@ -161,6 +158,7 @@ const PrepareSubText = styled(HomeText)({
   '@media (max-width: 600px)': {
     fontSize: '0.8rem',
   },
+  margin: '24px',
 })
 //======================================================
 export default function HomePage() {
@@ -258,32 +256,7 @@ export default function HomePage() {
           </PrepareSubTextContainer>
         </Reveal>
       </FlippedRow>
-
-      <Row>
-        <PrepareVideoContainer>
-          <PrepareVideo
-            autoPlay
-            muted
-            loop
-            playsInline
-          >
-            <source
-              src='/Videos/pexels-loading-mag.mp4'
-              type='video/mp4'
-            />
-          </PrepareVideo>
-        </PrepareVideoContainer>
-        <Reveal>
-          <PrepareSubTextContainer>
-            <PrepareSubTextTitle>3 Gun Shoots</PrepareSubTextTitle>
-            <PrepareSubText>
-              Join TDSC for an exciting and unforgettable 3 Gun Shoot where you experience shooting a handgun, rifle, and shotgun while moving from one stage to another, engaging targets with each firearm. See our calendar for shoot schedule and locations.
-            </PrepareSubText>
-          </PrepareSubTextContainer>
-        </Reveal>
-      </Row>
       <Separator data={ContactSeparatorData}/>
-      {/* <Footer /> */}
     </HomeRoot>
   )
 }
