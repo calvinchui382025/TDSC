@@ -1,10 +1,10 @@
 "use client"
 
 import react, { useState } from "react"
-import { AdminContent, AdminRoot, AdminNavBar } from "./AdminStyles"
+import { AdminContent, AdminRoot, AdminNavBar, AdminLoginWrapper } from "./AdminStyles"
 import TableRowsIcon from '@mui/icons-material/TableRows';
 import EmailIcon from '@mui/icons-material/Email';
-import { Button, Checkbox } from "@mui/material";
+import { Button, Checkbox, Divider, TextField } from "@mui/material";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -29,25 +29,54 @@ function createData(
 }
 
 export default function JoinPage() {
-  const [selected, setSelected] = useState('')
+  const [adminLoggedIn, setAdminLoggedIn] = useState(false);
+  const [adminUserName, setAdminUserName] = useState('');
+  const [adminPassword, setAdminPassword] = useState('');
+
+  // const [selected, setSelected] = useState('')
 
   const [isEmailOpen, setIsEmailOpen] = useState(false);
   const handleCloseEmail = () => setIsEmailOpen(false);
   const handleOpenEmail = () => setIsEmailOpen(true);
 
-  const [selectedFunctionality, setSelectedFunctionality] = useState('');
-
-
+  const handleAdminLogin = () => {
+    if (adminUserName === 'admin' && adminPassword === 'admin') {
+      setAdminLoggedIn(true);
+    }
+  }
 
   return (
     <AdminRoot>
-      <AdminNavBar>
-        <Button variant='contained' onClick={handleOpenEmail}>
-          Email Blast
+      { adminLoggedIn ?
+      <>
+        <AdminNavBar>
+          <Button variant='contained' onClick={handleOpenEmail}>
+            Email Blast
+          </Button>
+        </AdminNavBar>
+        <Divider />
+        <AdminContent />
+        <EmailBlastModal isOpen={isEmailOpen} closeFunc={handleCloseEmail} />
+      </> : 
+      <AdminLoginWrapper elevation={5}>
+        <h1>Admin Login</h1>
+        <TextField
+          label='Username'
+          variant='outlined'
+          value={adminUserName}
+          onChange={(e) => setAdminUserName(e.target.value)}
+        />
+        <TextField
+          label='Password'
+          variant='outlined'
+          value={adminPassword}
+          onChange={(e) => setAdminPassword(e.target.value)}
+        />
+        <Button variant='contained' onClick={handleAdminLogin}>
+          Login
         </Button>
-      </AdminNavBar>
-
-      <EmailBlastModal isOpen={isEmailOpen} closeFunc={handleCloseEmail} />
+      </AdminLoginWrapper>
+      }
     </AdminRoot>
   )
 }

@@ -1,82 +1,35 @@
 import nodemailer from "nodemailer";
 import { render } from '@react-email/render';
+import { EmailTemplate } from 'app/admin/email/EmailTemplate';
+import { NextResponse } from 'next/server';
 
+export async function POST(req) {
+  const emailList = process?.env?.TEST_EMAIL_LIST.split(',') || [''];
 
-// export default async function sendMail(
-//   to: string,
-//   subject: string,
-//   emailHtml: string
-// ) {
-//   const transporter = nodemailer.createTransport({
-//     service: 'gmail',
-//     auth: {
-//       user: 'vorstellen281',
-//       pass: 'vorstellenautos',
-//     },
-//   });
+  const emailAccount = process?.env?.TEST_EMAIL_ADDRESS || '';
+  const password = process?.env?.TEST_EMAIL_PASSCODE || '';
+  const body = await req.json();
+  const { selectedRange, subjectLine, emailBody } = body;
 
-//   await transporter.sendMail({
-//     from: 'vorstellen281@gmail.com',
-//     to: 'lucasaoverbey@gmail.com',
-//     subject: 'test email',
-//     html: emailHtml,
-//   });
-// }
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: emailAccount.split('@')[0],
+      pass: password,
+    },
+  });
 
-// export default async function sendMail(req, res) {
-//   console.log('test')
-
-//   const { emailHtml } = req.body;
-  
-//   const transporter = nodemailer.createTransport({
-//     service: 'gmail',
-//     auth: {
-//       user: 'vorstellen281',
-//       pass: 'vorstellenautos',
-//     },
-//   });
-
-//   await transporter.sendMail({
-//     from: 'vorstellen281@gmail.com',
-//     to: 'lucasaoverbey@gmail.com',
-//     subject: 'test email',
-//     html: emailHtml,
-//   });
-// }
-
-export async function GET(req, res) {
-  // console.log({req});
-  console.log(1);
-  return {
-    body: 'GET!',
-  };
-}
-
-const password = process?.env?.TEST_EMAIL_PASSWORD || '';
-
-console.log({password});
-
-
-export async function POST(req, res) {
-  console.log('sending email...')
-  const { emailHtml } = req.body;
-  
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: 'vorstellen281',
-        pass: password,
-      },
+  emailList.forEach(async (email) => {
+    const response = await transporter.sendMail({
+      from: emailAccount,
+      to: email,
+      subject: subjectLine,
+      html: render(EmailTemplate(selectedRange, emailBody))
     });
-  
-    await transporter.sendMail({
-      from: 'vorstellen281@gmail.com',
-      to: 'snyperiflex@yahoo.com',
-      subject: 'test email',
-      html: emailHtml,
-    });
-  
-  return {
-    body: 'POST!',
-  };
+    console.log({ response });
+    
+  });
+
+  return NextResponse.json({ message: 'Emails sent' })
+
 }

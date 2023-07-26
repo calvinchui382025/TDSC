@@ -80,7 +80,7 @@ export default function DrawerAppBar() {
     <StyledAppBar>
       <StyledAppBarSubContainer>
         <IconButton 
-          onClick={handleIconPress}
+          onDoubleClick={handleIconPress}
         >
           <Image src="/TDSCImage2.png" alt="logo" width={75} height={75} />
         </IconButton>
