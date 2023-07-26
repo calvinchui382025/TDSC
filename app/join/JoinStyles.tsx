@@ -3,6 +3,8 @@
 // import react from "react"
 import styled from "@emotion/styled"
 import { 
+  greyColorCustom,
+  greyColorCustomLight,
   // greyColorCustomDark, greyColorCustomLight, 
   mainGradient } from "app/utils"
 import { Button } from "@mui/material"
@@ -25,7 +27,7 @@ export const JoinHeader = styled('div')({
   alignItems: 'center',
   alignContent: 'center',
   textAlign: 'center',
-  backgroundColor: 'rgb(34,38,41)',
+  // backgroundColor: greyColorCustom,
   width: '70%',
   height: '35vh',
   '@media (max-width: 600px)': {
