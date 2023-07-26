@@ -24,6 +24,9 @@ export const BiosGrid = styled('div')({
   paddingBottom: '2rem',
   display: 'grid',
   gridTemplateColumns: 'repeat(3, 1fr)',
+  '@media (max-width: 1268px)': {
+    top: 0,
+  },
   '@media (max-width: 768px)': {
     gridTemplateColumns: 'repeat(1, 1fr)',
   },
