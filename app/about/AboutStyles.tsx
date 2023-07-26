@@ -13,8 +13,6 @@ export const AboutRoot = styled('div')({
   width: '100%',
   marginTop: '10vh',
   position: 'absolute',
-  // backgroundColor: 'gainsboro',
-  // border: '1px solid white',
 })
 
 export const BiosGrid = styled('div')({

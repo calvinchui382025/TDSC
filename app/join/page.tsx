@@ -1,57 +1,43 @@
 "use client"
 
-// import react, { useEffect } from "react"
-// import styled from "@emotion/styled"
 import Separator from "app/Components/SeparatorBar/separator";
-import { JoinHeader, JoinHeaderContent, JoinPrimaryTypography, JoinRoot, JoinSecondaryTypography, JoinStyledButton, Learnmorecontainer, RangeCard, RangeCardSubText } from "./JoinStyles";
-// import { Footer } from "app/Components/footer/footer";
-// import { ContactComponent } from "app/Components/contactcomponent";
+import { JoinHeader, JoinHeaderContent, JoinPrimaryTypography, JoinRoot, JoinSecondaryTypography, JoinStyledButton, Learnmorecontainer, RangeCard, RangeCardSubText, RangeCardTextContainer } from "./JoinStyles";
 import { PaypalDonateComponent } from "app/Components/paypalcomponents";
 import { ContactSeparatorData, randomIntGenerator, 
-  // greyColorCustomLight, mainGradient 
 } from "app/utils";
-// import { Button } from "@mui/material";
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { Reveal } from "app/Components/Reveal";
-// import { SlideReveal } from "app/Components/SlideReveal";
 import JoinPaypalSep from "app/Components/JoinPaypalSep";
+import { CardMapContainer } from "app/locations/locationStyles";
+import GoogleMapReact from "google-map-react";
+import { mapStyles } from "app/locations/mapStyles";
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
+import { MouseEvent } from "react";
+import useEffect from "react";
+import { locations } from "app/locations/data";
 
-// const gearRequirements = [
-//   'Reliable semi-auto pistols (revolvers) and carbines (AR) including pistol caliber carbines',
-//   'G2G- 100-120 rounds pistol ammo per shoot FULL METAL JACKET ONLY!!!',
-//   'WOGR- 50-60 rounds each pistol &amp; carbine per shoot',
-//   'Rigid belt',
-//   'Safe holster designed for specific pistol used (shoulder holsters not permitted)',
-//   'Mag pouch to accommodate 3 magazines (3 pistol; 2 carbine mag pouches at WOGR)',
-//   'Carbine sling that can cinch close to body',
-//   'Safety shooting glasses',
-//   'Hearing protection',
-// ]
+const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
-// const caliberRequirements = [
-//   'G2G- Pistol minimum/ 380 and up; revolver calibers- 22 rimfire NOT recommended',
-//   'WOGR- Carbines- 5.56; 300 BO; most calibers suitable w/ AR-15 platform and under 2,800 fps; most all pistol caliber carbines; Pistol minimum/ 380 and up; 22 rimfire NOT recommended',
-//   'NOTE!!!- 308 and larger calibers on AR-10 platforms NOT PERMITTED; NO GREEN TIP ORSTEEL CORE AMMO PERMITTED as they divot our steel.',
-// ]
-
-const twoRanges = [
-  {
-    title: 'G2G',
-    description: 'shoot for members and non-members',
-    price: '$25',
-    proficiency: 'Beginner/ Intermediate/ Advanced Shooters.',
-  },
-  {
-    title: 'WOGR',
-    description: 'shoot for members',
-    price: '$23',
-    secondaryDescription: 'shoot for non-members',
-    secondaryPrice: '$30',
-    proficiency: 'Intermediate/ Advanced Shooters (Not recommended for beginning shooters).',
-  },
-]
+const MyMarker = ({ text }: any) => (
+  <LocationOnIcon fontSize='large' style={{color:'red'}}/>
+)
 
 export default function JoinPage() {
+  let mouseX = useMotionValue(0);
+  let mouseY = useMotionValue(0);
+
+  function handleMouseMove({
+    currentTarget,
+    clientX,
+    clientY,
+  }: MouseEvent) {
+    let { left, top } = currentTarget.getBoundingClientRect();
+
+    mouseX.set(clientX - left);
+    mouseY.set(clientY - top);
+  }
+
   return (
     <JoinRoot>
       <JoinPaypalSep />
@@ -68,54 +54,61 @@ export default function JoinPage() {
         </Reveal>
       </JoinHeader>
       <Learnmorecontainer>
-        {twoRanges.map((range) => {
+        {locations.map((range) => {
+          const handleMarkerClick = (location) => {
+            console.log('clicked')
+          }
+          const { lat, lng } = range;
           return (
-            // <SlideReveal>
               <RangeCard
                 key={randomIntGenerator()}
               >
-                <h1>{range.title}</h1>
-                <div style={{display: 'flex', flexDirection: 'row'}}>
-                  <RangeCardSubText style={{color: 'rgb(52,124,245)'}}>{range.price}</RangeCardSubText>
-                  <RangeCardSubText>{range.description}</RangeCardSubText>
-                </div>
-                <div style={{display: 'flex', flexDirection: 'row'}}>
-                  <RangeCardSubText style={{color: 'rgb(52,124,245)'}}>{range.secondaryPrice}</RangeCardSubText>
-                  <RangeCardSubText>{range.secondaryDescription}</RangeCardSubText>
-                </div>
-                <JoinStyledButton href="/locations">
-                  Learn more about {range.title}! <KeyboardArrowRightIcon style={{fontSize: '2rem'}}/>
-                </JoinStyledButton>
-                {/* <button>
-                  Learn more about {range.title}!
-                </button> */}
+                <RangeCardTextContainer>
+                  <h1>{range.title}</h1>
+                  <div style={{display: 'flex', flexDirection: 'row'}}>
+                    <RangeCardSubText style={{color: 'rgb(52,124,245)'}}>{range.price}</RangeCardSubText>
+                    <RangeCardSubText>{range.pricedescription}</RangeCardSubText>
+                  </div>
+                  <div style={{display: 'flex', flexDirection: 'row'}}>
+                    <RangeCardSubText style={{color: 'rgb(52,124,245)'}}>{range.secondaryPrice}</RangeCardSubText>
+                    <RangeCardSubText>{range.secondaryDescription}</RangeCardSubText>
+                  </div>
+                </RangeCardTextContainer>
+                <CardMapContainer>
+                  <GoogleMapReact
+                    bootstrapURLKeys={{ 
+                      key: String(apiKey) 
+                    }}
+                    defaultCenter={{lat, lng}}
+                    defaultZoom={15}
+                    options={{
+                      disableDefaultUI: true,
+                      keyboardShortcuts: false,
+                      styles: mapStyles,
+                    }}
+                    onClick={() => handleMarkerClick(location)}
+                  >
+                    <MyMarker
+                      lat={lat}
+                      lng={lng}
+                      text={range}
+                    />
+                  </GoogleMapReact>
+                </CardMapContainer>
               </RangeCard>
-            // </SlideReveal>
           )
         })}
-        <JoinStyledButton href="/locations">
-          Learn more about our club requirements <KeyboardArrowRightIcon style={{fontSize: '2rem'}}/>
-        </JoinStyledButton>
       </Learnmorecontainer>
-      {/* <div>
-        <h1>Gear and caliber requirements</h1>
-        {gearRequirements.map((item) => {
-          return (
-            <p>{item}</p>
-          )
-        })}
-      </div> */}
       <JoinHeader>
-        <Reveal>
+        {/* <Reveal> */}
           <JoinHeaderContent>
             <JoinPrimaryTypography>Help Our Cause</JoinPrimaryTypography>
             <JoinSecondaryTypography>Your support and contributions will enable us to meet our goals and improve conditions. Your generous donation will fund our mission.</JoinSecondaryTypography>
             <PaypalDonateComponent />
           </JoinHeaderContent>
-        </Reveal>
+        {/* </Reveal> */}
       </JoinHeader>
       <Separator data={ContactSeparatorData}/>
-      {/* <Footer /> */}
     </JoinRoot>
   )
 }

@@ -3,27 +3,27 @@ import { Card, Typography } from '@mui/material';
 // import { greyColorCustomDark } from 'app/utils';
 //======================================================
 export const LocationRoot = styled('div')({
-  width: '100%',
-  height: '100%',
   display: 'flex',
+  justifyContent: 'center',
   flexDirection: 'column',
   alignItems: 'center',
-  // justifyContent: 'center',
-  marginTop: '10vh',
-  marginBottom: '10vh',
+  width: '100%',
+  marginTop: '5rem',
+  color: 'white',
+  backgroundColor: 'rgb(34,38,41)',
 });
 
 export const WholeCard = styled(Card)({
-  width: '80%',
-  height: '50%',
+  width: 'clamp(250px, 80%, 1600px)',
   minHeight: '600px',
-  borderRadius: '24px',
+  borderRadius: '12px',
+  border: '1px solid rgb(52,124,245)',
   backgroundColor: 'rgb(27,31,34)',
   color: 'white',
   padding: '24px',
   margin: '24px',
   display: 'flex',
-  boxShadow: 'rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px',
+  // boxShadow: 'rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px',
   '@media (max-width: 600px)': {
     flexDirection: 'column',
     height: '100%',
@@ -58,12 +58,16 @@ export const RegularText = styled(Typography)({
   },
 })
 export const CardMapContainer = styled('div')({
-  width: '100%',
+  width: '80%',
   height: '100%',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
-  borderRadius: '24px',
+  alignItems: 'center',
+  '@media (max-width: 600px)': {
+    width: '100%',
+  },
+  // borderRadius: '24px',
 })
 export const PriceText = styled(Typography)({
   fontSize: '1.2rem',
@@ -82,3 +86,10 @@ export const InfoContainer = styled('div')({
   justifyContent: 'flex-end',
   alignItems: 'end',
 });
+
+export const RangeCardImage = styled('img')({
+  width: '80%',
+  '@media (max-width: 600px)': {
+    width: '100%',
+  },
+})

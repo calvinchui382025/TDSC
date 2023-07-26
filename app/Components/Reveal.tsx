@@ -14,7 +14,6 @@ export const Reveal = ({ children, width = "fit-content" }: Props) => {
   const isInView = useInView(ref, { once: true }); // once: true means animation only happens once
 
   const mainControls = useAnimation()
-  // const slideControls = useAnimation()
 
   useEffect(() => {
     if (isInView) {
@@ -36,24 +35,6 @@ export const Reveal = ({ children, width = "fit-content" }: Props) => {
       >
         {children}
       </MotionDiv>
-      {/* <motion.div
-        variants={{
-          hidden: { left: 0},
-          visible: { left: '100%' },
-        }}
-        initial="hidden"
-        animate={slideControls}
-        transition={{ duration: 0.5, ease: 'easeIn' }}
-        style={{
-          position: 'absolute',
-          top: 4,
-          bottom: 4,
-          left: 0,
-          right: 0,
-          background: 'rgb(52,124,245)',
-          zIndex: 20,
-        }}
-      /> */}
     </div>
   )
 }
