@@ -3,6 +3,8 @@
 // import react from "react"
 import styled from "@emotion/styled"
 import { 
+  greyColorCustom,
+  greyColorCustomLight,
   // greyColorCustomDark, greyColorCustomLight, 
   mainGradient } from "app/utils"
 import { Button } from "@mui/material"
@@ -25,7 +27,7 @@ export const JoinHeader = styled('div')({
   alignItems: 'center',
   alignContent: 'center',
   textAlign: 'center',
-  backgroundColor: 'rgb(34,38,41)',
+  // backgroundColor: greyColorCustom,
   width: '70%',
   height: '35vh',
   '@media (max-width: 600px)': {
@@ -81,7 +83,7 @@ export const JoinSecondaryTypography = styled('h1')({
 export const Learnmorecontainer = styled('div')({
   overflow: 'hidden',
   width: '100%',
-  height: '70vh',
+  minHeight: '70vh',
   backgroundColor: 'rgb(34,38,41)',
   display: 'flex',
   flexDirection: 'column',
@@ -124,7 +126,7 @@ export const Learnmorecontainer = styled('div')({
 export const RangeCard = styled('div')({
   marginBottom: '20px',
   display: 'flex',
-  flexDirection: 'column',
+  flexDirection: 'row',
   justifyContent: 'space-around',
   alignItems: 'flex-start',
   borderRadius: '12px',
@@ -134,11 +136,14 @@ export const RangeCard = styled('div')({
   },
   padding: '20px 30px 20px 30px',
   width: '50%',
+  height: '40vh',
   '@media (max-width: 1100px)': {
     width: '60%',
   },
   '@media (max-width: 600px)': {
     width: '70%',
+    flexDirection: 'column',
+    height: '70vh',
   },
   '& > h1': {
     fontFamily: 'Arial Narrow, sans-serif',
@@ -185,6 +190,34 @@ export const RangeCard = styled('div')({
       marginLeft: 5,
       marginTop: 5,
       padding: '8px',
+    },
+  },
+})
+
+export const RangeCardTextContainer = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'flex-start',
+  width: '50%',
+  '@media (max-width: 600px)': {
+    width: '100%',
+    alignItems: 'flex-start',
+  },
+  '& > h1': {
+    fontFamily: 'Arial Narrow, sans-serif',
+    color: 'gainsboro',
+    lineHeight: '1.5rem',
+    letterSpacing: '0px',
+    fontSize: '2rem',
+    margin: 10,
+    '@media (max-width: 1100px)': {
+      fontSize: '1.75rem',
+      margin: 8,
+    },
+    '@media (max-width: 600px)': {
+      fontSize: '1.5rem',
+      margin: 5,
     },
   },
 })

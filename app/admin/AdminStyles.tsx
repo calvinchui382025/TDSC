@@ -1,10 +1,10 @@
 "use client"
 
 import styled from "@emotion/styled"
-import { greyColorCustom, greyColorCustomLight } from "app/utils"
+import { greyColorCustom, greyColorCustomDark, greyColorCustomLight } from "app/utils"
 import TableRowsIcon from '@mui/icons-material/TableRows';
 import EmailIcon from '@mui/icons-material/Email';
-import { Card } from '@mui/material';
+import { Card, TextField } from '@mui/material';
 
 export const AdminRoot = styled('div')({
   marginTop: '10vh',
@@ -39,4 +39,15 @@ export const AdminLoginWrapper = styled(Card)({
   alignItems: 'center',
   justifyContent: 'center',
   padding: '24px',
+})
+
+export const LoginTitle = styled('h1')({
+  fontFamily: 'sans-serif',
+  fontSize: '2rem',
+})
+
+export const CustomTextField = styled(TextField)({
+  width: '90%',
+  backgroundColor: 'gainsboro',
+  opacity: '0.8',
 })

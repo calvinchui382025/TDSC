@@ -1,7 +1,5 @@
 "use client"
 
-// import styled from "@emotion/styled"
-// import { useState } from "react"
 import { ContactRoot, ContactPrimaryTypography, ContactSecondaryTypography, ContactHeader } from "./ContactPageStyles"
 
 import Separator from "app/Components/SeparatorBar/separator"
@@ -20,7 +18,6 @@ export default function ContactPage() {
         </ContactSecondaryTypography>
       </ContactHeader>
       <Separator data={ContactSeparatorData}/>
-      {/* <Footer /> */}
     </ContactRoot>
   )
 }
