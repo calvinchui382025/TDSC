@@ -42,6 +42,8 @@ export function EmailTemplate(selectedRange: string, emailBody: string) {
           <Img 
             src='https://scontent-hou1-1.xx.fbcdn.net/v/t39.30808-6/304902026_522454213214193_3997819596518424032_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=7Biz5wqSuhwAX9Wu_hW&_nc_ht=scontent-hou1-1.xx&oh=00_AfBlrMcVwOCK2krLiZOT4ITB_pvFGAvaX7vtXGG31uNpbw&oe=64C60661' 
             alt='TDSC Logo'
+            // height='250px'
+            // width='250px'
           />
           <Text style={heading}>{selectedRange}</Text>
           <Text style={paragraph}>{emailBody}</Text>

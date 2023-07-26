@@ -11,12 +11,8 @@ import { TransitionProps } from '@mui/material/transitions';
 import styled from '@emotion/styled';
 import { FormControl, InputLabel, Select, MenuItem, TextField } from '@mui/material';
 import { randomIntGenerator } from 'app/utils';
-// import nodemailer from 'nodemailer';
 import "setimmediate"
 import axios from 'axios';
-
-// @ts-ignore
-// import { Html } from '@react-email/html';
 //======================================================
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -31,8 +27,6 @@ const ContentWrapper = styled('div') ({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  // justifyContent: 'center',
-  // width: '100%',
   height: '100%',
   margin: '0.5rem',
 })
@@ -50,6 +44,7 @@ const rangeOptions = [
 export default function FullScreenDialog( props: any ) {
   const { isOpen, closeFunc } = props;
   const [ selectedRange, setSelectedRange ] = React.useState(rangeOptions[0]);
+  const [ subjectLine, setSubjectLine ] = React.useState('');
   const [ emailBody, setEmailBody ] = React.useState('');
 
   const handleRangeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,6 +55,10 @@ export default function FullScreenDialog( props: any ) {
     setEmailBody(event.target.value);
   };
 
+  const handleSubjectLineChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSubjectLine(event.target.value);
+  };
+
   const handleClose = () => {
     closeFunc(false);
   };
@@ -67,6 +66,7 @@ export default function FullScreenDialog( props: any ) {
   function handleSend() {
     axios.post('/api/sendEmail', {
         selectedRange,
+        subjectLine,
         emailBody,
       },
       {
@@ -74,8 +74,6 @@ export default function FullScreenDialog( props: any ) {
           'Content-Type': 'application/json',
         }
       }
-      
-      
       ).then((res) => {
         console.log(res);
       }).catch((err) => {
@@ -110,7 +108,7 @@ export default function FullScreenDialog( props: any ) {
             color="warning" 
             variant="contained"
             onClick={handleSend}
-            disabled={emailBody.length === 0}
+            disabled={emailBody.length === 0 || subjectLine.length === 0}
           >
             SEND!
           </Button>
@@ -136,11 +134,21 @@ export default function FullScreenDialog( props: any ) {
       </FormControl>
       <CustomTextField
         id="outlined-multiline-static"
-        label="Email Body"
+        label="Subject Line"
+        multiline
+        rows={1}
+        value={subjectLine}
+        onChange={handleSubjectLineChange}
+        required
+      />
+      <CustomTextField
+        id="outlined-multiline-static"
+        label="Body"
         multiline
         rows={20}
         value={emailBody}
         onChange={handleEmailBodyChange}
+        required
       />
     </ContentWrapper>
     </Dialog>

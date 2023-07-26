@@ -4,10 +4,12 @@ import { EmailTemplate } from 'app/admin/email/EmailTemplate';
 import { NextResponse } from 'next/server';
 
 export async function POST(req) {
+  const emailList = process?.env?.TEST_EMAIL_LIST.split(',') || [''];
+
   const emailAccount = process?.env?.TEST_EMAIL_ADDRESS || '';
   const password = process?.env?.TEST_EMAIL_PASSCODE || '';
   const body = await req.json();
-  const { selectedRange, emailBody } = body;
+  const { selectedRange, subjectLine, emailBody } = body;
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -17,12 +19,17 @@ export async function POST(req) {
     },
   });
 
-  const response = await transporter.sendMail({
-    from: emailAccount,
-    to: 'snyperiflex@yahoo.com',
-    subject: 'Texas Defensive Shooting Club - Email Test',
-    html: render(EmailTemplate(selectedRange, emailBody))
+  emailList.forEach(async (email) => {
+    const response = await transporter.sendMail({
+      from: emailAccount,
+      to: email,
+      subject: subjectLine,
+      html: render(EmailTemplate(selectedRange, emailBody))
+    });
+    console.log({ response });
+    
   });
 
-  return NextResponse.json({ response })
+  return NextResponse.json({ message: 'Emails sent' })
+
 }
