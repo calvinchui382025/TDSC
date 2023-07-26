@@ -624,10 +624,24 @@
   dependencies:
     "react" "18.2.0"
 
+"@react-email/container@^0.0.8":
+  "integrity" "sha512-MQZQxvTOoLWjJR+Jm689jltm0I/mtZbEaDnwZbNkkHKgccr++wwb9kOKMgXG777Y7tGa1JATAsZpvFYiCITwUg=="
+  "resolved" "https://registry.npmjs.org/@react-email/container/-/container-0.0.8.tgz"
+  "version" "0.0.8"
+  dependencies:
+    "react" "18.2.0"
+
 "@react-email/html@^0.0.4":
   "integrity" "sha512-7tRYSnudYAWez+NkPWOM8yLZH7EuYFtYdiLPnzpD+pf4cdk16Gz4up531DaIX6dNBbfbyEFpQxhXZxGeJ5ZkfQ=="
   "resolved" "https://registry.npmjs.org/@react-email/html/-/html-0.0.4.tgz"
   "version" "0.0.4"
+
+"@react-email/img@^0.0.5":
+  "integrity" "sha512-9ziFgBfrIAL+DpVlsraFcd2KwsTRyobLpqTnoiBYCcVZGod59xbYkmsmB3CbUosmLwPYg6AeD7Q7e+hCiwkWgg=="
+  "resolved" "https://registry.npmjs.org/@react-email/img/-/img-0.0.5.tgz"
+  "version" "0.0.5"
+  dependencies:
+    "react" "18.2.0"
 
 "@react-email/render@^0.0.7":
   "integrity" "sha512-hMMhxk6TpOcDC5qnKzXPVJoVGEwfm+U5bGOPH+MyTTlx0F02RLQygcATBKsbP7aI/mvkmBAZoFbgPIHop7ovug=="
@@ -638,6 +652,20 @@
     "pretty" "2.0.0"
     "react" "18.2.0"
     "react-dom" "18.2.0"
+
+"@react-email/section@^0.0.9":
+  "integrity" "sha512-3EbcWJ1jUZrzquWSvXrv8Hbk9V+BGvLcMWQIli4NdIpQlddmlGKUYfXU2mB2d2pf+5ojqkGcFZZ9fWxycB84jQ=="
+  "resolved" "https://registry.npmjs.org/@react-email/section/-/section-0.0.9.tgz"
+  "version" "0.0.9"
+  dependencies:
+    "react" "18.2.0"
+
+"@react-email/text@^0.0.5":
+  "integrity" "sha512-LXhHiaC6oRRsNAfOzJDos4wQA22eIdVJvR6G7uu4QzUvYNOAatDMf89jRQcKGrxX7InkS640v8sHd9jl5ztM5w=="
+  "resolved" "https://registry.npmjs.org/@react-email/text/-/text-0.0.5.tgz"
+  "version" "0.0.5"
+  dependencies:
+    "react" "18.2.0"
 
 "@rushstack/eslint-patch@^1.1.3":
   "integrity" "sha512-sXo/qW2/pAcmT43VoRKOJbDOfV3cYpq3szSVfIThQXNt+E4DfKj361vaAt3c88U5tPUxzEswam7GW48PJqtKAg=="

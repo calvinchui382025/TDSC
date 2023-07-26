@@ -13,9 +13,6 @@ import { FormControl, InputLabel, Select, MenuItem, TextField } from '@mui/mater
 import { randomIntGenerator } from 'app/utils';
 // import nodemailer from 'nodemailer';
 import "setimmediate"
-
-// import { render } from '@react-email/render';
-import { EmailTemplate } from './EmailTemplate';
 import axios from 'axios';
 
 // @ts-ignore
@@ -68,17 +65,24 @@ export default function FullScreenDialog( props: any ) {
   };
 
   function handleSend() {
-    const sendEmailRes = axios.post('/api/sendEmail', {
-        emailHtml: EmailTemplate,
-      }).then((res) => {
+    axios.post('/api/sendEmail', {
+        selectedRange,
+        emailBody,
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      }
+      
+      
+      ).then((res) => {
         console.log(res);
-        console.log(res.data);
       }).catch((err) => {
         console.log(err);
       });
-    console.log('sendEmailRes', sendEmailRes)
 
-    // SendMail(EmailTemplate);
+    setEmailBody('');
     closeFunc(false);
   }
 
