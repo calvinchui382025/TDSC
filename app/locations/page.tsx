@@ -6,14 +6,14 @@ import { locations } from './data';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { LocationRoot, WholeCard, CardDataContainer, RangeNameText, PriceText, RegularText, InfoContainer, CardMapContainer, RangeCardImage } from './locationStyles';
 // import { ContactComponent } from 'app/Components/contactcomponent';
-import Separator from 'app/Components/SeparatorBar/separator';
+import Separator from 'app/Components/Separator';
 import { ContactSeparatorData } from 'app/utils';
 // import { Reveal } from 'app/Components/Reveal';
 //======================================================
 // const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 //======================================================
 // const MyMarker = ({ text }: any) => (
-    // <LocationOnIcon fontSize='large' style={{color:'red'}}/>
+//     <LocationOnIcon fontSize='large' style={{color:'red'}}/>
 // )
 //======================================================
 export default function LocationPage() {
