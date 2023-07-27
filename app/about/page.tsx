@@ -6,8 +6,9 @@ import { AboutButton, AboutImage, AboutRoot, BiosCard, BiosGrid, StyledDescripti
 import { Button } from "@mui/material";
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 // import { Footer } from "app/Components/footer/footer";
-import { ContactSeparatorData, greyColorCustomLight, mainGradient } from "app/utils";
+import { greyColorCustomLight, mainGradient } from "app/utils";
 import { Reveal } from "app/Components/Reveal";
+import { ContactComponent } from "app/Components/ContactComponent";
 
 const LeftShootingPic = "https://coyotecreekoutdoors.com/wp-content/uploads/2023/01/Indoor-gun-range.jpg"
 const BannerRange = 'https://www.frcbr.com/sites/default/files/styles/slider-homepage/public/slides/homepage-slider/ss-the-line-c.jpg?itok=CwXfRslZ'
@@ -121,7 +122,7 @@ export default function AboutPage() {
           </BiosCard>
         ))}
       </BiosGrid>
-      <Separator data={ContactSeparatorData}/>
+      <ContactComponent />
       {/* <Footer /> */}
     </AboutRoot>
   )

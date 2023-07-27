@@ -10,7 +10,7 @@ import { JoinHeader, JoinPrimaryTypography, JoinSecondaryTypography } from './jo
 import JoinPaypalSep from './Components/JoinPaypalSep';
 import { Reveal } from './Components/Reveal';
 import { PaypalDonateComponent } from './Components/PaypalDonateComponent';
-import { ContactSeparatorData } from './Components/ContactComponent';
+import { ContactComponent } from './Components/ContactComponent';
 //======================================================
 // const backgroundVideoWidth = 2312
 //======================================================
@@ -255,7 +255,7 @@ export default function HomePage() {
           </PrepareSubTextContainer>
         </Reveal>
       </FlippedRow>
-      <Separator data={ContactSeparatorData}/>
+      <ContactComponent />
     </HomeRoot>
   )
 }

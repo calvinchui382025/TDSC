@@ -14,17 +14,10 @@ import SendIcon from '@mui/icons-material/Send';
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import emailjs from "@emailjs/browser";
+import { CustomParallax, ParallaxContainer, ParallaxTitle } from "./Separator";
+const ContactBannerJoin = 'https://flintriverindoorshootingrange.com/wp-content/uploads/2021/05/three-1-a.jpg'
 
 //======================================================
-
-// const ContactBannerJoin = 'https://flintriverindoorshootingrange.com/wp-content/uploads/2021/05/three-1-a.jpg'
-
-// const ContactSeparatorData = {
-//   content: 'Contact us!',
-//   image: ContactBannerJoin,
-//   separatorheight: '75vh',
-//   dom: <ContactComponent />,
-// }
 
 const customTheme = (outerTheme: Theme) =>
   createTheme({
@@ -204,42 +197,50 @@ export const ContactComponent = () => {
   };
 
   return (
-    <ContactRoot ref={form}>
-      <ThemeProvider theme={customTheme(outerTheme)}>
-        <Namefield variant="filled" id="mui-theme-provider-filled-input" label="Name" style={{borderTopLeftRadius: '10px', borderTopRightRadius: '10px'}}/>
-        <Emailfield variant="filled" id="mui-theme-provider-filled-input" label="Email"/>
-        <TextField
-          variant="filled"
-          id="filled-multiline-static"
-          label="Message"
-          multiline
-          rows={numRows}
-          style={{width: '90%', backgroundColor: 'gainsboro', opacity: '0.8',}}
-        />
-        <Button
-          onClick={sendEmail}
-          style={{
-            width: '90%',
-            color: 'gainsboro',
-            fontWeight: 'bold',
-            fontSize: '1.25rem',
-            backgroundColor: 'grey',
-            border: '2px solid',
-            backgroundImage: 'linear-gradient(to right, rgb(37, 83, 185), rgb(52, 124, 245))'
-          }}
-          >
-            Send <SendIcon style={{marginLeft: 5, fontSize: 20}}/>
-          </Button>
-      </ThemeProvider>
-    </ContactRoot>
+    <CustomParallax
+    style={{
+      height: '75vh',
+    }}
+    bgImage={ContactBannerJoin}
+    strength={950}
+    >
+      <ParallaxContainer
+      style={{
+        height: '75vh',
+      }}
+      >
+        <ParallaxTitle>Contact us!</ParallaxTitle>
+        {/*  */}
+        <ContactRoot ref={form}>
+          <ThemeProvider theme={customTheme(outerTheme)}>
+            <Namefield variant="filled" id="mui-theme-provider-filled-input" label="Name" style={{borderTopLeftRadius: '10px', borderTopRightRadius: '10px'}}/>
+            <Emailfield variant="filled" id="mui-theme-provider-filled-input" label="Email"/>
+            <TextField
+              variant="filled"
+              id="filled-multiline-static"
+              label="Message"
+              multiline
+              rows={numRows}
+              style={{width: '90%', backgroundColor: 'gainsboro', opacity: '0.8',}}
+            />
+            <Button
+              onClick={sendEmail}
+              style={{
+                width: '90%',
+                color: 'gainsboro',
+                fontWeight: 'bold',
+                fontSize: '1.25rem',
+                backgroundColor: 'grey',
+                border: '2px solid',
+                backgroundImage: 'linear-gradient(to right, rgb(37, 83, 185), rgb(52, 124, 245))'
+              }}
+              >
+                Send <SendIcon style={{marginLeft: 5, fontSize: 20}}/>
+              </Button>
+          </ThemeProvider>
+        </ContactRoot>
+        {/*  */}
+      </ParallaxContainer>
+    </CustomParallax>
   )
 };
-
-const ContactBannerJoin = 'https://flintriverindoorshootingrange.com/wp-content/uploads/2021/05/three-1-a.jpg'
-
-export const ContactSeparatorData = {
-  content: 'Contact us!',
-  image: ContactBannerJoin,
-  separatorheight: '75vh',
-  dom: <ContactComponent />,
-}

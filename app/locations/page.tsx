@@ -7,7 +7,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { LocationRoot, WholeCard, CardDataContainer, RangeNameText, PriceText, RegularText, InfoContainer, CardMapContainer, RangeCardImage } from './locationStyles';
 // import { ContactComponent } from 'app/Components/contactcomponent';
 import Separator from 'app/Components/Separator';
-import { ContactSeparatorData } from 'app/Components/ContactComponent';
+import { ContactComponent } from 'app/Components/ContactComponent';
 // import { Reveal } from 'app/Components/Reveal';
 //======================================================
 // const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
@@ -55,7 +55,7 @@ export default function LocationPage() {
           )
         })
       }
-      <Separator data={ContactSeparatorData}/>
+      <ContactComponent />
     </LocationRoot>
   )
 }
