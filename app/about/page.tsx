@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react";
-import Separator from "app/Components/SeparatorBar/separator";
+import Separator from "app/Components/Separator";
 import { AboutButton, AboutImage, AboutRoot, BiosCard, BiosGrid, StyledDescription, StyledName, StyledTitle, WhatWeDoTextContainer, WhoWeAreContainer, WhoWeAreTextContainer } from "./AboutStyles";
 import { Button } from "@mui/material";
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';

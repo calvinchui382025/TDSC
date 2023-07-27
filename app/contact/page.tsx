@@ -2,9 +2,8 @@
 
 import { ContactRoot, ContactPrimaryTypography, ContactSecondaryTypography, ContactHeader } from "./ContactPageStyles"
 
-import Separator from "app/Components/SeparatorBar/separator"
+import Separator from "app/Components/Separator"
 import { ContactSeparatorData } from "app/utils"
-import { Footer } from "app/Components/footer/footer"
 
 export default function ContactPage() {
   return (

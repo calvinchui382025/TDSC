@@ -1,17 +1,16 @@
 'use client'
 
+import { ActivitiesComponent } from './Components/Activities';
 import { styled, Typography } from '@mui/material';
-import { ActivitiesComponent, 
-  // BasicTimeline, 
-  fadeIn, mainColor } from './utils';
+import { fadeIn, mainColor } from './utils';
 // import { Footer } from './Components/footer/footer';
-import Separator from './Components/SeparatorBar/separator';
+import Separator from './Components/Separator';
 import { ContactSeparatorData } from './utils';
 // import { BiosCard, BiosGrid } from './about/AboutStyles';
 import { JoinHeader, JoinPrimaryTypography, JoinSecondaryTypography } from './join/JoinStyles';
-import { PaypalDonateComponent } from './Components/paypalcomponents';
 import JoinPaypalSep from './Components/JoinPaypalSep';
 import { Reveal } from './Components/Reveal';
+import { PaypalDonateComponent } from './Components/PaypalComponents';
 //======================================================
 // const backgroundVideoWidth = 2312
 //======================================================

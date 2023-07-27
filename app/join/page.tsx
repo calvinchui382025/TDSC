@@ -1,10 +1,8 @@
 "use client"
 
-import Separator from "app/Components/SeparatorBar/separator";
+import Separator from "app/Components/Separator";
 import { JoinHeader, JoinHeaderContent, JoinPrimaryTypography, JoinRoot, JoinSecondaryTypography, JoinStyledButton, Learnmorecontainer, RangeCard, RangeCardSubText, RangeCardTextContainer } from "./JoinStyles";
-import { PaypalDonateComponent } from "app/Components/paypalcomponents";
-import { ContactSeparatorData, randomIntGenerator, 
-} from "app/utils";
+import { ContactSeparatorData, randomIntGenerator } from "app/utils";
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { Reveal } from "app/Components/Reveal";
 import JoinPaypalSep from "app/Components/JoinPaypalSep";
@@ -16,6 +14,7 @@ import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 import { MouseEvent } from "react";
 import useEffect from "react";
 import { locations } from "app/locations/data";
+import { PaypalDonateComponent } from "app/Components/PaypalComponents";
 
 const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
