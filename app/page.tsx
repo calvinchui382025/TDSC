@@ -5,12 +5,12 @@ import { styled, Typography } from '@mui/material';
 import { fadeIn, mainColor } from './utils';
 // import { Footer } from './Components/footer/footer';
 import Separator from './Components/Separator';
-import { ContactSeparatorData } from './utils';
 // import { BiosCard, BiosGrid } from './about/AboutStyles';
 import { JoinHeader, JoinPrimaryTypography, JoinSecondaryTypography } from './join/JoinStyles';
 import JoinPaypalSep from './Components/JoinPaypalSep';
 import { Reveal } from './Components/Reveal';
-import { PaypalDonateComponent } from './Components/PaypalComponents';
+import { PaypalDonateComponent } from './Components/PaypalDonateComponent';
+import { ContactSeparatorData } from './utils';
 //======================================================
 // const backgroundVideoWidth = 2312
 //======================================================

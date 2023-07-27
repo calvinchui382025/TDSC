@@ -15,6 +15,17 @@ import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import emailjs from "@emailjs/browser";
 
+//======================================================
+
+// const ContactBannerJoin = 'https://flintriverindoorshootingrange.com/wp-content/uploads/2021/05/three-1-a.jpg'
+
+// const ContactSeparatorData = {
+//   content: 'Contact us!',
+//   image: ContactBannerJoin,
+//   separatorheight: '75vh',
+//   dom: <ContactComponent />,
+// }
+
 const customTheme = (outerTheme: Theme) =>
   createTheme({
     palette: {

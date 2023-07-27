@@ -12,9 +12,9 @@ import { ContactSeparatorData } from 'app/utils';
 //======================================================
 // const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 //======================================================
-// const MyMarker = ({ text }: any) => (
-//     <LocationOnIcon fontSize='large' style={{color:'red'}}/>
-// )
+const MyMarker = ({ text }: any) => (
+    <LocationOnIcon fontSize='large' style={{color:'red'}}/>
+)
 //======================================================
 export default function LocationPage() {
 
