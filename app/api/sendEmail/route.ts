@@ -4,6 +4,7 @@ import { EmailTemplate } from 'app/admin/email/EmailTemplate';
 import { NextResponse } from 'next/server';
 
 export async function POST(req) {
+  // const emailList = process?.env?.EMAIL_BLAST_LIST.split(',') || [''];
   const emailList = process?.env?.TEST_EMAIL_LIST.split(',') || [''];
 
   const emailAccount = process?.env?.TEST_EMAIL_ADDRESS || '';
