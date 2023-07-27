@@ -15,7 +15,6 @@ export const LocationRoot = styled('div')({
 
 export const WholeCard = styled(Card)({
   width: 'clamp(250px, 80%, 1600px)',
-  minHeight: '600px',
   borderRadius: '12px',
   border: '1px solid rgb(52,124,245)',
   backgroundColor: 'rgb(27,31,34)',
@@ -24,9 +23,13 @@ export const WholeCard = styled(Card)({
   margin: '24px',
   display: 'flex',
   // boxShadow: 'rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px',
+  '@media (max-width: 1268px)': {
+    minHeight: 'auto',
+    height: 'auto',
+  },
   '@media (max-width: 600px)': {
     flexDirection: 'column',
-    height: '100%',
+    // height: '100%',
   },
 
 })
