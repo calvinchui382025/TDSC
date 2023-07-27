@@ -14,7 +14,7 @@ import GoogleMapReact from "google-map-react";
 import { mapStyles } from "./locations/mapStyles";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { Reveal } from "./Components/Reveal";
-import { ContactComponent } from "./Components/ContactComponent";
+// import { ContactComponent } from "./Components/ContactComponent";
 
 //======================================================
 export const randomIntGenerator = () => {
@@ -41,17 +41,6 @@ export const fadeIn = keyframes`
   opacity: 1; 
 }
 `;
-
-//======================================================
-
-const ContactBannerJoin = 'https://flintriverindoorshootingrange.com/wp-content/uploads/2021/05/three-1-a.jpg'
-
-export const ContactSeparatorData = {
-  content: 'Contact us!',
-  image: ContactBannerJoin,
-  separatorheight: '75vh',
-  dom: <ContactComponent />,
-}
 
 //======================================================
 

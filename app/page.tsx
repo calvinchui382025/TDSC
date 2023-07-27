@@ -10,7 +10,7 @@ import { JoinHeader, JoinPrimaryTypography, JoinSecondaryTypography } from './jo
 import JoinPaypalSep from './Components/JoinPaypalSep';
 import { Reveal } from './Components/Reveal';
 import { PaypalDonateComponent } from './Components/PaypalDonateComponent';
-import { ContactSeparatorData } from './utils';
+import { ContactSeparatorData } from './Components/ContactComponent';
 //======================================================
 // const backgroundVideoWidth = 2312
 //======================================================

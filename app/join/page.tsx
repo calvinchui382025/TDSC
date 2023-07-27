@@ -2,7 +2,7 @@
 
 import Separator from "app/Components/Separator";
 import { JoinHeader, JoinHeaderContent, JoinPrimaryTypography, JoinRoot, JoinSecondaryTypography, JoinStyledButton, Learnmorecontainer, RangeCard, RangeCardSubText, RangeCardTextContainer } from "./JoinStyles";
-import { ContactSeparatorData, randomIntGenerator } from "app/utils";
+import { randomIntGenerator } from "app/utils";
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { Reveal } from "app/Components/Reveal";
 import JoinPaypalSep from "app/Components/JoinPaypalSep";
@@ -15,6 +15,7 @@ import { MouseEvent } from "react";
 import useEffect from "react";
 import { locations } from "app/locations/data";
 import { PaypalDonateComponent } from "app/Components/PaypalDonateComponent";
+import { ContactSeparatorData } from "app/Components/ContactComponent";
 
 const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 

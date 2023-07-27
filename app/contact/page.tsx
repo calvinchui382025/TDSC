@@ -1,9 +1,9 @@
 "use client"
 
+import { ContactSeparatorData } from "app/Components/ContactComponent"
 import { ContactRoot, ContactPrimaryTypography, ContactSecondaryTypography, ContactHeader } from "./ContactPageStyles"
 
 import Separator from "app/Components/Separator"
-import { ContactSeparatorData } from "app/utils"
 
 export default function ContactPage() {
   return (

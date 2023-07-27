@@ -234,3 +234,12 @@ export const ContactComponent = () => {
     </ContactRoot>
   )
 };
+
+const ContactBannerJoin = 'https://flintriverindoorshootingrange.com/wp-content/uploads/2021/05/three-1-a.jpg'
+
+export const ContactSeparatorData = {
+  content: 'Contact us!',
+  image: ContactBannerJoin,
+  separatorheight: '75vh',
+  dom: <ContactComponent />,
+}
