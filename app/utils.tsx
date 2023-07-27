@@ -14,7 +14,6 @@ import GoogleMapReact from "google-map-react";
 import { mapStyles } from "./locations/mapStyles";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { Reveal } from "./Components/Reveal";
-// import { ContactComponent } from "./Components/ContactComponent";
 
 //======================================================
 export const randomIntGenerator = () => {

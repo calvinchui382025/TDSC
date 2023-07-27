@@ -3,8 +3,6 @@
 import { ContactComponent } from "app/Components/ContactComponent"
 import { ContactRoot, ContactPrimaryTypography, ContactSecondaryTypography, ContactHeader } from "./ContactPageStyles"
 
-import Separator from "app/Components/Separator"
-
 export default function ContactPage() {
   return (
     <ContactRoot>

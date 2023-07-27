@@ -5,7 +5,6 @@ import { locations } from './data';
 // import GoogleMapReact from 'google-map-react';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { LocationRoot, WholeCard, CardDataContainer, RangeNameText, PriceText, RegularText, InfoContainer, CardMapContainer, RangeCardImage } from './locationStyles';
-// import { ContactComponent } from 'app/Components/contactcomponent';
 import Separator from 'app/Components/Separator';
 import { ContactComponent } from 'app/Components/ContactComponent';
 // import { Reveal } from 'app/Components/Reveal';
