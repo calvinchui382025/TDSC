@@ -14,7 +14,7 @@ import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 import { MouseEvent } from "react";
 import useEffect from "react";
 import { locations } from "app/locations/data";
-import { PaypalDonateComponent } from "app/Components/PaypalComponents";
+import { PaypalDonateComponent } from "app/Components/PaypalDonateComponent";
 
 const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
