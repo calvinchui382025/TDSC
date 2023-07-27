@@ -10,12 +10,9 @@ import { JoinHeader, JoinPrimaryTypography, JoinSecondaryTypography } from './jo
 import JoinPaypalSep from './Components/JoinPaypalSep';
 import { Reveal } from './Components/Reveal';
 import { PaypalDonateComponent } from './Components/PaypalDonateComponent';
-import { ContactComponent } from './Components/ContactComponent';
-//======================================================
-// const backgroundVideoWidth = 2312
-//======================================================
+import { Contact } from './Components/Contact';
 
-// const TransparentImage = 'https://cdn11.bigcommerce.com/s-9de6f3ck5f/images/stencil/original/image-manager/gun-wall-builder-homepage-banner-edited-1-3-.png?t=1671692930'
+//======================================================
 
 const HomeRoot = styled('div')({
   width: '100%',
@@ -255,7 +252,7 @@ export default function HomePage() {
           </PrepareSubTextContainer>
         </Reveal>
       </FlippedRow>
-      <ContactComponent />
+      <Contact />
     </HomeRoot>
   )
 }
