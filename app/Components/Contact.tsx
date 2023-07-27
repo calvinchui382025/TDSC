@@ -103,7 +103,7 @@ const Contactbutton = styled('button')({
   },
 })
 
-export const ContactComponent = () => {
+export const Contact = () => {
   const service = process.env.REACT_APP_SERVICE_ID;
   const template = process.env.REACT_APP_TEMPLATE_ID;
   const user = process.env.REACT_APP_USER_ID;

@@ -8,7 +8,7 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 // import { Footer } from "app/Components/footer/footer";
 import { greyColorCustomLight, mainGradient } from "app/utils";
 import { Reveal } from "app/Components/Reveal";
-import { ContactComponent } from "app/Components/ContactComponent";
+import { Contact } from "app/Components/Contact";
 
 const LeftShootingPic = "https://coyotecreekoutdoors.com/wp-content/uploads/2023/01/Indoor-gun-range.jpg"
 const BannerRange = 'https://www.frcbr.com/sites/default/files/styles/slider-homepage/public/slides/homepage-slider/ss-the-line-c.jpg?itok=CwXfRslZ'
@@ -122,7 +122,7 @@ export default function AboutPage() {
           </BiosCard>
         ))}
       </BiosGrid>
-      <ContactComponent />
+      <Contact />
       {/* <Footer /> */}
     </AboutRoot>
   )

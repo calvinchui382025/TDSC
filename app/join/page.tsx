@@ -15,7 +15,7 @@ import { MouseEvent } from "react";
 import useEffect from "react";
 import { locations } from "app/locations/data";
 import { PaypalDonateComponent } from "app/Components/PaypalDonateComponent";
-import { ContactComponent } from "app/Components/ContactComponent";
+import { Contact } from "app/Components/Contact";
 
 const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
@@ -108,7 +108,7 @@ export default function JoinPage() {
           </JoinHeaderContent>
         {/* </Reveal> */}
       </JoinHeader>
-      <ContactComponent />
+      <Contact />
     </JoinRoot>
   )
 }

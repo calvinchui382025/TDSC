@@ -1,7 +1,7 @@
 "use client"
 
-import { ContactComponent } from "app/Components/ContactComponent"
 import { ContactRoot, ContactPrimaryTypography, ContactSecondaryTypography, ContactHeader } from "./ContactPageStyles"
+import { Contact } from "app/Components/Contact"
 
 export default function ContactPage() {
   return (
@@ -14,7 +14,7 @@ export default function ContactPage() {
           Reach out to use and we will get back to you as soon as we can!
         </ContactSecondaryTypography>
       </ContactHeader>
-      <ContactComponent />
+      <Contact />
     </ContactRoot>
   )
 }
