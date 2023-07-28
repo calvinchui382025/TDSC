@@ -33,7 +33,7 @@ const image = {
 
 const footerSection = {
   backgroundColor: '#e0ecf4',
-  textAlign: 'center',
+  textAlign: 'center' as 'center',
 }
 
 const textContainer = {
