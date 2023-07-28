@@ -10,7 +10,7 @@ export async function POST(req) {
   const emailAccount = process?.env?.TEST_EMAIL_ADDRESS || '';
   const password = process?.env?.TEST_EMAIL_PASSCODE || '';
   const body = await req.json();
-  const { selectedRange, subjectLine, emailBody } = body;
+  const { selectedRange, subjectLine, emailBody, emailSignOff } = body;
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -25,9 +25,9 @@ export async function POST(req) {
       from: emailAccount,
       to: email,
       subject: subjectLine,
-      html: render(EmailTemplate(selectedRange, emailBody))
+      html: render(EmailTemplate(selectedRange, emailBody, emailSignOff))
     });
-    console.log({ response });
+    // console.log({ response });
     
   });
 

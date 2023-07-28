@@ -46,6 +46,7 @@ export default function FullScreenDialog( props: any ) {
   const [ selectedRange, setSelectedRange ] = React.useState(rangeOptions[0]);
   const [ subjectLine, setSubjectLine ] = React.useState('');
   const [ emailBody, setEmailBody ] = React.useState('');
+  const [ emailSignOff, setEmailSignOff ] = React.useState('');
 
   const handleRangeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedRange(event.target.value);
@@ -59,6 +60,10 @@ export default function FullScreenDialog( props: any ) {
     setSubjectLine(event.target.value);
   };
 
+  const handleEmailSignOffChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEmailSignOff(event.target.value);
+  };
+
   const handleClose = () => {
     closeFunc(false);
   };
@@ -68,6 +73,7 @@ export default function FullScreenDialog( props: any ) {
         selectedRange,
         subjectLine,
         emailBody,
+        emailSignOff,
       },
       {
         headers: {
@@ -80,7 +86,7 @@ export default function FullScreenDialog( props: any ) {
         console.log(err);
       });
 
-    setEmailBody('');
+    // setEmailBody('');
     closeFunc(false);
   }
 
@@ -149,6 +155,13 @@ export default function FullScreenDialog( props: any ) {
         value={emailBody}
         onChange={handleEmailBodyChange}
         required
+      />
+      <CustomTextField
+        id="outlined-multiline-static"
+        label="Sign Off"
+        value={emailSignOff}
+        onChange={handleEmailSignOffChange}
+
       />
     </ContentWrapper>
     </Dialog>

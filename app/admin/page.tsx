@@ -2,20 +2,24 @@
 
 import react, { useState } from "react"
 import { AdminContent, AdminRoot, AdminNavBar, AdminLoginWrapper, LoginTitle, CustomTextField } from "./AdminStyles"
-import TableRowsIcon from '@mui/icons-material/TableRows';
-import EmailIcon from '@mui/icons-material/Email';
-import { Button, Checkbox, Divider, TextField } from "@mui/material";
+// import TableRowsIcon from '@mui/icons-material/TableRows';
+// import EmailIcon from '@mui/icons-material/Email';
+import { Button, 
+  // Checkbox, 
+  Divider, 
+  // TextField 
+} from "@mui/material";
 import { createTheme, ThemeProvider, Theme, useTheme } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import { greyColorCustom, greyColorCustomDark, greyColorCustomLight } from "app/utils";
-import DarkModeIcon from '@mui/icons-material/DarkMode';
-import LightModeIcon from '@mui/icons-material/LightMode';
+// import Table from '@mui/material/Table';
+// import TableBody from '@mui/material/TableBody';
+// import TableCell from '@mui/material/TableCell';
+// import TableContainer from '@mui/material/TableContainer';
+// import TableHead from '@mui/material/TableHead';
+// import TableRow from '@mui/material/TableRow';
+// import Paper from '@mui/material/Paper';
+// import { greyColorCustom, greyColorCustomDark, greyColorCustomLight } from "app/utils";
+// import DarkModeIcon from '@mui/icons-material/DarkMode';
+// import LightModeIcon from '@mui/icons-material/LightMode';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -73,14 +77,12 @@ export default function JoinPage() {
   const [adminUserName, setAdminUserName] = useState('');
   const [adminPassword, setAdminPassword] = useState('');
 
-  // const [selected, setSelected] = useState('')
-
   const [isEmailOpen, setIsEmailOpen] = useState(false);
   const handleCloseEmail = () => setIsEmailOpen(false);
   const handleOpenEmail = () => setIsEmailOpen(true);
 
   const handleAdminLogin = () => {
-    if (adminUserName === 'admin' && adminPassword === 'admin') {
+    if (adminUserName === process?.env?.ADMIN_USERNAME && adminPassword === process?.env?.ADMIN_PASSWORD) {
       setAdminLoggedIn(true);
     }
     else {
