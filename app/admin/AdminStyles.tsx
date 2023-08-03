@@ -22,6 +22,7 @@ export const AdminNavBar = styled('div')({
   backgroundColor: greyColorCustom,
   display: 'flex',
   justifyContent: 'center',
+  gap: '10px',
 })
 
 export const AdminContent = styled('div')({
