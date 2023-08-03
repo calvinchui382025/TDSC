@@ -60,6 +60,7 @@ const customTheme = (outerTheme: Theme) =>
   });
 
 import EmailBlastModal from './email/EmailBlastModal'
+import ListBlastModal from "./list/ListBlastModal";
 
 function createData(
   email: string,
@@ -81,12 +82,40 @@ export default function JoinPage() {
   const handleCloseEmail = () => setIsEmailOpen(false);
   const handleOpenEmail = () => setIsEmailOpen(true);
 
+  const [userData, setUserData] = useState([]);
+
   const [isUserListOpen, setIsUserListOpen] = useState(false);
   const handleCloseUserList = () => setIsUserListOpen(false);
-  const handleOpenUserList = () => setIsUserListOpen(true);
+  const handleOpenUserList = () => {
+    const url = 'http://ec2-3-128-34-28.us-east-2.compute.amazonaws.com:3000/users';
+
+  // Using the fetch API for making an HTTP GET request
+  fetch(url)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data); // Logging the data to the console
+
+      // Assuming the response has a property named 'data' containing the array of users
+      const usersData = data.data;
+
+      // Save the data to the state
+      setUserData(usersData);
+
+      // Open the modal
+      setIsUserListOpen(true);
+    })
+    .catch((error) => {
+      console.error('Error fetching data:', error);
+    });
+  };
 
   const handleAdminLogin = () => {
-    if (adminUserName === process?.env?.ADMIN_USERNAME && adminPassword === process?.env?.ADMIN_PASSWORD) {
+    if (adminUserName === "tdscadmin" && adminPassword === "tdscadmin") {
       setAdminLoggedIn(true);
     }
     else {
@@ -114,12 +143,13 @@ export default function JoinPage() {
             Email Blast
           </Button>
           <Button variant='contained' onClick={handleOpenUserList}>
-            Email Blast
+            Email List
           </Button>
         </AdminNavBar>
         <Divider />
         <AdminContent />
         <EmailBlastModal isOpen={isEmailOpen} closeFunc={handleCloseEmail} />
+        <ListBlastModal isOpen={isUserListOpen} closeFunc={handleCloseUserList} userData={userData}/>
       </> : 
       <AdminLoginWrapper elevation={5}>
         <ThemeProvider theme={customTheme(outerTheme)}>
