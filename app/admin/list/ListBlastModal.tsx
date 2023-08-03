@@ -126,7 +126,6 @@ export default function FullScreenDialog( props: any ) {
           </Typography>
         </Toolbar>
       </AppBar>
-
     <ContentWrapper>
       <Table sx={{ borderRadius: '10px 0 0 10px' }}>
         <TableHead sx={{ backgroundColor: 'rgb(32, 36, 43)' }}>
