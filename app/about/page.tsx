@@ -123,7 +123,6 @@ export default function AboutPage() {
         ))}
       </BiosGrid>
       <Contact />
-      {/* <Footer /> */}
     </AboutRoot>
   )
 }
