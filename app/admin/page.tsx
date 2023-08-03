@@ -81,6 +81,10 @@ export default function JoinPage() {
   const handleCloseEmail = () => setIsEmailOpen(false);
   const handleOpenEmail = () => setIsEmailOpen(true);
 
+  const [isUserListOpen, setIsUserListOpen] = useState(false);
+  const handleCloseUserList = () => setIsUserListOpen(false);
+  const handleOpenUserList = () => setIsUserListOpen(true);
+
   const handleAdminLogin = () => {
     if (adminUserName === process?.env?.ADMIN_USERNAME && adminPassword === process?.env?.ADMIN_PASSWORD) {
       setAdminLoggedIn(true);
@@ -98,6 +102,7 @@ export default function JoinPage() {
         });
     }
   }
+  
 
   return (
     <AdminRoot>
@@ -106,6 +111,9 @@ export default function JoinPage() {
       <>
         <AdminNavBar>
           <Button variant='contained' onClick={handleOpenEmail}>
+            Email Blast
+          </Button>
+          <Button variant='contained' onClick={handleOpenUserList}>
             Email Blast
           </Button>
         </AdminNavBar>
