@@ -60,6 +60,7 @@ const customTheme = (outerTheme: Theme) =>
   });
 
 import EmailBlastModal from './email/EmailBlastModal'
+import ListBlastModal from "./list/ListBlastModal";
 
 export default function AdminPage() {
   const outerTheme = useTheme();
@@ -70,6 +71,38 @@ export default function AdminPage() {
   const [isEmailOpen, setIsEmailOpen] = useState(false);
   const handleCloseEmail = () => setIsEmailOpen(false);
   const handleOpenEmail = () => setIsEmailOpen(true);
+
+  const [userData, setUserData] = useState([]);
+
+  const [isUserListOpen, setIsUserListOpen] = useState(false);
+  const handleCloseUserList = () => setIsUserListOpen(false);
+  const handleOpenUserList = () => {
+    const url = 'http://ec2-3-128-34-28.us-east-2.compute.amazonaws.com:3000/users';
+
+  // Using the fetch API for making an HTTP GET request
+  fetch(url)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data); // Logging the data to the console
+
+      // Assuming the response has a property named 'data' containing the array of users
+      const usersData = data.data;
+
+      // Save the data to the state
+      setUserData(usersData);
+
+      // Open the modal
+      setIsUserListOpen(true);
+    })
+    .catch((error) => {
+      console.error('Error fetching data:', error);
+    });
+  };
 
   const handleAdminLogin = () => {
     console.log('env', process.env)
@@ -95,6 +128,7 @@ export default function AdminPage() {
         });
     }
   }
+  
 
   return (
     <AdminRoot>
@@ -105,10 +139,14 @@ export default function AdminPage() {
           <Button variant='contained' onClick={handleOpenEmail}>
             Email Blast
           </Button>
+          <Button variant='contained' onClick={handleOpenUserList}>
+            Email List
+          </Button>
         </AdminNavBar>
         <Divider />
         <AdminContent />
         <EmailBlastModal isOpen={isEmailOpen} closeFunc={handleCloseEmail} />
+        <ListBlastModal isOpen={isUserListOpen} closeFunc={handleCloseUserList} userData={userData}/>
       </> : 
       <AdminLoginWrapper elevation={5}>
         <ThemeProvider theme={customTheme(outerTheme)}>
