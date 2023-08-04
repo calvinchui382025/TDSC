@@ -12,6 +12,7 @@ import { Img } from '@react-email/img';
 // import { Column } from '@react-email/column';
 // @ts-ignore
 // import { Hr } from '@react-email/hr';
+// import TDSCImage from './TDSCImage.jpg'
 //======================================================
 const root = {
   backgroundColor: '#f1f7fb'
@@ -50,14 +51,17 @@ const paragraph = {
   lineHeight: "1.4",
 };
 
-
 const signOffText = {
   fontSize: "18px",
   lineHeight: "1.4",
 }
 //======================================================
-export function EmailTemplate(selectedRange: string, emailBody: string, emailSignOff: string) {
 
+const addresses = {
+  'Wallis-Orchard Gun Range': '12206 Reinecke Rd, Wallis, TX 77485',
+  'G2G Gun Range': '25635 Southwest Fwy, Rosenberg, TX 77471',
+}
+export function EmailTemplate(selectedRange: string, emailBody: string, emailSignOff: string) {
   const showSignOFf = emailSignOff.length > 0;
 
   return (
@@ -68,10 +72,13 @@ export function EmailTemplate(selectedRange: string, emailBody: string, emailSig
         <Container>
 
           <Img 
-            src='https://scontent-hou1-1.xx.fbcdn.net/v/t39.30808-6/304902026_522454213214193_3997819596518424032_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=7Biz5wqSuhwAX9Wu_hW&_nc_ht=scontent-hou1-1.xx&oh=00_AfBlrMcVwOCK2krLiZOT4ITB_pvFGAvaX7vtXGG31uNpbw&oe=64C60661' 
+            // src='https://scontent-hou1-1.xx.fbcdn.net/v/t39.30808-6/304902026_522454213214193_3997819596518424032_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=R-Vj2CftYI8AX-X7Zhj&_nc_ht=scontent-hou1-1.xx&oh=00_AfBoebeQ2zmwSwrm4wmf_-ptKEk0fXcaflaGfhGTs0Ueeg&oe=64D1E3E1' 
+            src='http://www.tacticalpoppins.com/images/matches/TDSC.png'
+            // src='./TDSCImage.jpg'
+            // src={TDSCImage}
             alt='TDSC Logo'
-            // height='250px'
-            // width='250px'
+            height='500px'
+            width='500px'
             style={image}
           />
         </Container>
@@ -97,7 +104,7 @@ export function EmailTemplate(selectedRange: string, emailBody: string, emailSig
 
       <Section style={footerSection}>
         <Text>
-          Texas Defensive Shooting Club | 6114 Watford Bend, Rosenburg, TX 77471
+          Texas Defensive Shooting Club | {addresses[selectedRange] || 'Houston, TX'}
         </Text>
 
       </Section>

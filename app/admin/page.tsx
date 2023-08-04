@@ -61,17 +61,7 @@ const customTheme = (outerTheme: Theme) =>
 
 import EmailBlastModal from './email/EmailBlastModal'
 
-function createData(
-  email: string,
-  firstName: string,
-  lastName: string,
-  membershipDate: string,
-  isEmailSubscribed: boolean,
-) {
-  return { email, firstName, lastName, membershipDate, isEmailSubscribed };
-}
-
-export default function JoinPage() {
+export default function AdminPage() {
   const outerTheme = useTheme();
   const [adminLoggedIn, setAdminLoggedIn] = useState(false);
   const [adminUserName, setAdminUserName] = useState('');
@@ -82,7 +72,14 @@ export default function JoinPage() {
   const handleOpenEmail = () => setIsEmailOpen(true);
 
   const handleAdminLogin = () => {
-    if (adminUserName === process?.env?.ADMIN_USERNAME && adminPassword === process?.env?.ADMIN_PASSWORD) {
+    console.log('env', process.env)
+    console.log('username', process?.env?.NEXT_PUBLIC_ADMIN_USERNAME );
+    console.log('password', process?.env?.NEXT_PUBLIC_ADMIN_PASSWORD );
+    
+    if (
+        adminUserName === process?.env?.NEXT_PUBLIC_ADMIN_USERNAME 
+        && adminPassword === process?.env?.NEXT_PUBLIC_ADMIN_PASSWORD
+      ) {
       setAdminLoggedIn(true);
     }
     else {
