@@ -87,7 +87,7 @@ export default function JoinPage() {
   const [isUserListOpen, setIsUserListOpen] = useState(false);
   const handleCloseUserList = () => setIsUserListOpen(false);
   const handleOpenUserList = () => {
-    const url = 'http://ec2-3-128-34-28.us-east-2.compute.amazonaws.com:3000/users';
+    const url = 'https://ec2-3-17-167-220.us-east-2.compute.amazonaws.com/users';
 
   // Using the fetch API for making an HTTP GET request
   fetch(url)
