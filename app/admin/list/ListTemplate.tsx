@@ -50,7 +50,6 @@ const paragraph = {
   lineHeight: "1.4",
 };
 
-
 const signOffText = {
   fontSize: "18px",
   lineHeight: "1.4",
