@@ -10,6 +10,8 @@ import { greyColorCustomLight, mainGradient } from "app/utils";
 import { Reveal } from "app/Components/Reveal";
 import { Contact } from "app/Components/Contact";
 
+const A7R05825 = 'app/Components/assets/A7R05825.jpg'
+
 const LeftShootingPic = "https://coyotecreekoutdoors.com/wp-content/uploads/2023/01/Indoor-gun-range.jpg"
 const BannerRange = 'https://www.frcbr.com/sites/default/files/styles/slider-homepage/public/slides/homepage-slider/ss-the-line-c.jpg?itok=CwXfRslZ'
 const RightShootingPic = 'https://www.alphakoncepts.com/wp-content/uploads/2023/04/AlphaConcepts-Shotgun-2023-04-15-93-scaled.jpg'
@@ -69,7 +71,7 @@ export default function AboutPage() {
     <AboutRoot>
       <Reveal>
         <WhoWeAreContainer>
-          <AboutImage src={LeftShootingPic} />
+          <AboutImage src={A7R05825} height=""/>
           <WhoWeAreTextContainer>
             <h1 style={{color: 'white', fontFamily: 'sans-serif'}}>Who we are</h1>
             <h3 style={{color: 'white', fontFamily: 'sans-serif', display: 'inline-block'}}>

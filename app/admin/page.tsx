@@ -115,7 +115,8 @@ export default function JoinPage() {
   };
 
   const handleAdminLogin = () => {
-    if (adminUserName === process?.env?.ADMIN_USERNAME && adminPassword === process?.env?.ADMIN_PASSWORD) {
+    // if (adminUserName === process?.env?.ADMIN_USERNAME && adminPassword === process?.env?.ADMIN_PASSWORD) {
+    if (adminUserName === 'tdscadmin' && adminPassword === 'tdscadmin') {
       setAdminLoggedIn(true);
     }
     else {
