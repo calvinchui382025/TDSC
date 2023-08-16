@@ -11,8 +11,8 @@ export const AboutRoot = styled('div')({
   flexDirection: 'column',
   alignItems: 'center',
   width: '100%',
-  marginTop: '10vh',
-  position: 'absolute',
+  marginTop: '6vh',
+  // position: 'absolute',
 })
 
 export const BiosGrid = styled('div')({
@@ -23,11 +23,14 @@ export const BiosGrid = styled('div')({
   paddingTop: '2rem',
   paddingBottom: '2rem',
   display: 'grid',
-  gridTemplateColumns: 'repeat(3, 1fr)',
+  gridTemplateColumns: 'repeat(4, 1fr)',
   '@media (max-width: 1268px)': {
     top: 0,
   },
   '@media (max-width: 768px)': {
+    gridTemplateColumns: 'repeat(2, 1fr)',
+  },
+  '@media (max-width: 368px)': {
     gridTemplateColumns: 'repeat(1, 1fr)',
   },
 })

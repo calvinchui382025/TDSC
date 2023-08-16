@@ -1,16 +1,19 @@
 "use client"
 
 import { useState, useEffect } from "react";
+import styled from "@emotion/styled"
 import Separator from "app/Components/Separator";
 import { AboutButton, AboutImage, AboutRoot, BiosCard, BiosGrid, StyledDescription, StyledName, StyledTitle, WhatWeDoTextContainer, WhoWeAreContainer, WhoWeAreTextContainer } from "./AboutStyles";
 import { Button } from "@mui/material";
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 // import { Footer } from "app/Components/footer/footer";
-import { greyColorCustomLight, mainGradient } from "app/utils";
+import { greyColorCustomLight, mainColor, mainGradient } from "app/utils";
 import { Reveal } from "app/Components/Reveal";
 import { Contact } from "app/Components/Contact";
 
-const A7R05825 = 'app/Components/assets/A7R05825.jpg'
+const whoWeAreImage = 'https://github.com/snyperifle/TDSC/blob/lukebranch/app/Components/assets/A7R05825.jpg?raw=true'
+const whatWeDoImage = 'https://github.com/snyperifle/TDSC/blob/lukebranch/app/Components/assets/A7R05695.jpg?raw=true'
+const separateBanner = 'https://github.com/snyperifle/TDSC/blob/lukebranch/app/Components/assets/A7R05656.jpg?raw=true'
 
 const LeftShootingPic = "https://coyotecreekoutdoors.com/wp-content/uploads/2023/01/Indoor-gun-range.jpg"
 const BannerRange = 'https://www.frcbr.com/sites/default/files/styles/slider-homepage/public/slides/homepage-slider/ss-the-line-c.jpg?itok=CwXfRslZ'
@@ -44,14 +47,90 @@ const peopleList = [
     descriptionthree: 'Advanced training from various instructors including Clint Smith, Bill Blowers, Tim Oxley; Green Ops including red dot training',
     picture: 'https://media.istockphoto.com/id/526947869/vector/man-silhouette-profile-picture.jpg?s=612x612&w=0&k=20&c=5I7Vgx_U6UPJe9U2sA2_8JFF4grkP7bNmDnsLXTYlSc=',
   },
+  {
+    name: 'Gregg Wingert',
+    title: 'WOGR',
+    description: 'Certified NRA Instructor- Rifle/ Pistol/ Personal Home Defense/ Range Safety Officer',
+    descriptiontwo: 'State of Texas License to Carry Instructor',
+    descriptionthree: 'Advanced training from various instructors including Clint Smith, Bill Blowers, Tim Oxley; Green Ops including red dot training',
+    picture: 'https://media.istockphoto.com/id/526947869/vector/man-silhouette-profile-picture.jpg?s=612x612&w=0&k=20&c=5I7Vgx_U6UPJe9U2sA2_8JFF4grkP7bNmDnsLXTYlSc=',
+  },
 ]
 
 const pageSeparatorData = {
   title: 'Club leader bios',
   // content: 'Meet our ',
-  image: BannerRange,
-  separatorheight: '25vh',
+  image: separateBanner,
+  separatorheight: '85vh',
 }
+
+const TempContainer = styled('div')({
+  position: 'relative',
+  height: '100vh',
+  backgroundImage: `url(${whoWeAreImage})`,
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  width: '100%',
+  marginBottom: '10px',
+})
+
+const TempContainerTwo = styled('div')({
+  position: 'relative',
+  height: '100vh',
+  backgroundImage: `url(${whatWeDoImage})`,
+  backgroundSize: '100% auto', // Fill width, maintain aspect ratio
+  backgroundPosition: 'center',
+  backgroundRepeat: 'no-repeat', // Prevent repeating the image
+  width: '100%',
+});
+
+const TempContent = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  width: '100%',
+  height: '100%',
+  backgroundImage: `linear-gradient(180deg, rgba(37, 27, 74, 0) 42%, ${mainColor} 93%)`,
+  padding: 20,
+  boxSizing: 'border-box',
+  color: 'white',
+})
+
+const TempContentTwo = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  width: '100%',
+  height: '100%',
+  // backgroundImage: `
+  //   linear-gradient(0deg, rgba(37, 27, 74, 0) 42%, ${mainColor} 93%),
+  //   linear-gradient(180deg, rgba(37, 27, 74, 0) 42%, ${mainColor} 99%)
+  // `, // Two gradients: top and bottom
+  backgroundImage: `linear-gradient(0deg, rgba(37, 27, 74, 0) 42%, ${mainColor} 93%)`,
+  backgroundPosition: `center top, center bottom`, // Positions for the two gradients
+  backgroundRepeat: 'no-repeat', // Prevent repeating of the gradient
+  padding: 20,
+  boxSizing: 'border-box',
+  color: 'white',
+});
+
+const TempH1 = styled('h1')({
+  fontSize: 80,
+  marginBottom: 10,
+  fontFamily: 'sans-serif',
+  fontStyle: 'italic',
+  // textShadow: '2px 2px 4px #000000'
+})
+
+const TempP = styled('p')({
+  fontSize: 28,
+  fontFamily: 'sans-serif',
+  width: '60%',
+  textAlign: 'center',
+})
+
 
 export default function AboutPage() {
   const [isMobile, setIsMobile] = useState(false);
@@ -69,43 +148,31 @@ export default function AboutPage() {
   }, []);
   return (
     <AboutRoot>
-      <Reveal>
-        <WhoWeAreContainer>
-          <AboutImage src={A7R05825} height=""/>
-          <WhoWeAreTextContainer>
-            <h1 style={{color: 'white', fontFamily: 'sans-serif'}}>Who we are</h1>
-            <h3 style={{color: 'white', fontFamily: 'sans-serif', display: 'inline-block'}}>
-              We are Texas Defensive Shooting Club (TDSC)- Our mission is to lead shooters to become well
-              acquainted with their weapon systems, advance speed and accuracy proficiency and promote
-              gun safety in order to increase the chance of survival in a deadly threat encounter.
-            </h3>
-            <AboutButton>
-              Join now! <KeyboardArrowRightIcon />
-            </AboutButton>
-          </WhoWeAreTextContainer>
-        </WhoWeAreContainer>
-      </Reveal>
-      <Reveal>
-        <WhoWeAreContainer>
-          {isMobile && <AboutImage src={RightShootingPic} />}
-          <WhatWeDoTextContainer>
-            <h1 style={{color: 'white', fontFamily: 'sans-serif'}}>What we do</h1>
-            <h3 style={{color: 'white', fontFamily: 'sans-serif', textAlign: 'right'}}>
-              TDSC trains/leads defensive and tactical drills combined with practical scenarios running pistols
-              and carbines using various targets and props.
-            </h3>
-            <AboutButton>
-              Join now! <KeyboardArrowRightIcon />
-            </AboutButton>
-          </WhatWeDoTextContainer>
-          {!isMobile && <AboutImage src={RightShootingPic} />}
-        </WhoWeAreContainer>
-      </Reveal>
+      <TempContainer>
+        <TempContent>
+          <TempH1>Who we are</TempH1>
+          <TempP>
+            We are Texas Defensive Shooting Club (TDSC)- Our mission is to lead shooters to become well
+            acquainted with their weapon systems, advance speed and accuracy proficiency and promote
+            gun safety in order to increase the chance of survival in a deadly threat encounter.
+          </TempP>
+        </TempContent>
+      </TempContainer>
+      <TempContainerTwo>
+        <TempContentTwo>
+          <TempH1>What we do</TempH1>
+          <TempP>
+            TDSC trains/leads defensive and tactical drills combined with practical scenarios running pistols
+            and carbines using various targets and props.
+          </TempP>
+        </TempContentTwo>
+      </TempContainerTwo>
+      {/* <div style={{width: '100%', height: '10vh', backgroundColor: mainColor}} /> */}
       <Separator data={pageSeparatorData}/>
       <BiosGrid>
         {peopleList.map((person) => (
           <BiosCard key={person.name}>
-            <img src={person.picture}style={{height: '20vh', borderRadius: '10px'}}/>
+            {/* <img src={person.picture}style={{height: '20vh', borderRadius: '10px'}}/> */}
             <StyledName>{person.name}</StyledName>
             <StyledTitle>{person.title}</StyledTitle>
             <StyledDescription>{person.subtitle}</StyledDescription>
@@ -128,3 +195,39 @@ export default function AboutPage() {
     </AboutRoot>
   )
 }
+
+
+
+
+      {/* <Reveal>
+        <WhoWeAreContainer>
+          <AboutImage src={whoWeAreImage}/>
+          <WhoWeAreTextContainer>
+            <h1 style={{color: 'white', fontFamily: 'sans-serif'}}>Who we are</h1>
+            <h3 style={{color: 'white', fontFamily: 'sans-serif', display: 'inline-block'}}>
+              We are Texas Defensive Shooting Club (TDSC)- Our mission is to lead shooters to become well
+              acquainted with their weapon systems, advance speed and accuracy proficiency and promote
+              gun safety in order to increase the chance of survival in a deadly threat encounter.
+            </h3>
+            <AboutButton>
+              Join now! <KeyboardArrowRightIcon />
+            </AboutButton>
+          </WhoWeAreTextContainer>
+        </WhoWeAreContainer>
+      </Reveal>
+      <Reveal>
+        <WhoWeAreContainer>
+          {isMobile && <AboutImage src={whatWeDoImage} />}
+          <WhatWeDoTextContainer>
+            <h1 style={{color: 'white', fontFamily: 'sans-serif'}}>What we do</h1>
+            <h3 style={{color: 'white', fontFamily: 'sans-serif', textAlign: 'right'}}>
+              TDSC trains/leads defensive and tactical drills combined with practical scenarios running pistols
+              and carbines using various targets and props.
+            </h3>
+            <AboutButton>
+              Join now! <KeyboardArrowRightIcon />
+            </AboutButton>
+          </WhatWeDoTextContainer>
+          {!isMobile && <AboutImage src={whatWeDoImage} />}
+        </WhoWeAreContainer>
+      </Reveal> */}
