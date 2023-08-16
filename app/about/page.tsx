@@ -140,6 +140,7 @@ const TempH1 = styled('h1')({
   marginBottom: 10,
   fontFamily: 'sans-serif',
   fontStyle: 'italic',
+  textTransform: 'uppercase',
 })
 
 const TempP = styled('p')({

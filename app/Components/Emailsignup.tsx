@@ -110,6 +110,18 @@ export const Emailsignup = () => {
 
   const isFormValid = email;
 
+  const handleFirstNameChange = (e) => {
+    setFirstname(e.target.value);
+  };
+
+  const handleLastNameChange = (e) => {
+    setLastname(e.target.value);
+  }
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
   const handleEmailSignUp = (e) => {
     e.preventDefault();
     console.log('email sign up')
@@ -126,21 +138,21 @@ export const Emailsignup = () => {
             id="mui-theme-provider-filled-input"
             label="Email (required)"
             value={email}
-            // onChange={handleEmailChange}
+            onChange={handleEmailChange}
             />
             <Customtextfield
             variant="filled"
             id="mui-theme-provider-filled-input"
             label="First Name (optional)"
             value={firstname}
-            // onChange={handleNameChange}
+            onChange={handleFirstNameChange}
             />
             <Customtextfield
             variant="filled"
             id="mui-theme-provider-filled-input"
             label="Last Name (optional)"
             value={lastname}
-            // onChange={handleNameChange}
+            onChange={handleLastNameChange}
             />
             <StyledButton onClick={handleEmailSignUp} disabled={!isFormValid}>Send</StyledButton>
         </ThemeProvider>
