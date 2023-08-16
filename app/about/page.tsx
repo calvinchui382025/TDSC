@@ -13,12 +13,34 @@ import { Contact } from "app/Components/Contact";
 
 const whoWeAreImage = 'https://github.com/snyperifle/TDSC/blob/lukebranch/app/Components/assets/A7R05825.jpg?raw=true'
 const whatWeDoImage = 'https://github.com/snyperifle/TDSC/blob/lukebranch/app/Components/assets/A7R05695.jpg?raw=true'
-const separateBanner = 'https://github.com/snyperifle/TDSC/blob/lukebranch/app/Components/assets/A7R05656.jpg?raw=true'
+const separateBanner = 'https://github.com/snyperifle/TDSC/blob/lukebranch/app/Components/assets/biosedit.jpg?raw=true'
 
-const LeftShootingPic = "https://coyotecreekoutdoors.com/wp-content/uploads/2023/01/Indoor-gun-range.jpg"
-const BannerRange = 'https://www.frcbr.com/sites/default/files/styles/slider-homepage/public/slides/homepage-slider/ss-the-line-c.jpg?itok=CwXfRslZ'
-const RightShootingPic = 'https://www.alphakoncepts.com/wp-content/uploads/2023/04/AlphaConcepts-Shotgun-2023-04-15-93-scaled.jpg'
-// const RangePicture = 'https://flintriverindoorshootingrange.com/wp-content/uploads/2021/05/three-1-a.jpg'
+const LeaderBiosComponent = () => {
+  return (
+    <BiosGrid>
+      {peopleList.map((person) => (
+        <BiosCard key={person.name}>
+          {/* <img src={person.picture}style={{height: '20vh', borderRadius: '10px'}}/> */}
+          <StyledName>{person.name}</StyledName>
+          <StyledTitle>{person.title}</StyledTitle>
+          <StyledDescription>{person.subtitle}</StyledDescription>
+          <StyledDescription>{person.description}</StyledDescription>
+          <StyledDescription>{person.descriptiontwo}</StyledDescription>
+          <StyledDescription>{person.descriptionthree}</StyledDescription>
+          <StyledDescription>{person.descriptionfour}</StyledDescription>
+          <Button
+            style={{
+              color: 'rgb(102, 164, 255)',
+              fontWeight: 'bold',
+            }}
+          >
+            Contact <KeyboardArrowRightIcon style={{backgroundImage: 'linear-gradient(to right, rgb(37, 83, 185), rgb(102, 164, 255)', borderRadius: '50%', color: greyColorCustomLight, marginLeft: 7}}/>
+          </Button>
+        </BiosCard>
+      ))}
+    </BiosGrid>
+  )
+}
 
 const peopleList = [
   {
@@ -62,6 +84,7 @@ const pageSeparatorData = {
   // content: 'Meet our ',
   image: separateBanner,
   separatorheight: '85vh',
+  dom: <LeaderBiosComponent />,
 }
 
 const TempContainer = styled('div')({
@@ -76,11 +99,11 @@ const TempContainer = styled('div')({
 
 const TempContainerTwo = styled('div')({
   position: 'relative',
-  height: '100vh',
+  height: '150vh',
   backgroundImage: `url(${whatWeDoImage})`,
-  backgroundSize: '100% auto', // Fill width, maintain aspect ratio
+  backgroundSize: '100% auto',
   backgroundPosition: 'center',
-  backgroundRepeat: 'no-repeat', // Prevent repeating the image
+  backgroundRepeat: 'no-repeat',
   width: '100%',
 });
 
@@ -104,13 +127,9 @@ const TempContentTwo = styled('div')({
   alignItems: 'center',
   width: '100%',
   height: '100%',
-  // backgroundImage: `
-  //   linear-gradient(0deg, rgba(37, 27, 74, 0) 42%, ${mainColor} 93%),
-  //   linear-gradient(180deg, rgba(37, 27, 74, 0) 42%, ${mainColor} 99%)
-  // `, // Two gradients: top and bottom
   backgroundImage: `linear-gradient(0deg, rgba(37, 27, 74, 0) 42%, ${mainColor} 93%)`,
-  backgroundPosition: `center top, center bottom`, // Positions for the two gradients
-  backgroundRepeat: 'no-repeat', // Prevent repeating of the gradient
+  backgroundPosition: `center top, center bottom`,
+  backgroundRepeat: 'no-repeat',
   padding: 20,
   boxSizing: 'border-box',
   color: 'white',
@@ -121,7 +140,6 @@ const TempH1 = styled('h1')({
   marginBottom: 10,
   fontFamily: 'sans-serif',
   fontStyle: 'italic',
-  // textShadow: '2px 2px 4px #000000'
 })
 
 const TempP = styled('p')({
@@ -167,30 +185,8 @@ export default function AboutPage() {
           </TempP>
         </TempContentTwo>
       </TempContainerTwo>
-      {/* <div style={{width: '100%', height: '10vh', backgroundColor: mainColor}} /> */}
       <Separator data={pageSeparatorData}/>
-      <BiosGrid>
-        {peopleList.map((person) => (
-          <BiosCard key={person.name}>
-            {/* <img src={person.picture}style={{height: '20vh', borderRadius: '10px'}}/> */}
-            <StyledName>{person.name}</StyledName>
-            <StyledTitle>{person.title}</StyledTitle>
-            <StyledDescription>{person.subtitle}</StyledDescription>
-            <StyledDescription>{person.description}</StyledDescription>
-            <StyledDescription>{person.descriptiontwo}</StyledDescription>
-            <StyledDescription>{person.descriptionthree}</StyledDescription>
-            <StyledDescription>{person.descriptionfour}</StyledDescription>
-            <Button
-              style={{
-                color: 'rgb(102, 164, 255)',
-                fontWeight: 'bold',
-              }}
-            >
-              Contact <KeyboardArrowRightIcon style={{backgroundImage: 'linear-gradient(to right, rgb(37, 83, 185), rgb(102, 164, 255)', borderRadius: '50%', color: greyColorCustomLight, marginLeft: 7}}/>
-            </Button>
-          </BiosCard>
-        ))}
-      </BiosGrid>
+      <div style={{width: '100%', height: '10vh', backgroundColor: mainColor}} />
       <Contact />
     </AboutRoot>
   )

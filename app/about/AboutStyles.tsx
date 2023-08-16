@@ -18,7 +18,7 @@ export const AboutRoot = styled('div')({
 export const BiosGrid = styled('div')({
   width: '80%',
   position: 'relative',
-  top: -100,
+  top: 100,
   justifyItems: 'center',
   paddingTop: '2rem',
   paddingBottom: '2rem',
@@ -37,7 +37,7 @@ export const BiosGrid = styled('div')({
 
 export const BiosCard = styled('div')({
   backgroundColor: greyColorCustomLight,
-  padding: '12px',
+  padding: '52px',
   width: '60%',
   justifyContent: 'center',
   alignItems: 'center',
