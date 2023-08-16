@@ -151,7 +151,7 @@ export default function FullScreenDialog( props: any ) {
           <StyledFormControl>
             <InputLabel style={{color: 'gainsboro'}} id="demo-simple-select-label">Filter</InputLabel>
             <Select
-              style={{ color: 'gainsboro', border: '1px solid gainsboro' }}
+              style={{ color: 'gainsboro'}}
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={filter}

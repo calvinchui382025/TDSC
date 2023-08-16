@@ -185,7 +185,7 @@ export default function HomePage() {
           <PrepareText variant='h2'>PREPARE TO PROTECT</PrepareText>
         </PrepareTextContainer>
       </Row>
-      <ActivitiesComponent />
+      {/* <ActivitiesComponent /> */}
       {/* <BasicTimeline /> */}
       <JoinPaypalSep />
       <Reveal>

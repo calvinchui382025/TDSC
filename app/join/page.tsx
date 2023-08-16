@@ -16,6 +16,7 @@ import useEffect from "react";
 import { locations } from "app/locations/data";
 import { PaypalDonateComponent } from "app/Components/PaypalDonateComponent";
 import { Contact } from "app/Components/Contact";
+import { Emailsignup } from "app/Components/Emailsignup";
 
 const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
@@ -53,6 +54,7 @@ export default function JoinPage() {
           </JoinHeaderContent>
         </Reveal>
       </JoinHeader>
+      <Emailsignup />
       <Learnmorecontainer>
         {locations.map((range) => {
           const handleMarkerClick = (location) => {
