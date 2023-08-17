@@ -1,75 +1,116 @@
 "use client"
 
-import Separator from "app/Components/SeparatorBar/separator";
-import { JoinPrimaryTypography, JoinRoot, JoinSecondaryTypography } from "./JoinStyles";
-import { LeftShootingPic } from "app/about/page";
-import { ContactComponent, PaypalDonateComponent, PaypalSubscribeComponent } from "app/utils";
-import { Footer } from "app/Components/footer/footer";
-export const ContactBannerJoin = 'https://flintriverindoorshootingrange.com/wp-content/uploads/2021/05/three-1-a.jpg'
-export const JoinBanner = 'https://preview.free3d.com/img/2019/07/2400324917364000180/l7bb2nw3.jpg'
+import Separator from "app/Components/Separator";
+import { JoinHeader, JoinHeaderContent, JoinPrimaryTypography, JoinRoot, JoinSecondaryTypography, JoinStyledButton, Learnmorecontainer, RangeCard, RangeCardSubText, RangeCardTextContainer } from "./JoinStyles";
+import { randomIntGenerator } from "app/utils";
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import { Reveal } from "app/Components/Reveal";
+import JoinPaypalSep from "app/Components/JoinPaypalSep";
+import { CardMapContainer } from "app/locations/locationStyles";
+import GoogleMapReact from "google-map-react";
+import { mapStyles } from "app/locations/mapStyles";
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
+import { MouseEvent } from "react";
+import useEffect from "react";
+import { locations } from "app/locations/data";
+import { PaypalDonateComponent } from "app/Components/PaypalDonateComponent";
+import { Contact } from "app/Components/Contact";
+import { Emailsignup } from "app/Components/Emailsignup";
 
-export const ContactSeparatorData = {
-  // title: 'Want to find out more?',
-  // content: 'Reach out to us and well be happy to answer any questions you have have!',
-  content: 'Contact us!',
-  image: ContactBannerJoin,
-  separatorheight: '75vh',
-  dom: <ContactComponent/>,
-}
+const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
-export const JoinSeparatorData = {
-  title: 'Annual membership fee',
-  content: '$75',
-  image: JoinBanner,
-  separatorheight: '55vh',
-  dom: <PaypalSubscribeComponent/>,
-}
+const MyMarker = ({ text }: any) => (
+  <LocationOnIcon fontSize='large' style={{color:'red'}}/>
+)
 
 export default function JoinPage() {
+  let mouseX = useMotionValue(0);
+  let mouseY = useMotionValue(0);
+
+  function handleMouseMove({
+    currentTarget,
+    clientX,
+    clientY,
+  }: MouseEvent) {
+    let { left, top } = currentTarget.getBoundingClientRect();
+
+    mouseX.set(clientX - left);
+    mouseY.set(clientY - top);
+  }
+
   return (
     <JoinRoot>
-      <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        textAlign: 'center',
-        backgroundColor: 'black',
-        width: '70%',
-        height: '35vh',
-      }}
-      >
-        <JoinPrimaryTypography
-        style={{
-          width: '60%',
-        }}
-        >
-          Your Annual Membership fee helps TDSC supply targets, steel props, stands and other necessary equipment needed for safe and fun shooting.
-        </JoinPrimaryTypography>
-        <JoinSecondaryTypography>
-        An Annual Membership is not required to attend TDSC Shoots.
-        </JoinSecondaryTypography>
-      </div>
-      <Separator data={JoinSeparatorData}/>
-      <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        textAlign: 'center',
-        backgroundColor: 'black',
-        width: '70%',
-        height: '35vh',
-      }}
-      >
-        <JoinPrimaryTypography>Help Our Cause</JoinPrimaryTypography>
-        <JoinSecondaryTypography>Your support and contributions will enable us to meet our goals and improve conditions. Your generous donation will fund our mission.</JoinSecondaryTypography>
-        <PaypalDonateComponent />
-      </div>
-      <Separator data={ContactSeparatorData}/>
-      <Footer />
+      <JoinPaypalSep />
+      <JoinHeader>
+        <Reveal>
+          <JoinHeaderContent>
+            <JoinPrimaryTypography>
+              Your Annual Membership fee helps TDSC supply targets, steel props, stands and other necessary equipment needed for safe and fun shooting.
+            </JoinPrimaryTypography>
+            <JoinSecondaryTypography>
+            An Annual Membership is not required to attend TDSC Shoots.
+            </JoinSecondaryTypography>
+          </JoinHeaderContent>
+        </Reveal>
+      </JoinHeader>
+      <Emailsignup />
+      <Learnmorecontainer>
+        {locations.map((range) => {
+          const handleMarkerClick = (location) => {
+            console.log('clicked')
+          }
+          const { lat, lng } = range;
+          return (
+              <RangeCard
+                key={randomIntGenerator()}
+              >
+                <RangeCardTextContainer>
+                  <h1>{range.title}</h1>
+                  <div style={{display: 'flex', flexDirection: 'row'}}>
+                    <RangeCardSubText style={{color: 'rgb(52,124,245)'}}>{range.price}</RangeCardSubText>
+                    <RangeCardSubText>{range.pricedescription}</RangeCardSubText>
+                  </div>
+                  <div style={{display: 'flex', flexDirection: 'row'}}>
+                    <RangeCardSubText style={{color: 'rgb(52,124,245)'}}>{range.secondaryPrice}</RangeCardSubText>
+                    <RangeCardSubText>{range.secondaryDescription}</RangeCardSubText>
+                  </div>
+                </RangeCardTextContainer>
+                <CardMapContainer>
+                  <GoogleMapReact
+                    bootstrapURLKeys={{ 
+                      key: String(apiKey) 
+                    }}
+                    defaultCenter={{lat, lng}}
+                    defaultZoom={15}
+                    options={{
+                      disableDefaultUI: true,
+                      keyboardShortcuts: false,
+                      styles: mapStyles,
+                    }}
+                    onClick={() => handleMarkerClick(location)}
+                  >
+                    <MyMarker
+                      lat={lat}
+                      lng={lng}
+                      text={range}
+                    />
+                  </GoogleMapReact>
+                </CardMapContainer>
+              </RangeCard>
+          )
+        })}
+      </Learnmorecontainer>
+      <JoinHeader>
+        {/* <Reveal> */}
+          <JoinHeaderContent>
+            <JoinPrimaryTypography>Help Our Cause</JoinPrimaryTypography>
+            <JoinSecondaryTypography>Your support and contributions will enable us to meet our goals and improve conditions. Your generous donation will fund our mission.</JoinSecondaryTypography>
+            <PaypalDonateComponent />
+          </JoinHeaderContent>
+        {/* </Reveal> */}
+      </JoinHeader>
+      <Contact />
     </JoinRoot>
   )
 }

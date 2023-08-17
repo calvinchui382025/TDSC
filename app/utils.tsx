@@ -1,20 +1,34 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { Button, FormControl, TextField, keyframes } from '@mui/material';
-import { useEffect } from "react";
-import {
-    PayPalScriptProvider,
-    PayPalButtons,
-    usePayPalScriptReducer,
-    PayPalMarks,
-} from "@paypal/react-paypal-js";
-import { outlinedInputClasses } from '@mui/material/OutlinedInput';
-import { createTheme, ThemeProvider, Theme, useTheme } from '@mui/material/styles';
+import { Button, 
+  // FormControl, TextField, 
+  keyframes } from '@mui/material';
+// import { useEffect } from "react";
+import Separator from "./Components/Separator";
+import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import { Timeline, TimelineConnector, TimelineContent, TimelineDot, TimelineItem, TimelineOppositeContent, TimelineSeparator } from "@mui/lab";
+import { locations } from "./locations/data";
+import { CardMapContainer } from "./locations/locationStyles";
+import GoogleMapReact from "google-map-react";
+import { mapStyles } from "./locations/mapStyles";
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import { Reveal } from "./Components/Reveal";
 
 //======================================================
-export const mainColor = '#050030' // midnight blue
-// export const mainColor = '#F5F5F5' // midnight blue
+export const randomIntGenerator = () => {
+  return Math.floor(Math.random() * 1000000000)
+}
 //======================================================
+export const mainColor = 'rgb(36,40,43)'
+export const greyColorCustom = 'rgb(36,40,43)'
+export const greyColorCustomDark = 'rgb(27,31,34)'
+export const greyColorCustomLight = 'rgb(45,49,52)'
+
+export const mainGradient = 'linear-gradient(to right, rgb(37, 83, 185), rgb(102, 164, 255))'
+
+//======================================================
+
 export const fadeIn = keyframes`
 0%    {
   opacity: 0; 
@@ -27,294 +41,109 @@ export const fadeIn = keyframes`
 }
 `;
 
-
-//======================================================
-//     reusable components
 //======================================================
 
-const PaypalContainer = styled('div')({
-  width: "450px",
-  height: "55px",
-  '@media (max-width: 600px)': {
-    width: "250px",
-    height: "35px",
-  },
+const TimelineContainer = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  marginBottom: '2.5rem',
 })
 
-const SubscribeButtonWrapper = ({ type }) => {
-	const [{ options }, dispatch] = usePayPalScriptReducer();
+const TimelineTitle = styled('h1')({
+  fontFamily: 'sans-serif',
+  margin: 5,
+  color: 'gainsboro',
+  textTransform: 'uppercase',
+  fontSize: 'xx-large',
+})
 
-	useEffect(() => {
-        dispatch({
-            type: "resetOptions",
-            value: {
-                ...options,
-                intent: "subscription",
-            },
-        });
-    }, [type]);
+const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
-	return (<PayPalButtons
-		createSubscription={(data, actions) => {
-			return actions.subscription
-				.create({
-					plan_id: "P-3RX065706M3469222L5IFM4I",
-				})
-				.then((orderId) => {
-					// Your code here after create the order
-					return orderId;
-				});
-		}}
-		style={{
-			label: "subscribe",
-		}}
-	/>);
-}
+const MyMarker = ({ text }: any) => (
+  <LocationOnIcon fontSize='large' style={{color:'red'}}/>
+)
 
-export const PaypalSubscribeComponent = () => (
-  <PaypalContainer>
-    <PayPalScriptProvider
-      options={{
-        clientId: "test",
-        components: "buttons",
-        intent: "subscription",
-        vault: true,
-      }}
-    >
-      <SubscribeButtonWrapper type="subscription" />
-    </PayPalScriptProvider>
-  </PaypalContainer>
-);
-
-//======================================================
-
-
-const DonateButtonWrapper = ({ currency }) => {
-  // usePayPalScriptReducer can be use only inside children of PayPalScriptProviders
-  // This is the main reason to wrap the PayPalButtons in a new component
-  const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
-
-  useEffect(() => {
-      dispatch({
-          type: "resetOptions",
-          value: {
-              ...options,
-              currency: currency,
-          },
-      });
-  }, [currency]);
-
-
-  return (<PayPalButtons
-      fundingSource="paypal"
-      style={{"layout":"vertical","label":"donate"}}
-      disabled={false}
-      createOrder={(data, actions) => {
-          return actions.order
-              .create({
-                  purchase_units: [
-                      {
-                          amount: {
-                              value: "2",
-                              breakdown: {
-                                  item_total: {
-                                      currency_code: "USD",
-                                      value: "2",
-                                  },
-                              },
-                          },
-                          items: [
-                              {
-                                  name: "donation-example",
-                                  quantity: "1",
-                                  unit_amount: {
-                                      currency_code: "USD",
-                                      value: "2",
-                                  },
-                                  category: "DONATION",
-                              },
-                          ],
-                      },
-                  ],
-              })
-              .then((orderId) => {
-                  // Your code here after create the donation
-                  return orderId;
-              });
-      }}
-  />
+export const BasicTimeline = () => {
+  const handleMarkerClick = (location) => {
+    console.log('clicked')
+  }
+  return (
+    <TimelineContainer>
+      <TimelineTitle>Locations</TimelineTitle>
+      <Timeline>
+        {locations.map((location, index) => {
+          const { range, cost, street, city, state, zip, phone, description, lat, lng } = location
+          return (
+          <Reveal
+            key={randomIntGenerator()}
+          >
+            <TimelineItem key={index}>
+              <TimelineOppositeContent
+                color="white"
+                style={{
+                  border: '2px solid rgb(102, 164, 255)',
+                  width: '500px',
+                  height: '300px',
+                  margin: '15px',
+                  borderRadius: '12px',
+                  backgroundColor: greyColorCustomLight,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                }}
+              >
+                <h3 style={{margin: 0}}>{location.range}</h3>
+                <p>{location.description}</p>
+                <p>{location.cost}</p>
+              </TimelineOppositeContent>
+              <TimelineSeparator>
+                <TimelineDot />
+                {index < locations.length - 1 && <TimelineConnector />} {/* Render the connector for all items except the last one */}
+              </TimelineSeparator>
+              <TimelineContent
+                color="white"
+                style={{
+                  border: '2px solid rgb(102, 164, 255)',
+                  width: '500px',
+                  height: '300px',
+                  margin: '15px',
+                  borderRadius: '12px',
+                  backgroundColor: greyColorCustomLight,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <CardMapContainer>
+                  <GoogleMapReact
+                    bootstrapURLKeys={{ 
+                      key: String(apiKey) 
+                    }}
+                    defaultCenter={{lat, lng}}
+                    defaultZoom={15}
+                    options={{
+                      disableDefaultUI: true,
+                      keyboardShortcuts: false,
+                      styles: mapStyles,
+                    }}
+                    onClick={() => handleMarkerClick(location)}
+                  >
+                    <MyMarker
+                      lat={lat}
+                      lng={lng}
+                      text={range}
+                    />
+                  </GoogleMapReact>
+                </CardMapContainer>
+              </TimelineContent>
+            </TimelineItem>
+          </Reveal>
+        )})}
+      </Timeline>
+    </TimelineContainer>
   );
 }
 
-export const PaypalDonateComponent = () => (
-  <PaypalContainer>
-      <PayPalScriptProvider
-        options={{
-            "clientId": "test",
-            components: "buttons",
-            currency: "USD"
-        }}
-      >
-        <DonateButtonWrapper
-          currency={"USD"}
-        />
-      </PayPalScriptProvider>
-  </PaypalContainer>
-);
-
-//======================================================
-
-const customTheme = (outerTheme: Theme) =>
-  createTheme({
-    palette: {
-      mode: outerTheme.palette.mode,
-    },
-    components: {
-      MuiTextField: {
-        styleOverrides: {
-          root: {
-            '--TextField-brandBorderColor': 'rgba(51, 51, 51, 0.85)',
-            '--TextField-brandBorderHoverColor': '#B2BAC2',
-            '--TextField-brandBorderFocusedColor': '#6F7E8C',
-            '& label.Mui-focused': {
-              color: 'var(--TextField-brandBorderFocusedColor)',
-            },
-          },
-        },
-      },
-      MuiFilledInput: {
-        styleOverrides: {
-          root: {
-            '&:before, &:after': {
-              borderBottom: '2px solid var(--TextField-brandBorderColor)',
-            },
-            '&:hover:not(.Mui-disabled, .Mui-error):before': {
-              borderBottom: '2px solid var(--TextField-brandBorderHoverColor)',
-            },
-            '&.Mui-focused:after': {
-              borderBottom: '2px solid var(--TextField-brandBorderFocusedColor)',
-            },
-          },
-        },
-      },
-    },
-  });
-
-const ContactRoot = styled('div')({
-  display: 'flex',
-  justifyContent: 'center',
-  flexDirection: 'column',
-  alignItems: 'center',
-  padding: 30,
-  backgroundColor: 'transparent',
-  width: 'clamp(30%, 70%, 900px)',
-  borderRadius: '10px',
-  gap: '5px',
-})
-
-const Namefield = styled(TextField)({
-  width: '90%',
-  backgroundColor: 'gainsboro',
-  opacity: '0.8',
-})
-
-const Emailfield = styled(TextField)({
-  width: '90%',
-  backgroundColor: 'gainsboro',
-  opacity: '0.8',
-})
-
-const Contactbutton = styled('button')({
-  width: '90%',
-  height: '3rem',
-  opacity: '0.8',
-  borderBottomLeftRadius: '10px',
-  borderBottomRightRadius: '10px',
-  border: '1px solid darkgrey',
-  boxShadow: 'none',
-  backgroundColor: 'gainsboro',
-  textTransform: 'uppercase',
-  fontWeight: 'bold',
-  fontColor: 'rgb(117,117,117)',
-  fontFamily: 'sans-serif',
-  ':hover': {
-    border: '1px solid black',
-    backgroundColor: 'rgba(51, 51, 51, 0.85)',
-    color: 'rgb(140,152,163)',
-  },
-  ':active': {
-    backgroundColor: 'rgba(51, 51, 51, 0.85)',
-    color: 'rgb(140,152,163)',
-  },
-})
-
-export const ContactComponent = () => {
-  const outerTheme = useTheme();
-  const [numRows, setNumRows] = React.useState(7); // Initial number of rows
-
-  useEffect(() => {
-    const handleResize = () => {
-      const screenWidth = window.innerWidth;
-      const newNumRows = screenWidth < 600 ? 4 : 7;
-      setNumRows(newNumRows);
-    };
-
-    window.addEventListener('resize', handleResize);
-    handleResize(); // Set initial number of rows based on screen width
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-  return (
-    <ContactRoot>
-      <ThemeProvider theme={customTheme(outerTheme)}>
-        <Namefield variant="filled" id="mui-theme-provider-filled-input" label="Name" style={{borderTopLeftRadius: '10px', borderTopRightRadius: '10px'}}/>
-        <Emailfield variant="filled" id="mui-theme-provider-filled-input" label="Email"/>
-        <TextField
-          variant="filled"
-          id="filled-multiline-static"
-          label="Message"
-          multiline
-          rows={numRows}
-          style={{width: '90%', backgroundColor: 'gainsboro', opacity: '0.8',}}
-        />
-        <Contactbutton>Send</Contactbutton>
-      </ThemeProvider>
-      {/* <FormControl
-      style={{
-        gap: '1rem',
-        width: '100%',
-      }}
-      >
-        <TextField
-          required
-          id="outlined-required"
-          label="Name"
-          variant="outlined"
-        />
-        <TextField
-          required
-          id="outlined-required"
-          label="Email"
-          variant="outlined"
-        />
-        <TextField
-          required
-          id="outlined-required"
-          label="Message"
-          variant="outlined"
-          multiline={true}
-          rows={6}
-        />
-        <Button
-        variant="contained"
-        >
-          Send
-        </Button>
-      </FormControl> */}
-    </ContactRoot>
-  )
-};
-
-//======================================================

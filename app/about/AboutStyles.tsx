@@ -1,7 +1,9 @@
 "use client"
 
-import react from "react"
+// import react from "react"
 import styled from "@emotion/styled"
+import { greyColorCustomLight, mainGradient } from "app/utils"
+import { Button } from "@mui/material"
 
 export const AboutRoot = styled('div')({
   display: 'flex',
@@ -9,32 +11,42 @@ export const AboutRoot = styled('div')({
   flexDirection: 'column',
   alignItems: 'center',
   width: '100%',
-  marginTop: '5rem',
-  // backgroundColor: 'gainsboro',
-  // border: '1px solid white',
+  marginTop: '6vh',
+  // position: 'absolute',
 })
 
 export const BiosGrid = styled('div')({
+  width: '80%',
+  position: 'relative',
+  top: 100,
   justifyItems: 'center',
   paddingTop: '2rem',
   paddingBottom: '2rem',
   display: 'grid',
-  gridTemplateColumns: 'repeat(3, 1fr)',
+  gridTemplateColumns: 'repeat(4, 1fr)',
+  '@media (max-width: 1268px)': {
+    top: 0,
+  },
   '@media (max-width: 768px)': {
     gridTemplateColumns: 'repeat(2, 1fr)',
   },
-  '@media (max-width: 480px)': {
-    gridTemplateColumns: 'repeat(2, 1fr)',
+  '@media (max-width: 368px)': {
+    gridTemplateColumns: 'repeat(1, 1fr)',
   },
 })
 
 export const BiosCard = styled('div')({
-  backgroundColor: 'white',
-  padding: '1.5rem',
+  backgroundColor: greyColorCustomLight,
+  padding: '52px',
   width: '60%',
   justifyContent: 'center',
   alignItems: 'center',
   textAlign: 'center',
+  marginBottom: '1rem',
+  '&:hover': {
+    border: '1px solid rgb(37, 83, 185)',
+    transition: 'all 0.2s ease-in-out',
+  },
 })
 
 export const WhoWeAreContainer = styled('div')({
@@ -42,6 +54,71 @@ export const WhoWeAreContainer = styled('div')({
   justifyContent: 'center',
   flexDirection: 'row',
   alignItems: 'center',
+  marginTop: '5vh',
+  marginBottom: '5vh',
   gap: '40px',
-  height: '40vh',
+  minHeight: '40vh',
+  '@media (max-width: 768px)': {
+    flexDirection: 'column',
+  }
+})
+
+export const AboutImage = styled('img')({
+  width: '30%',
+  padding: '2px',
+  background: mainGradient,
+  borderRadius: '12px',
+  '@media (max-width: 768px)': {
+    width: '70%',
+  }
+})
+
+export const WhoWeAreTextContainer = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'flex-start',
+  height: '80%',
+  width: '30%',
+  '@media (max-width: 768px)': {
+    width: '70%',
+  },
+})
+
+export const WhatWeDoTextContainer = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'flex-end',
+  height: '80%',
+  width: '30%',
+  '@media (max-width: 768px)': {
+    width: '70%',
+  }
+})
+
+export const StyledDescription = styled('p')({
+  fontFamily: 'sans-serif',
+  margin: 5,
+  color: 'gainsboro',
+})
+
+export const StyledTitle = styled('h3')({
+  fontFamily: 'sans-serif',
+  margin: 5,
+  color: 'gainsboro',
+})
+
+export const StyledName = styled('h2')({
+  fontFamily: 'sans-serif',
+  margin: 5,
+  color: 'gainsboro',
+})
+
+export const AboutButton = styled(Button)({
+  color: 'gainsboro',
+  fontWeight: 'bold',
+  backgroundColor: 'grey',
+  border: '2px solid',
+  backgroundImage: mainGradient,
 })

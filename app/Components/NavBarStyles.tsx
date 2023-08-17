@@ -4,27 +4,29 @@ import styled from "@emotion/styled"
 import ListItemButton from '@mui/material/ListItemButton';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import { Drawer, IconButton } from '@mui/material';
+import { Drawer, IconButton, rgbToHex } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import { greyColorCustomDark, mainColor } from "app/utils";
 //======================================================
+
 export const StyledAppBar = styled('div')({
   display: 'flex',
   justifyContent: 'center',
   width: '100%',
+  height: '7vh',
+  '@media (max-width: 3000px)': {
+    height: '7vh',
+  },
   position: 'fixed',
   top: 0,
   zIndex: 100,
-  // backgroundColor: 'gainsboro',
+  backgroundColor: greyColorCustomDark,
 })
 
 export const StyledAppBarSubContainer = styled('div')({
   display: 'flex',
   justifyContent: 'space-between',
-  // backgroundColor: 'gainsboro',
-  width: '70%',
-  position: 'fixed',
-  top: 0,
-  zIndex: 100,
+  width: '60%',
   '@media (max-width: 1600px)': {
     width: '90%',
   },
@@ -33,6 +35,7 @@ export const StyledAppBarSubContainer = styled('div')({
 export const StyledListItemButton = styled(ListItemButton)({
   backgroundColor: 'transparent',
   boxShadow: 'none',
+  height: '100%',
 })
 
 export const StyledButton = styled(Button)({
@@ -56,10 +59,19 @@ export const StyledDrawer = styled(Drawer)({
   backgroundColor: 'transparent',
 })
 
+export const DrawerBackground = styled('div')({
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  textAlign: "center",
+  gap: "2rem",
+  padding: "1rem",
+  backgroundColor: 'black',
+})
+
 export const HamburgerIconButton = styled(IconButton)({
-  height: 75,
   width: 75,
-  paddingRight: 14
 })
 
 export const ListTextStyled = styled('h1')({
@@ -68,6 +80,9 @@ export const ListTextStyled = styled('h1')({
   fontFamily: 'sans-serif',
   textTransform: 'uppercase',
   letterSpacing: '0.2rem',
+  '&:hover': {
+    color: 'rgb(52,124,245)',
+  }
 })
 
 export const StyledExitButton = styled('button')({

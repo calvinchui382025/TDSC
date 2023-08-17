@@ -1,15 +1,26 @@
 'use client'
 
+import { ActivitiesComponent } from './Components/Activities';
 import { styled, Typography } from '@mui/material';
 import { fadeIn, mainColor } from './utils';
+// import { Footer } from './Components/footer/footer';
+import Separator from './Components/Separator';
+// import { BiosCard, BiosGrid } from './about/AboutStyles';
+import { JoinHeader, JoinPrimaryTypography, JoinSecondaryTypography } from './join/JoinStyles';
+import JoinPaypalSep from './Components/JoinPaypalSep';
+import { Reveal } from './Components/Reveal';
+import { PaypalDonateComponent } from './Components/PaypalDonateComponent';
+import { Contact } from './Components/Contact';
+
 //======================================================
-// const backgroundVideoWidth = 2312
-//======================================================
+
 const HomeRoot = styled('div')({
   width: '100%',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
+  // marginTop: '10vh',
+  // overflowX: 'hidden',
 })
 const HeroVideoContainer = styled('div')({
   display: 'flex',
@@ -39,7 +50,7 @@ const TitleText = styled(HomeText)({
   fontSize: '10vw',
   fontWeight: 600,
   animation: `${fadeIn} 3s`,
-  zIndex: 2,
+  zIndex: 5,
   fontFamily: 'Barlow Condensed, sans-serif', 
   
   '@media (max-width: 600px)': {
@@ -47,7 +58,7 @@ const TitleText = styled(HomeText)({
   },
 
   '@media (min-width: 1920px)': {
-    fontSize: '8vw',
+    fontSize: '7vw',
   },
 
 })
@@ -67,10 +78,9 @@ const Row = styled('div')({
   flexDirection: 'row',
   width: '100%',
   justifyContent: 'center',
-  // padding: '24px 0px',
-
   '@media (max-width: 600px)': {
     flexDirection: 'column',
+    alignItems: 'center',
   },
 })
 const FlippedRow = styled(Row)({
@@ -79,7 +89,7 @@ const FlippedRow = styled(Row)({
 const GradientDivider = styled('div')({
   width: '80%',
   height: '1px',
-  background: 'linear-gradient(90deg, #f52a72, #6b41f8)',
+  background: 'linear-gradient(90deg, rgb(37, 83, 185), rgb(102, 164, 255))',
   zIndex: 5
 })
 const PrepareTextContainer = styled('div')({
@@ -104,31 +114,29 @@ const PrepareVideoContainer = styled('div')({
   justifyContent: 'center',
   overflow: 'hidden',
   width: '100%',
-  maxWidth: '100%',
+  maxWidth: '50vw',
   height: '50vh',
-  padding: '24px',
+  margin: '24px 0px',
   '@media (max-width: 600px)': {
     width: 'auto',
-
   },
 })
 const PrepareVideo = styled('video')({
   objectFit: 'cover',
   padding: '1px',
-  background: 'linear-gradient(to right, orange, red)',
+  background: 'linear-gradient(to right, rgb(37, 83, 185), rgb(102, 164, 255))',
   borderRadius: '12px',
 })
-
 const PrepareSubTextContainer = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
   width: '100%',
-  padding: '24px',
+  height: '50vh',
+  maxWidth: '50vw',
   '@media (max-width: 600px)': {
     width: 'auto',
-
   },
 })
 const PrepareSubTextTitle = styled(HomeText)({
@@ -146,6 +154,7 @@ const PrepareSubText = styled(HomeText)({
   '@media (max-width: 600px)': {
     fontSize: '0.8rem',
   },
+  margin: '24px',
 })
 //======================================================
 export default function HomePage() {
@@ -156,6 +165,7 @@ export default function HomePage() {
           autoPlay
           muted
           loop 
+          playsInline
         >
           <source 
             src='/Videos/pexels-range.mp4' 
@@ -169,20 +179,37 @@ export default function HomePage() {
           TEXAS DEFENSIVE SHOOTING CLUB
       </TitleText>
       <GradientDivider />
-
       <Row>
         <PrepareTextContainer>
           <Gradient />
           <PrepareText variant='h2'>PREPARE TO PROTECT</PrepareText>
         </PrepareTextContainer>
       </Row>
-
+      {/* <ActivitiesComponent /> */}
+      {/* <BasicTimeline /> */}
+      <JoinPaypalSep />
+      <Reveal>
+        <JoinHeader 
+          style={{
+            // width: '100vw', marginBottom: '2.5rem'
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+          }}
+        >
+          <JoinPrimaryTypography>Help Our Cause</JoinPrimaryTypography>
+          <JoinSecondaryTypography>Your support and contributions will enable us to meet our goals and improve conditions. Your generous donation will fund our mission.</JoinSecondaryTypography>
+          <PaypalDonateComponent />
+        </JoinHeader>
+      </Reveal>
+      {/* <img src={TransparentImage} alt='test' height='600' width='600' /> */}
       <Row>
         <PrepareVideoContainer>
           <PrepareVideo
             autoPlay
             muted
             loop
+            playsInline
           >
             <source
               src='/Videos/pexels-walking-in-woods.mp4'
@@ -190,14 +217,16 @@ export default function HomePage() {
             />
           </PrepareVideo>
         </PrepareVideoContainer>
-        <PrepareSubTextContainer>
-          <PrepareSubTextTitle>Every Day Carry Shoots</PrepareSubTextTitle>
-          <PrepareSubText>
-            TDSC provides one-on-one and group instruction on drills and skills, 
-            using real life scenarios to become proficient with the firearm you 
-            carry every day and the way you carry it
-          </PrepareSubText>
-        </PrepareSubTextContainer>
+        <Reveal>
+          <PrepareSubTextContainer>
+            <PrepareSubTextTitle>Every Day Carry Shoots</PrepareSubTextTitle>
+            <PrepareSubText>
+              TDSC provides one-on-one and group instruction on drills and skills, 
+              using real life scenarios to become proficient with the firearm you 
+              carry every day and the way you carry it
+            </PrepareSubText>
+          </PrepareSubTextContainer>
+        </Reveal>
       </Row>
 
       <FlippedRow>
@@ -206,6 +235,7 @@ export default function HomePage() {
             autoPlay
             muted
             loop
+            playsInline
           >
             <source
               src='/Videos/pexels-man-holding-gun.mp4'
@@ -213,34 +243,16 @@ export default function HomePage() {
             />
           </PrepareVideo>
         </PrepareVideoContainer>
-        <PrepareSubTextContainer>
-          <PrepareSubTextTitle>2 Gun Shoots</PrepareSubTextTitle>
-          <PrepareSubText>
-            TDSC offers  handgun and rifle (carbine) shoots involving cardboard and steel targets, props, walls, clays, and a duelling tree. See our calendar for shoot schedule and locations.
-          </PrepareSubText>
-        </PrepareSubTextContainer>
+        <Reveal>
+          <PrepareSubTextContainer>
+            <PrepareSubTextTitle>2 Gun Shoots</PrepareSubTextTitle>
+            <PrepareSubText>
+              TDSC offers  handgun and rifle (carbine) shoots involving cardboard and steel targets, props, walls, clays, and a duelling tree. See our calendar for shoot schedule and locations.
+            </PrepareSubText>
+          </PrepareSubTextContainer>
+        </Reveal>
       </FlippedRow>
-
-      <Row>
-        <PrepareVideoContainer>
-          <PrepareVideo
-            autoPlay
-            muted
-            loop
-          >
-            <source
-              src='/Videos/pexels-loading-mag.mp4'
-              type='video/mp4'
-            />
-          </PrepareVideo>
-        </PrepareVideoContainer>
-        <PrepareSubTextContainer>
-          <PrepareSubTextTitle>3 Gun Shoots</PrepareSubTextTitle>
-          <PrepareSubText>
-            Join TDSC for an exciting and unforgettable 3 Gun Shoot where you experience shooting a handgun, rifle, and shotgun while moving from one stage to another, engaging targets with each firearm. See our calendar for shoot schedule and locations.
-          </PrepareSubText>
-        </PrepareSubTextContainer>
-      </Row>
+      <Contact />
     </HomeRoot>
   )
 }
