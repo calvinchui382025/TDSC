@@ -35,6 +35,7 @@ export const StyledAppBarSubContainer = styled('div')({
 export const StyledListItemButton = styled(ListItemButton)({
   backgroundColor: 'transparent',
   boxShadow: 'none',
+  height: '100%',
 })
 
 export const StyledButton = styled(Button)({

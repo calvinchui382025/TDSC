@@ -199,14 +199,14 @@ export const Contact = () => {
   return (
     <CustomParallax
     style={{
-      height: '75vh',
+      height: '85vh',
     }}
     bgImage={ContactBannerJoin}
     strength={950}
     >
       <ParallaxContainer
       style={{
-        height: '75vh',
+        height: '85vh',
       }}
       >
         <ParallaxTitle>Contact us!</ParallaxTitle>

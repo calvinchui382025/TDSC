@@ -3,6 +3,7 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
+import moment from 'moment';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
@@ -24,10 +25,10 @@ const Transition = React.forwardRef(function Transition(
 });
 
 const StyledTableCell = styled(TableCell)({
-  color: 'white',
-  borderBottom: "none",
-  fontSize: '1.2rem',
+  color: 'gainsboro',
+  borderBottom: '1px solid gainsboro',
   fontWeight: '300',
+  letterSpacing: '0.5px',
 })
 
 const ContentWrapper = styled('div') ({
@@ -35,13 +36,20 @@ const ContentWrapper = styled('div') ({
   flexDirection: 'column',
   alignItems: 'center',
   height: '100%',
-  margin: '0.5rem',
+  padding: '1rem',
   backgroundColor: greyColorCustomLight,
 })
 
 const CustomTextField = styled(TextField) ({
   width: '80%',
   margin: '0.5rem',
+})
+
+const StyledFormControl = styled(FormControl)({
+  width: '10%',
+  '@media (max-width: 600px)': {
+    width: '40%',
+  }
 })
 //======================================================
 const rangeOptions = [
@@ -55,6 +63,7 @@ export default function FullScreenDialog( props: any ) {
   const [ subjectLine, setSubjectLine ] = React.useState('');
   const [ emailBody, setEmailBody ] = React.useState('');
   const [ emailSignOff, setEmailSignOff ] = React.useState('');
+  const [ filter, setFilter ] = React.useState('');
 
   const { userData } = props;
 
@@ -81,6 +90,21 @@ export default function FullScreenDialog( props: any ) {
   const handleClose = () => {
     closeFunc(false);
   };
+
+  const handleMemberFilter = (event) => {
+    setFilter(event.target.value);
+  };
+
+  const filteredUserData = userData.filter((item) => {
+    if (filter === 'all') {
+      return true; // Show all
+    } else if (filter === 'members') {
+      return item.membershipDate !== null; // Show members based on membership date condition
+    } else if (filter === 'subscribers') {
+      return item.isEmailSubscribed === 1; // Show subscribers based on email subscription status
+    }
+    return true; // Default case
+  });
 
   function handleSend() {
     axios.post('/api/sendEmail', {
@@ -111,7 +135,7 @@ export default function FullScreenDialog( props: any ) {
       onClose={handleClose}
       TransitionComponent={Transition}
     >
-      <AppBar sx={{ position: 'relative' }}>
+      <AppBar sx={{ position: 'relative', paddingTop: '0.35rem', paddingBottom: '0.35rem' }}>
         <Toolbar>
           <IconButton
             edge="start"
@@ -122,34 +146,51 @@ export default function FullScreenDialog( props: any ) {
             <CloseIcon />
           </IconButton>
           <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-            Send Email Blast
+            Email Member and Subscriber list
           </Typography>
+          <StyledFormControl>
+            <InputLabel style={{color: 'gainsboro'}} id="demo-simple-select-label">Filter</InputLabel>
+            <Select
+              style={{ color: 'gainsboro'}}
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={filter}
+              label="Filter"
+              onChange={handleMemberFilter}
+            >
+              <MenuItem value="all">Show all</MenuItem>
+              <MenuItem value="members">Show members</MenuItem>
+              <MenuItem value="subscribers">Show subscribers</MenuItem>
+            </Select>
+          </StyledFormControl>
         </Toolbar>
       </AppBar>
     <ContentWrapper>
       <Table sx={{ borderRadius: '10px 0 0 10px' }}>
         <TableHead sx={{ backgroundColor: 'rgb(32, 36, 43)' }}>
           <TableRow>
-            <StyledTableCell>Email</StyledTableCell>
-            <StyledTableCell>First Name</StyledTableCell>
-            <StyledTableCell>Last Name</StyledTableCell>
-            <StyledTableCell>Email Subscribed</StyledTableCell>
-            <StyledTableCell>Membership Date</StyledTableCell>
+            <StyledTableCell style={{fontSize: '1.25rem', color: 'white'}}>ID</StyledTableCell>
+            <StyledTableCell style={{fontSize: '1.25rem', color: 'white'}}>Email</StyledTableCell>
+            <StyledTableCell style={{fontSize: '1.25rem', color: 'white'}}>First Name</StyledTableCell>
+            <StyledTableCell style={{fontSize: '1.25rem', color: 'white'}}>Last Name</StyledTableCell>
+            <StyledTableCell style={{fontSize: '1.25rem', color: 'white'}}>Email Subscribed</StyledTableCell>
+            <StyledTableCell style={{fontSize: '1.25rem', color: 'white'}}>Membership Date</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {userData.map((item: any, index: number) => (
+          {filteredUserData.map((item: any, index: number) => (
             <TableRow
               style={{
                 backgroundColor: index % 2 === 0 ? 'rgb(51, 56, 66)' : 'rgb(32, 36, 43)',
               }}
               key={index}
             >
+              <StyledTableCell>{item.id}</StyledTableCell>
               <StyledTableCell>{item.email}</StyledTableCell>
-              <StyledTableCell>{item.firstName}</StyledTableCell>
-              <StyledTableCell>{item.lastName}</StyledTableCell>
+              <StyledTableCell>{item.first_name ? item.first_name : "N/A"}</StyledTableCell>
+              <StyledTableCell>{item.last_name ? item.last_name : "N/A"}</StyledTableCell>
               <StyledTableCell>{item.isEmailSubscribed ? 'Yes' : 'No'}</StyledTableCell>
-              <StyledTableCell>{item.membershipDate}</StyledTableCell>
+              <StyledTableCell>{item.membershipDate ? moment(item.membershipDate).format("MMMM Do YYYY") : "MM-DD-YYYY"}</StyledTableCell>
             </TableRow>
           ))}
         </TableBody>
