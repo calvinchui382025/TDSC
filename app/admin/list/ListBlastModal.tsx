@@ -33,11 +33,10 @@ const StyledTableCell = styled(TableCell)({
 
 const ContentWrapper = styled('div') ({
   display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
   height: '100%',
-  padding: '1rem',
+  width: '100%',
   backgroundColor: greyColorCustomLight,
+  overflow: 'scroll',
 })
 
 const CustomTextField = styled(TextField) ({
@@ -166,15 +165,15 @@ export default function FullScreenDialog( props: any ) {
         </Toolbar>
       </AppBar>
     <ContentWrapper>
-      <Table sx={{ borderRadius: '10px 0 0 10px' }}>
+      <Table size='small' >
         <TableHead sx={{ backgroundColor: 'rgb(32, 36, 43)' }}>
           <TableRow>
-            <StyledTableCell style={{fontSize: '1.25rem', color: 'white'}}>ID</StyledTableCell>
-            <StyledTableCell style={{fontSize: '1.25rem', color: 'white'}}>Email</StyledTableCell>
-            <StyledTableCell style={{fontSize: '1.25rem', color: 'white'}}>First Name</StyledTableCell>
-            <StyledTableCell style={{fontSize: '1.25rem', color: 'white'}}>Last Name</StyledTableCell>
-            <StyledTableCell style={{fontSize: '1.25rem', color: 'white'}}>Email Subscribed</StyledTableCell>
-            <StyledTableCell style={{fontSize: '1.25rem', color: 'white'}}>Membership Date</StyledTableCell>
+            <StyledTableCell >ID</StyledTableCell>
+            <StyledTableCell >Email</StyledTableCell>
+            <StyledTableCell >First Name</StyledTableCell>
+            <StyledTableCell >Last Name</StyledTableCell>
+            <StyledTableCell >Email Subscribed</StyledTableCell>
+            <StyledTableCell >Membership Date</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -190,7 +189,7 @@ export default function FullScreenDialog( props: any ) {
               <StyledTableCell>{item.first_name ? item.first_name : "N/A"}</StyledTableCell>
               <StyledTableCell>{item.last_name ? item.last_name : "N/A"}</StyledTableCell>
               <StyledTableCell>{item.isEmailSubscribed ? 'Yes' : 'No'}</StyledTableCell>
-              <StyledTableCell>{item.membershipDate ? moment(item.membershipDate).format("MMMM Do YYYY") : "MM-DD-YYYY"}</StyledTableCell>
+              <StyledTableCell>{item.membershipDate ? moment(item.membershipDate).format("MM/DD/YYYY") : ""}</StyledTableCell>
             </TableRow>
           ))}
         </TableBody>
