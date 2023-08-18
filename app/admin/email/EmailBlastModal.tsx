@@ -92,7 +92,8 @@ export default function FullScreenDialog( props: any ) {
   }
 
   function handleTestSend() {
-    const url = 'https://ec2-3-17-167-220.us-east-2.compute.amazonaws.com/sendemails';
+    // const url = 'https://ec2-3-17-167-220.us-east-2.compute.amazonaws.com/sendemails';
+    const url = 'https://ec2-3-17-167-220.us-east-2.compute.amazonaws.com/users';
   
     // Using the fetch API for making an HTTP GET request
     fetch(url)
