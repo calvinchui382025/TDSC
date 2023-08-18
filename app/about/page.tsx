@@ -28,14 +28,14 @@ const LeaderBiosComponent = () => {
           <StyledDescription>{person.descriptiontwo}</StyledDescription>
           <StyledDescription>{person.descriptionthree}</StyledDescription>
           <StyledDescription>{person.descriptionfour}</StyledDescription>
-          <Button
+          {/* <Button
             style={{
               color: 'rgb(102, 164, 255)',
               fontWeight: 'bold',
             }}
           >
             Contact <KeyboardArrowRightIcon style={{backgroundImage: 'linear-gradient(to right, rgb(37, 83, 185), rgb(102, 164, 255)', borderRadius: '50%', color: greyColorCustomLight, marginLeft: 7}}/>
-          </Button>
+          </Button> */}
         </BiosCard>
       ))}
     </BiosGrid>
@@ -70,11 +70,12 @@ const peopleList = [
     picture: 'https://media.istockphoto.com/id/526947869/vector/man-silhouette-profile-picture.jpg?s=612x612&w=0&k=20&c=5I7Vgx_U6UPJe9U2sA2_8JFF4grkP7bNmDnsLXTYlSc=',
   },
   {
-    name: 'Gregg Wingert',
+    name: 'Brian Rigsby',
     title: 'WOGR',
-    description: 'Certified NRA Instructor- Rifle/ Pistol/ Personal Home Defense/ Range Safety Officer',
-    descriptiontwo: 'State of Texas License to Carry Instructor',
-    descriptionthree: 'Advanced training from various instructors including Clint Smith, Bill Blowers, Tim Oxley; Green Ops including red dot training',
+    description: 'NRA Range Safety Officer',
+    descriptiontwo: 'SASS Range Officer Level 1 and Level 2',
+    descriptionthree: 'Texas 4-H Certified Shooting Sports Coach',
+    descriptionfour: '20+ years competitive shooting experience, Single Action Shooting Society (SASS), USPSA and 3-Gun',
     picture: 'https://media.istockphoto.com/id/526947869/vector/man-silhouette-profile-picture.jpg?s=612x612&w=0&k=20&c=5I7Vgx_U6UPJe9U2sA2_8JFF4grkP7bNmDnsLXTYlSc=',
   },
 ]
@@ -136,18 +137,24 @@ const TempContentTwo = styled('div')({
 });
 
 const TempH1 = styled('h1')({
-  fontSize: 80,
+  fontSize: 'xx-large',
   marginBottom: 10,
   fontFamily: 'sans-serif',
   fontStyle: 'italic',
   textTransform: 'uppercase',
+  borderRadius: '12px',
+  padding: '10px',
+  backdropFilter: 'blur(10px) saturate(150%)',
 })
 
 const TempP = styled('p')({
-  fontSize: 28,
+  fontSize: 'large',
   fontFamily: 'sans-serif',
   width: '60%',
   textAlign: 'center',
+  borderRadius: '12px',
+  padding: '10px',
+  backdropFilter: 'blur(10px) saturate(150%)',
 })
 
 
@@ -169,7 +176,7 @@ export default function AboutPage() {
     <AboutRoot>
       <TempContainer>
         <TempContent>
-          <TempH1>Who we are</TempH1>
+            <TempH1>Who we are</TempH1>
           <TempP>
             We are Texas Defensive Shooting Club (TDSC)- Our mission is to lead shooters to become well
             acquainted with their weapon systems, advance speed and accuracy proficiency and promote
