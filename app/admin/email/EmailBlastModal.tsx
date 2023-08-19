@@ -58,8 +58,6 @@ export default function FullScreenDialog( props: any ) {
       const newEmailList = res?.data?.data?.map((user: any) => {
         return user.email;
       });
-
-      console.log('newEmailList', newEmailList)
       setEmailList(newEmailList);
     }).catch((err) => {
       console.log(err);
@@ -109,35 +107,6 @@ export default function FullScreenDialog( props: any ) {
     closeFunc(false);
   }
 
-  function handleTestSend() {
-    // const url = 'https://ec2-3-17-167-220.us-east-2.compute.amazonaws.com/sendemails';
-    const url = 'https://ec2-3-17-167-220.us-east-2.compute.amazonaws.com/users';
-  
-    // Using the fetch API for making an HTTP GET request
-    fetch(url)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data.data); // Logging the data to the console
-  
-        // Assuming the response has a property named 'data' containing the array of users
-        // const usersData = data.data;
-  
-        // Save the data to the state
-        // setEmailList(usersData);
-  
-        // Open the modal
-        // setIsUserListOpen(true);
-      })
-      .catch((error) => {
-        console.error('Error fetching data:', error);
-      });
-    };
-
   return (
     <Dialog
       fullScreen
@@ -158,14 +127,6 @@ export default function FullScreenDialog( props: any ) {
           <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
             Send Email Blast
           </Typography>
-          <Button 
-            color="warning" 
-            variant="contained"
-            onClick={handleTestSend}
-            // disabled={emailBody.length === 0 || subjectLine.length === 0}
-          >
-            TEST!
-          </Button>
           <Button 
             color="warning" 
             variant="contained"
