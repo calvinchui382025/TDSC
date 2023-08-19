@@ -4,52 +4,29 @@ import { EmailTemplate } from 'app/admin/email/EmailTemplate';
 import { NextResponse } from 'next/server';
 
 export async function POST(req) {
-  const emailList = String(process?.env?.FULL_EMAIL_BLAST_LIST).split(',') || [''];
-  
-  // const emailList = String(process?.env?.TEST_EMAIL_LIST).split(',') || [''];
-
   const emailAccount = process?.env?.TEST_EMAIL_ADDRESS || '';
   const password = process?.env?.TEST_EMAIL_PASSCODE || '';
+
+  const waitTime = 300000; // 5 minutes
+
   const body = await req.json();
   const { 
     selectedRange, 
-    // subjectLine, 
-    // emailBody, 
-    emailSignOff 
+    subjectLine = "TDSC Newsletter - Saturday Drills", 
+    emailBody = "Saturday August 19th Shoot Pistol/ Rifle Drills and Maneuvers; SAFETY BRIEFING 8:15AM; START 8:30AM. PLAN ON SHOOTING! We’ll run some demanding speed, accuracy and tactical drills. You need to train… you need to SHOW UP!", 
+    emailSignOff,
+    emailList = new Array(10).fill('lucasaoverbey@gmail.com'),
   } = body;
 
-  const subjectLine = "TDSC Newsletter - Saturday Drills"
-  const emailBody = "Saturday August 5th Shoot Pistol/ Rifle Drills and Maneuvers; SAFETY BRIEFING 8:15AM; START 8:30AM. PLAN ON SHOOTING! We’ll run some demanding speed, accuracy and tactical drills. You need to train… you need to SHOW UP!"
-
   const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
     pool: true,
-    service: 'gmail',
     maxMessages: 500,
     auth: {
-      user: emailAccount.split('@')[0],
+      user: emailAccount,
       pass: password,
     },
   });
-
-  // emailList.forEach((email, i) => {
-  //   setTimeout(() => {
-  //     transporter.sendMail({
-  //       from: emailAccount,
-  //       to: email,
-  //       subject: subjectLine,
-  //       html: render(EmailTemplate(selectedRange, emailBody, emailSignOff))
-  //     }).then((response) => {
-  //       console.log(`Email sent to ${email}`);
-  //       if (i === emailList.length - 1) {
-  //         console.log('Last email sent --------------------------------------');
-  //         transporter.close();
-  //       }
-  //     }).catch((err) => {
-  //       console.log('FAILED email to', email);
-  //       console.log('err', err);
-  //     });
-  //   }, 1000 * i)
-  // });
 
   let chain = Promise.resolve();
 
@@ -60,8 +37,15 @@ export async function POST(req) {
     if (email === startEmail) {
       sendEmailStatus = true;
     }
-    if (sendEmailStatus === true || startEmail === '') {
 
+    if (i !== 0 && i % 50 === 0) {
+      chain = chain.then(() => {
+        console.log('Waiting...')
+        return new Promise((resolve) => setTimeout(resolve, waitTime))
+      });
+    }
+
+    if (sendEmailStatus === true || startEmail === '') {
       chain = chain.then(() => {  
         return new Promise((resolve, reject) => {
           transporter.sendMail({
@@ -70,22 +54,22 @@ export async function POST(req) {
             subject: subjectLine,
             html: render(EmailTemplate(selectedRange, emailBody, emailSignOff))
           }).then((response) => {
-            console.log(`Email sent to ${email}`);
+            console.log(`${i} - Email sent to ${email}`);
             if (i === emailList.length - 1) {
               console.log('Last email sent --------------------------------------');
               transporter.close();
             }
             resolve();
           }).catch((err) => {
-            console.log('FAILED email to', email);
+            console.log(`${i} - FAILED email to`, email);
             console.log('err', err);
             transporter.close();
             reject();
           });
         })
       })
-
     }
+
   })
 
   return NextResponse.json({ message: 'Emails sent' })
