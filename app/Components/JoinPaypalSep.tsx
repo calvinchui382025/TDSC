@@ -15,7 +15,8 @@ import { CustomParallax, ParallaxContainer, ParallaxContent, ParallaxTitle } fro
 // import secondary from './banner3.jpg';
 // import { CustomParallax, ParallaxContainer, ParallaxContent, ParallaxTitle } from './SeparatorBar/SeparatorStyles';
 
-const JoinBanner = 'https://preview.free3d.com/img/2019/07/2400324917364000180/l7bb2nw3.jpg'
+// const JoinBanner = 'https://preview.free3d.com/img/2019/07/2400324917364000180/l7bb2nw3.jpg'
+const JoinBanner = 'https://github.com/snyperifle/TDSC/blob/luke/public/Images/croppedjoin.jpg?raw=true'
 
 const PaypalContainer = styled('div')({
   width: "450px",

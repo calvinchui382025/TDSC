@@ -15,7 +15,9 @@ import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import emailjs from "@emailjs/browser";
 import { CustomParallax, ParallaxContainer, ParallaxTitle } from "./Separator";
-const ContactBannerJoin = 'https://flintriverindoorshootingrange.com/wp-content/uploads/2021/05/three-1-a.jpg'
+// const ContactBannerJoin = 'https://flintriverindoorshootingrange.com/wp-content/uploads/2021/05/three-1-a.jpg'
+// const ContactBannerJoin = 'https://github.com/snyperifle/TDSC/blob/luke/public/Images/croppedcontact.jpg?raw=true'
+const ContactBannerJoin = 'https://github.com/snyperifle/TDSC/blob/luke/public/Images/croppedteaching.jpg?raw=true'
 
 //======================================================
 
