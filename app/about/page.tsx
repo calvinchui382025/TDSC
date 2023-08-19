@@ -100,12 +100,12 @@ const TempContainer = styled('div')({
 
 const TempContainerTwo = styled('div')({
   position: 'relative',
-  height: '150vh',
+  height: '100vh',
   backgroundImage: `url(${whatWeDoImage})`,
-  backgroundSize: '100% auto',
+  backgroundSize: 'cover',
   backgroundPosition: 'center',
-  backgroundRepeat: 'no-repeat',
   width: '100%',
+  marginBottom: '10px',
 });
 
 const TempContent = styled('div')({
@@ -129,11 +129,21 @@ const TempContentTwo = styled('div')({
   width: '100%',
   height: '100%',
   backgroundImage: `linear-gradient(0deg, rgba(37, 27, 74, 0) 42%, ${mainColor} 93%)`,
-  backgroundPosition: `center top, center bottom`,
-  backgroundRepeat: 'no-repeat',
   padding: 20,
   boxSizing: 'border-box',
   color: 'white',
+  // display: 'flex',
+  // flexDirection: 'column',
+  // justifyContent: 'center',
+  // alignItems: 'center',
+  // width: '100%',
+  // height: '100%',
+  // backgroundImage: `linear-gradient(0deg, rgba(37, 27, 74, 0) 42%, ${mainColor} 93%)`,
+  // backgroundPosition: `center top, center bottom`,
+  // backgroundRepeat: 'no-repeat',
+  // padding: 20,
+  // boxSizing: 'border-box',
+  // color: 'white',
 });
 
 const TempH1 = styled('h1')({
@@ -193,6 +203,7 @@ export default function AboutPage() {
           </TempP>
         </TempContentTwo>
       </TempContainerTwo>
+      <div style={{width: '100%', height: '10vh', backgroundColor: mainColor}} />
       <Separator data={pageSeparatorData}/>
       <div style={{width: '100%', height: '10vh', backgroundColor: mainColor}} />
       <Contact />
