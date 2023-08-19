@@ -105,10 +105,6 @@ export default function AdminPage() {
   };
 
   const handleAdminLogin = () => {
-    console.log('env', process.env)
-    console.log('username', process?.env?.NEXT_PUBLIC_ADMIN_USERNAME );
-    console.log('password', process?.env?.NEXT_PUBLIC_ADMIN_PASSWORD );
-    
     if (
         adminUserName === process?.env?.NEXT_PUBLIC_ADMIN_USERNAME 
         && adminPassword === process?.env?.NEXT_PUBLIC_ADMIN_PASSWORD

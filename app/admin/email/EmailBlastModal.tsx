@@ -49,6 +49,23 @@ export default function FullScreenDialog( props: any ) {
   const [ emailSignOff, setEmailSignOff ] = React.useState('');
   const [ emailList, setEmailList] = React.useState([]);
 
+  const userListURL = String(process?.env?.NEXT_PUBLIC_USER_LIST_URL) || '';
+
+  React.useEffect(() => {
+    axios.get(userListURL)
+    .then((res) => {
+
+      const newEmailList = res?.data?.data?.map((user: any) => {
+        return user.email;
+      });
+
+      console.log('newEmailList', newEmailList)
+      setEmailList(newEmailList);
+    }).catch((err) => {
+      console.log(err);
+    });
+  }, [userListURL])
+
   const handleRangeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedRange(event.target.value);
   };
@@ -75,6 +92,7 @@ export default function FullScreenDialog( props: any ) {
         subjectLine,
         emailBody,
         emailSignOff,
+        emailList,
       },
       {
         headers: {
