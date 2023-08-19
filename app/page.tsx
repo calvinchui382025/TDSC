@@ -33,8 +33,9 @@ const HeroVideoContainer = styled('div')({
   },
 })
 const HeroVideo = styled('video')({
-  transform: 'scale(2)',
+  // transform: 'scale(2)',
   objectFit: 'cover',
+  height: '120%',
 })
 const HomeText = styled(Typography)({
   color: '#e7e7e7',
@@ -126,6 +127,7 @@ const PrepareVideo = styled('video')({
   padding: '1px',
   background: 'linear-gradient(to right, rgb(37, 83, 185), rgb(102, 164, 255))',
   borderRadius: '12px',
+  width: '80%',
 })
 const PrepareSubTextContainer = styled('div')({
   display: 'flex',
@@ -168,7 +170,7 @@ export default function HomePage() {
           playsInline
         >
           <source 
-            src='/Videos/pexels-range.mp4' 
+            src='/Videos/finalhome.mp4' 
             type='video/mp4'
           />
         </HeroVideo>
@@ -212,7 +214,7 @@ export default function HomePage() {
             playsInline
           >
             <source
-              src='/Videos/pexels-walking-in-woods.mp4'
+              src='/Videos/croppedcalvin.mp4'
               type='video/mp4'
             />
           </PrepareVideo>
@@ -238,7 +240,7 @@ export default function HomePage() {
             playsInline
           >
             <source
-              src='/Videos/pexels-man-holding-gun.mp4'
+              src='/Videos/croppedslowmo.mp4'
               type='video/mp4'
             />
           </PrepareVideo>
