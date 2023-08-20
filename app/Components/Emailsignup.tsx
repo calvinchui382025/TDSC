@@ -53,7 +53,7 @@ const EmailSignupContainer = styled('div')({
   justifyContent: 'center',
   alignItems: 'center',
   // border: '2px solid red',
-  width: 'clamp(200px, 80%, 900px)',
+  width: 'clamp(200px, 100%, 700px)',
   paddingBottom: '4em',
 })
 
@@ -67,12 +67,12 @@ const StyledFormControl = styled('form')({
 })
 
 const Customtextfield = styled(TextField)({
-  width: '70%',
+  width: '90%',
   backgroundColor: 'gainsboro',
 })
 
 const StyledButton = styled(Button)({
-  width: '70%',
+  width: '90%',
   height: '3.5em',
   borderBottom: '2px solid rgba(51, 51, 51, 0.85)',
   borderRadius: 0,
@@ -122,10 +122,58 @@ export const Emailsignup = () => {
     setEmail(e.target.value);
   };
 
-  const handleEmailSignUp = (e) => {
+  const handleEmailSignUp = async (e) => {
     e.preventDefault();
-    console.log('email sign up')
-  }
+    if (isFormValid) {
+      if (firstname === "") {
+        setFirstname(null);
+      }
+      if (lastname === "") {
+        setLastname(null);
+      }
+      const newUser = {
+        email: email,
+        first_name: firstname,
+        last_name: lastname,
+        isEmailSubscribed: 1
+      };
+      //logic for endpoint
+      try {
+        const response = await fetch('https://ec2-3-17-167-220.us-east-2.compute.amazonaws.com/users', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(newUser),
+        });
+  
+        const data = await response.json();
+        
+        if (data.success) {
+          toast.success('You have successfully signed up for email alerts!');
+          console.log(newUser);
+          //ADD LOGIC TO SEND EMAIL TO NEWLY CREATED USER
+
+
+        } else {
+          toast.error('Failed to sign up for email alerts.');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        toast.error('An error occurred while signing up.');
+      }
+
+
+
+
+      toast.success('You have successfully signed up for email alerts!');
+      console.log(newUser);
+    } else {
+      toast.error('Please enter a valid email address.');
+    }
+    console.log('email sign up');
+  };
+  
 
   return (
     <EmailSignupContainer>

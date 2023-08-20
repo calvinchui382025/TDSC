@@ -81,29 +81,46 @@ const Emailfield = styled(TextField)({
   opacity: '0.8',
 })
 
-const Contactbutton = styled('button')({
+const ContactButton = styled(Button)({
   width: '90%',
-  height: '3rem',
-  opacity: '0.8',
-  borderBottomLeftRadius: '10px',
-  borderBottomRightRadius: '10px',
-  border: '1px solid darkgrey',
-  boxShadow: 'none',
+  height: '3.5em',
+  borderBottom: '2px solid rgba(51, 51, 51, 0.85)',
+  borderRadius: 0,
+  filter: 'opacity(85%)',
   backgroundColor: 'gainsboro',
-  textTransform: 'uppercase',
-  fontWeight: 'bold',
-  fontColor: 'rgb(117,117,117)',
-  fontFamily: 'sans-serif',
-  ':hover': {
-    border: '1px solid black',
-    backgroundColor: 'rgba(51, 51, 51, 0.85)',
-    color: 'rgb(140,152,163)',
+  color: 'rgba(51, 51, 51, 0.85)',
+  '&:hover': {
+    borderBottom: '2px solid #B2BAC2',
+    backgroundColor: 'gainsboro',
+    filter: 'opacity(70%)',
   },
-  ':active': {
-    backgroundColor: 'rgba(51, 51, 51, 0.85)',
-    color: 'rgb(140,152,163)',
-  },
+  '&:active': {
+    borderBottom: '2px solid rgba(51, 51, 51, 0.85)',
+  }
 })
+// const Contactbutton = styled('button')({
+//   width: '90%',
+//   height: '3rem',
+//   opacity: '0.8',
+//   borderBottomLeftRadius: '10px',
+//   borderBottomRightRadius: '10px',
+//   border: '1px solid darkgrey',
+//   boxShadow: 'none',
+//   backgroundColor: 'gainsboro',
+//   textTransform: 'uppercase',
+//   fontWeight: 'bold',
+//   fontColor: 'rgb(117,117,117)',
+//   fontFamily: 'sans-serif',
+//   ':hover': {
+//     border: '1px solid black',
+//     backgroundColor: 'rgba(51, 51, 51, 0.85)',
+//     color: 'rgb(140,152,163)',
+//   },
+//   ':active': {
+//     backgroundColor: 'rgba(51, 51, 51, 0.85)',
+//     color: 'rgb(140,152,163)',
+//   },
+// })
 
 export const Contact = () => {
   const service = process.env.REACT_APP_SERVICE_ID;
@@ -215,7 +232,7 @@ export const Contact = () => {
         {/*  */}
         <ContactRoot ref={form}>
           <ThemeProvider theme={customTheme(outerTheme)}>
-            <Namefield variant="filled" id="mui-theme-provider-filled-input" label="Name" style={{borderTopLeftRadius: '10px', borderTopRightRadius: '10px'}}/>
+            <Namefield variant="filled" id="mui-theme-provider-filled-input" label="Name"/>
             <Emailfield variant="filled" id="mui-theme-provider-filled-input" label="Email"/>
             <TextField
               variant="filled"
@@ -225,20 +242,20 @@ export const Contact = () => {
               rows={numRows}
               style={{width: '90%', backgroundColor: 'gainsboro', opacity: '0.8',}}
             />
-            <Button
+            <ContactButton
               onClick={sendEmail}
-              style={{
-                width: '90%',
-                color: 'gainsboro',
-                fontWeight: 'bold',
-                fontSize: '1.25rem',
-                backgroundColor: 'grey',
-                border: '2px solid',
-                backgroundImage: 'linear-gradient(to right, rgb(37, 83, 185), rgb(52, 124, 245))'
-              }}
+              // style={{
+              //   width: '90%',
+              //   color: 'gainsboro',
+              //   fontWeight: 'bold',
+              //   fontSize: '1.25rem',
+              //   backgroundColor: 'grey',
+              //   border: '2px solid',
+              //   backgroundImage: 'linear-gradient(to right, rgb(37, 83, 185), rgb(52, 124, 245))'
+              // }}
               >
                 Send <SendIcon style={{marginLeft: 5, fontSize: 20}}/>
-              </Button>
+              </ContactButton>
           </ThemeProvider>
         </ContactRoot>
         {/*  */}
