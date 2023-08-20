@@ -52,7 +52,6 @@ const EmailSignupContainer = styled('div')({
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
-  // border: '2px solid red',
   width: 'clamp(200px, 100%, 700px)',
   paddingBottom: '4em',
 })
@@ -123,6 +122,7 @@ export const Emailsignup = () => {
   };
 
   const handleEmailSignUp = async (e) => {
+    const emailListURL = process.env.NEXT_PUBLIC_USER_LIST_URL
     e.preventDefault();
     if (isFormValid) {
       if (firstname === "") {
@@ -139,7 +139,7 @@ export const Emailsignup = () => {
       };
       //logic for endpoint
       try {
-        const response = await fetch('https://ec2-3-17-167-220.us-east-2.compute.amazonaws.com/users', {
+        const response = await fetch(emailListURL, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -151,7 +151,7 @@ export const Emailsignup = () => {
         
         if (data.success) {
           toast.success('You have successfully signed up for email alerts!');
-          console.log(newUser);
+          // console.log(newUser);
           //ADD LOGIC TO SEND EMAIL TO NEWLY CREATED USER
 
 
@@ -159,15 +159,11 @@ export const Emailsignup = () => {
           toast.error('Failed to sign up for email alerts.');
         }
       } catch (error) {
-        console.error('Error:', error);
+        // console.error('Error:', error);
         toast.error('An error occurred while signing up.');
       }
-
-
-
-
       toast.success('You have successfully signed up for email alerts!');
-      console.log(newUser);
+      // console.log(newUser);
     } else {
       toast.error('Please enter a valid email address.');
     }

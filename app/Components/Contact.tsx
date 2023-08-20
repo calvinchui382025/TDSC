@@ -1,7 +1,6 @@
 "use client"
 
-import React, { useRef } from "react";
-import { useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { Button, 
   // FormControl, 
@@ -64,7 +63,7 @@ const ContactRoot = styled('div')({
   alignItems: 'center',
   padding: 30,
   backgroundColor: 'transparent',
-  width: 'clamp(30%, 70%, 900px)',
+  width: 'clamp(200px, 100%, 700px)',
   borderRadius: '10px',
   gap: '5px',
 })
@@ -81,54 +80,37 @@ const Emailfield = styled(TextField)({
   opacity: '0.8',
 })
 
-const ContactButton = styled(Button)({
+const Contactbutton = styled(Button)({
   width: '90%',
   height: '3.5em',
   borderBottom: '2px solid rgba(51, 51, 51, 0.85)',
   borderRadius: 0,
-  filter: 'opacity(85%)',
+  filter: 'opacity(75%)',
   backgroundColor: 'gainsboro',
   color: 'rgba(51, 51, 51, 0.85)',
   '&:hover': {
     borderBottom: '2px solid #B2BAC2',
+    filter: 'opacity(65%)',
     backgroundColor: 'gainsboro',
-    filter: 'opacity(70%)',
   },
   '&:active': {
     borderBottom: '2px solid rgba(51, 51, 51, 0.85)',
   }
 })
-// const Contactbutton = styled('button')({
-//   width: '90%',
-//   height: '3rem',
-//   opacity: '0.8',
-//   borderBottomLeftRadius: '10px',
-//   borderBottomRightRadius: '10px',
-//   border: '1px solid darkgrey',
-//   boxShadow: 'none',
-//   backgroundColor: 'gainsboro',
-//   textTransform: 'uppercase',
-//   fontWeight: 'bold',
-//   fontColor: 'rgb(117,117,117)',
-//   fontFamily: 'sans-serif',
-//   ':hover': {
-//     border: '1px solid black',
-//     backgroundColor: 'rgba(51, 51, 51, 0.85)',
-//     color: 'rgb(140,152,163)',
-//   },
-//   ':active': {
-//     backgroundColor: 'rgba(51, 51, 51, 0.85)',
-//     color: 'rgb(140,152,163)',
-//   },
-// })
 
 export const Contact = () => {
-  const service = process.env.REACT_APP_SERVICE_ID;
-  const template = process.env.REACT_APP_TEMPLATE_ID;
-  const user = process.env.REACT_APP_USER_ID;
+  const outerTheme = useTheme();
+  // const service = process.env.REACT_APP_SERVICE_ID;
+  const service = 'service_5mukv29'
+  // const template = process.env.REACT_APP_TEMPLATE_ID;
+  const template = 'template_mw4n6lp'
+  // const user = process.env.REACT_APP_USER_ID;
+  const user = '9MiD9Ax_KWYMrjDtH'
   const form = useRef();
   let lastExecutionTime = 0;
-  const outerTheme = useTheme();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
   const [numRows, setNumRows] = React.useState(7); // Initial number of rows
 
   useEffect(() => {
@@ -146,6 +128,20 @@ export const Contact = () => {
     };
   }, []);
 
+  const isFormValid = name && email && message;
+
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handleMessageChange = (e) => {
+    setMessage(e.target.value);
+  };
+
   const sendEmail = (e) => {
     e.preventDefault();
     const currentTime = Date.now();
@@ -160,12 +156,10 @@ export const Contact = () => {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "dark",
+        theme: "light",
       });
       return;
     }
-
-    console.log({ service, template, user });
 
     if (form.current) {
       emailjs
@@ -182,7 +176,7 @@ export const Contact = () => {
               pauseOnHover: true,
               draggable: true,
               progress: undefined,
-              theme: "dark",
+              theme: "light",
             });
           },
           (error) => {
@@ -195,7 +189,7 @@ export const Contact = () => {
               pauseOnHover: true,
               draggable: true,
               progress: undefined,
-              theme: "dark",
+              theme: "light",
             });
           }
         );
@@ -213,7 +207,7 @@ export const Contact = () => {
           theme: "dark",
         });
       }
-  };
+    };
 
   return (
     <CustomParallax
@@ -232,30 +226,36 @@ export const Contact = () => {
         {/*  */}
         <ContactRoot ref={form}>
           <ThemeProvider theme={customTheme(outerTheme)}>
-            <Namefield variant="filled" id="mui-theme-provider-filled-input" label="Name"/>
-            <Emailfield variant="filled" id="mui-theme-provider-filled-input" label="Email"/>
+            <Namefield
+              variant="filled"
+              id="mui-theme-provider-filled-input"
+              label="Name"
+              value={name}
+              onChange={handleNameChange}
+            />
+            <Emailfield
+              variant="filled"
+              id="mui-theme-provider-filled-input"
+              label="Email"
+              value={email}
+              onChange={handleEmailChange}
+            />
             <TextField
               variant="filled"
               id="filled-multiline-static"
               label="Message"
               multiline
               rows={numRows}
+              value={message}
+              onChange={handleMessageChange}
               style={{width: '90%', backgroundColor: 'gainsboro', opacity: '0.8',}}
             />
-            <ContactButton
-              onClick={sendEmail}
-              // style={{
-              //   width: '90%',
-              //   color: 'gainsboro',
-              //   fontWeight: 'bold',
-              //   fontSize: '1.25rem',
-              //   backgroundColor: 'grey',
-              //   border: '2px solid',
-              //   backgroundImage: 'linear-gradient(to right, rgb(37, 83, 185), rgb(52, 124, 245))'
-              // }}
-              >
-                Send <SendIcon style={{marginLeft: 5, fontSize: 20}}/>
-              </ContactButton>
+            <Contactbutton
+            onClick={sendEmail}
+            disabled={!isFormValid}
+            >
+              Send <SendIcon style={{marginLeft: 5, fontSize: 20}}/>
+            </Contactbutton>
           </ThemeProvider>
         </ContactRoot>
         {/*  */}

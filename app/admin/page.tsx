@@ -77,7 +77,7 @@ export default function AdminPage() {
   const [isUserListOpen, setIsUserListOpen] = useState(false);
   const handleCloseUserList = () => setIsUserListOpen(false);
   const handleOpenUserList = () => {
-    const url = 'https://ec2-3-17-167-220.us-east-2.compute.amazonaws.com/users';
+  const url = process.env.NEXT_PUBLIC_USER_LIST_URL;
 
   // Using the fetch API for making an HTTP GET request
   fetch(url)
@@ -157,6 +157,7 @@ export default function AdminPage() {
           <CustomTextField
             margin="dense"
             label='Password'
+            type='password'
             variant='filled'
             value={adminPassword}
             onChange={(e) => setAdminPassword(e.target.value)}
