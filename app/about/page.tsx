@@ -156,24 +156,26 @@ const TempContentTwo = styled('div')({
 });
 
 const TempH1 = styled('h1')({
-  fontSize: 'xx-large',
+  // fontSize: 'xx-large',
+  fontSize: 'clamp(2rem, 2.5vw, 5rem)',
   marginBottom: 10,
   fontFamily: 'sans-serif',
   fontStyle: 'italic',
   textTransform: 'uppercase',
   borderRadius: '12px',
   padding: '10px',
-  backdropFilter: 'blur(10px) saturate(150%)',
+  backdropFilter: 'blur(6px) saturate(150%)',
 })
 
 const TempP = styled('p')({
-  fontSize: 'large',
+  // fontSize: 'large',
+  fontSize: 'clamp(1.5rem, 1.5vw, 3.5rem)',
   fontFamily: 'sans-serif',
   width: '60%',
   textAlign: 'center',
   borderRadius: '12px',
   padding: '10px',
-  backdropFilter: 'blur(10px) saturate(150%)',
+  backdropFilter: 'blur(6px) saturate(150%)',
 })
 
 
@@ -195,7 +197,7 @@ export default function AboutPage() {
     <AboutRoot>
       <TempContainer>
         <TempContent>
-            <TempH1>Who we are</TempH1>
+          <TempH1>Who we are</TempH1>
           <TempP>
             We are Texas Defensive Shooting Club (TDSC)- Our mission is to lead shooters to become well
             acquainted with their weapon systems, advance speed and accuracy proficiency and promote

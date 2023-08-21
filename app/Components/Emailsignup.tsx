@@ -151,7 +151,6 @@ export const Emailsignup = () => {
         
         if (data.success) {
           toast.success('You have successfully signed up for email alerts!');
-          // console.log(newUser);
           //ADD LOGIC TO SEND EMAIL TO NEWLY CREATED USER
 
 
@@ -159,15 +158,11 @@ export const Emailsignup = () => {
           toast.error('Failed to sign up for email alerts.');
         }
       } catch (error) {
-        // console.error('Error:', error);
         toast.error('An error occurred while signing up.');
       }
-      toast.success('You have successfully signed up for email alerts!');
-      // console.log(newUser);
     } else {
       toast.error('Please enter a valid email address.');
     }
-    console.log('email sign up');
   };
   
 

@@ -73,35 +73,28 @@ export default function AdminPage() {
   const handleOpenEmail = () => setIsEmailOpen(true);
 
   const [userData, setUserData] = useState([]);
-
   const [isUserListOpen, setIsUserListOpen] = useState(false);
+
   const handleCloseUserList = () => setIsUserListOpen(false);
+
   const handleOpenUserList = () => {
-  const url = process.env.NEXT_PUBLIC_USER_LIST_URL;
-
-  // Using the fetch API for making an HTTP GET request
-  fetch(url)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then((data) => {
-      console.log(data); // Logging the data to the console
-
-      // Assuming the response has a property named 'data' containing the array of users
-      const usersData = data.data;
-
-      // Save the data to the state
-      setUserData(usersData);
-
-      // Open the modal
-      setIsUserListOpen(true);
-    })
-    .catch((error) => {
-      console.error('Error fetching data:', error);
-    });
+    const url = process.env.NEXT_PUBLIC_USER_LIST_URL;
+    fetch(url)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        const usersData = data.data;
+        setUserData(usersData);
+        setIsUserListOpen(true);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
   };
 
   const handleAdminLogin = () => {
