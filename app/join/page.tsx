@@ -1,7 +1,7 @@
 "use client"
 
 import Separator from "app/Components/Separator";
-import { JoinHeader, JoinHeaderContent, JoinPrimaryTypography, JoinRoot, JoinSecondaryTypography, JoinStyledButton, Learnmorecontainer, RangeCard, RangeCardSubText, RangeCardTextContainer } from "./JoinStyles";
+import { JoinHeader, JoinHeaderContent, JoinPrimaryTypography, JoinRoot, JoinSecondaryTypography, JoinStyledButton, Learnmorecontainer, RangeCard, RangeCardSubText, RangeCardTextContainer, RangeContainer } from "./JoinStyles";
 import { randomIntGenerator } from "app/utils";
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { Reveal } from "app/Components/Reveal";
@@ -62,53 +62,55 @@ export default function JoinPage() {
           }
           const { lat, lng } = range;
           return (
-            <div
+            <RangeContainer
             style={{
-              width: '100%',
-              height: '40vh',
               backgroundImage: `url(${range.image2})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
             }}
             >
-              test
-            </div>
-              // <RangeCard
-              //   key={randomIntGenerator()}
-              // >
-              //   <RangeCardTextContainer>
-              //     <h1>{range.title}</h1>
-              //     <div style={{display: 'flex', flexDirection: 'row'}}>
-              //       <RangeCardSubText style={{color: 'rgb(52,124,245)'}}>{range.price}</RangeCardSubText>
-              //       <RangeCardSubText>{range.pricedescription}</RangeCardSubText>
-              //     </div>
-              //     <div style={{display: 'flex', flexDirection: 'row'}}>
-              //       <RangeCardSubText style={{color: 'rgb(52,124,245)'}}>{range.secondaryPrice}</RangeCardSubText>
-              //       <RangeCardSubText>{range.secondaryDescription}</RangeCardSubText>
-              //     </div>
-              //   </RangeCardTextContainer>
-              //   <CardMapContainer>
-              //     <GoogleMapReact
-              //       bootstrapURLKeys={{ 
-              //         key: String(apiKey) 
-              //       }}
-              //       defaultCenter={{lat, lng}}
-              //       defaultZoom={15}
-              //       options={{
-              //         disableDefaultUI: true,
-              //         keyboardShortcuts: false,
-              //         styles: mapStyles,
-              //       }}
-              //       onClick={() => handleMarkerClick(location)}
-              //     >
-              //       <MyMarker
-              //         lat={lat}
-              //         lng={lng}
-              //         text={range}
-              //       />
-              //     </GoogleMapReact>
-              //   </CardMapContainer>
-              // </RangeCard>
+              <RangeCard
+                key={randomIntGenerator()}
+              >
+                <RangeCardTextContainer>
+                  <h1>{range.title}</h1>
+                  <div style={{display: 'flex', flexDirection: 'row'}}>
+                    <RangeCardSubText style={{color: 'rgb(52,124,245)'}}>{range.price}</RangeCardSubText>
+                    <RangeCardSubText>{range.pricedescription}</RangeCardSubText>
+                  </div>
+                  <div style={{display: 'flex', flexDirection: 'row'}}>
+                    <RangeCardSubText style={{color: 'rgb(52,124,245)'}}>{range.secondaryPrice}</RangeCardSubText>
+                    <RangeCardSubText>{range.secondaryDescription}</RangeCardSubText>
+                  </div>
+                </RangeCardTextContainer>
+                <CardMapContainer
+                // style={{
+                //   // opacity: '1',
+                //   backgroundColor: 'white',
+                // }}
+                >
+                  <GoogleMapReact
+                    bootstrapURLKeys={{ 
+                      key: String(apiKey) 
+                    }}
+                    defaultCenter={{lat, lng}}
+                    defaultZoom={15}
+                    options={{
+                      disableDefaultUI: true,
+                      keyboardShortcuts: false,
+                      styles: mapStyles,
+                    }}
+                    onClick={() => handleMarkerClick(location)}
+                  >
+                    <MyMarker
+                      lat={lat}
+                      lng={lng}
+                      text={range}
+                    />
+                  </GoogleMapReact>
+                </CardMapContainer>
+              </RangeCard>
+            </RangeContainer>
           )
         })}
       </Learnmorecontainer>
