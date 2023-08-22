@@ -122,6 +122,9 @@ export const Emailsignup = () => {
   };
 
   const handleEmailSignUp = async (e) => {
+    const emailBody = "Thank you for signing up for email alerts! We will send you an email when we have a new shoot scheduled. Please consider joining the club to help support our efforts!"
+    const emailSubject = "Texas Defensive Shooting Club. Thank you for signing up for email alerts!"
+
     const emailListURL = process.env.NEXT_PUBLIC_USER_LIST_URL
     e.preventDefault();
     if (isFormValid) {
@@ -151,18 +154,18 @@ export const Emailsignup = () => {
         
         if (data.success) {
           toast.success('You have successfully signed up for email alerts!');
-          //ADD LOGIC TO SEND EMAIL TO NEWLY CREATED USER
-
-
         } else {
-          toast.error('Failed to sign up for email alerts.');
+          if (data.error && data.error === 'Email already exists in the database') {
+            toast.error('That emailed is already signed up for alerts!');
+            console.log(data.error)
+          } else {
+            toast.error('Failed to sign up for email alerts.');
+          }
         }
       } catch (error) {
         toast.error('An error occurred while signing up.');
       }
-    } else {
-      toast.error('Please enter a valid email address.');
-    }
+    };
   };
   
 
