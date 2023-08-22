@@ -1,7 +1,7 @@
 "use client"
 
 import Separator from "app/Components/Separator";
-import { JoinHeader, JoinHeaderContent, JoinPrimaryTypography, JoinRoot, JoinSecondaryTypography, JoinStyledButton, Learnmorecontainer, RangeCard, RangeCardSubText, RangeCardTextContainer } from "./JoinStyles";
+import { JoinHeader, JoinHeaderContent, JoinPrimaryTypography, JoinRoot, JoinSecondaryTypography, JoinStyledButton, Learnmorecontainer, RangeCard, RangeCardSubText, RangeCardTextContainer, RangeContainer } from "./JoinStyles";
 import { randomIntGenerator } from "app/utils";
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { Reveal } from "app/Components/Reveal";
@@ -62,6 +62,13 @@ export default function JoinPage() {
           }
           const { lat, lng } = range;
           return (
+            <RangeContainer
+            style={{
+              backgroundImage: `url(${range.image2})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
+            >
               <RangeCard
                 key={randomIntGenerator()}
               >
@@ -76,7 +83,12 @@ export default function JoinPage() {
                     <RangeCardSubText>{range.secondaryDescription}</RangeCardSubText>
                   </div>
                 </RangeCardTextContainer>
-                <CardMapContainer>
+                <CardMapContainer
+                // style={{
+                //   // opacity: '1',
+                //   backgroundColor: 'white',
+                // }}
+                >
                   <GoogleMapReact
                     bootstrapURLKeys={{ 
                       key: String(apiKey) 
@@ -98,6 +110,7 @@ export default function JoinPage() {
                   </GoogleMapReact>
                 </CardMapContainer>
               </RangeCard>
+            </RangeContainer>
           )
         })}
       </Learnmorecontainer>
@@ -114,3 +127,12 @@ export default function JoinPage() {
     </JoinRoot>
   )
 }
+{/* <div
+style={{
+  width: '100%',
+  height: '40vh',
+  backgroundImage: `url(${range.image2})`,
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+}}
+> */}
