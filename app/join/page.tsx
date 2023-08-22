@@ -63,6 +63,7 @@ export default function JoinPage() {
           const { lat, lng } = range;
           return (
             <RangeContainer
+            key={randomIntGenerator()}
             style={{
               backgroundImage: `url(${range.image2})`,
               backgroundSize: 'cover',
@@ -70,7 +71,7 @@ export default function JoinPage() {
             }}
             >
               <RangeCard
-                key={randomIntGenerator()}
+                // key={randomIntGenerator()}
               >
                 <RangeCardTextContainer>
                   <h1>{range.title}</h1>
