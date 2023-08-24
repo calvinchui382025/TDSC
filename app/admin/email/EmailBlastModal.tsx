@@ -10,9 +10,11 @@ import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
 import styled from '@emotion/styled';
 import { FormControl, InputLabel, Select, MenuItem, TextField } from '@mui/material';
+import { EmailTemplate } from 'app/admin/email/EmailTemplate';
 import { randomIntGenerator } from 'app/utils';
 import "setimmediate"
 import axios from 'axios';
+import { render } from '@react-email/render';
 //======================================================
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -47,24 +49,26 @@ export default function FullScreenDialog( props: any ) {
   const [ subjectLine, setSubjectLine ] = React.useState('');
   const [ emailBody, setEmailBody ] = React.useState('');
   const [ emailSignOff, setEmailSignOff ] = React.useState('');
-  const [ emailList, setEmailList] = React.useState([]);
+  // const [ emailList, setEmailList] = React.useState([]);
 
-  const userListURL = String(process?.env?.NEXT_PUBLIC_USER_LIST_URL) || '';
+  // const sendEmailURL = String(process?.env?.NEXT_PUBLIC_SENDEMAIL_URL) || '';
+  const sendEmailURL = 'https://ec2-3-17-167-220.us-east-2.compute.amazonaws.com/sendemails'
+  // const userListURL = String(process?.env?.NEXT_PUBLIC_USER_LIST_URL) || '';
 
-  React.useEffect(() => {
-    axios.get(userListURL)
-    .then((res) => {
+  // React.useEffect(() => {
+  //   axios.get(userListURL)
+  //   .then((res) => {
 
-      const newEmailList = res?.data?.data?.map((user: any) => {
-        return user.email;
-      });
+  //     const newEmailList = res?.data?.data?.map((user: any) => {
+  //       return user.email;
+  //     });
 
-      console.log('newEmailList', newEmailList)
-      setEmailList(newEmailList);
-    }).catch((err) => {
-      console.log(err);
-    });
-  }, [userListURL])
+  //     console.log('newEmailList', newEmailList)
+  //     setEmailList(newEmailList);
+  //   }).catch((err) => {
+  //     console.log(err);
+  //   });
+  // }, [userListURL])
 
   const handleRangeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedRange(event.target.value);
@@ -87,12 +91,11 @@ export default function FullScreenDialog( props: any ) {
   };
 
   function handleSend() {
-    axios.post('/api/sendEmail', {
-        selectedRange,
-        subjectLine,
-        emailBody,
-        emailSignOff,
-        emailList,
+    const newEmail = render(EmailTemplate(selectedRange, emailBody, emailSignOff))
+    // axios.post('/api/sendEmail', {
+    axios.post(sendEmailURL, {
+        newEmail,
+        subjectLine
       },
       {
         headers: {
@@ -101,6 +104,10 @@ export default function FullScreenDialog( props: any ) {
       }
       ).then((res) => {
         console.log(res);
+        console.log(selectedRange);
+        console.log(subjectLine);
+        console.log(emailBody);
+        console.log(emailSignOff);
       }).catch((err) => {
         console.log(err);
       });
@@ -108,35 +115,6 @@ export default function FullScreenDialog( props: any ) {
     // setEmailBody('');
     closeFunc(false);
   }
-
-  function handleTestSend() {
-    // const url = 'https://ec2-3-17-167-220.us-east-2.compute.amazonaws.com/sendemails';
-    const url = 'https://ec2-3-17-167-220.us-east-2.compute.amazonaws.com/users';
-  
-    // Using the fetch API for making an HTTP GET request
-    fetch(url)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data.data); // Logging the data to the console
-  
-        // Assuming the response has a property named 'data' containing the array of users
-        // const usersData = data.data;
-  
-        // Save the data to the state
-        // setEmailList(usersData);
-  
-        // Open the modal
-        // setIsUserListOpen(true);
-      })
-      .catch((error) => {
-        console.error('Error fetching data:', error);
-      });
-    };
 
   return (
     <Dialog
