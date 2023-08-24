@@ -28,7 +28,7 @@ export default function GearPage() {
       <ProficiencyTitle>
         <PlaceContainer
         style={{
-          backgroundImage: `url(https://github.com/snyperifle/TDSC/blob/luke/public/Images/wogrbg.jpg?raw=true)`,
+          backgroundImage: `url(https://github.com/snyperifle/TDSC/blob/luke/public/Images/wogrrequirements.jpg?raw=true)`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
@@ -39,7 +39,7 @@ export default function GearPage() {
         </PlaceContainer>
         <PlaceContainer
         style={{
-          backgroundImage: `url(https://github.com/snyperifle/TDSC/blob/luke/public/Images/g2gbg.jpg?raw=true)`,
+          backgroundImage: `url(https://github.com/snyperifle/TDSC/blob/luke/public/Images/g2grequirements.jpg?raw=true)`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
