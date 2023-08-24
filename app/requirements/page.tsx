@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { GearRequirementContainer, GearRequirementContent, NoteContainer, PlaceContainer, ProficiencyTitle, ReqContainer, RequirementH1, RequirementP } from "./requirementstyles";
 import styled from "@emotion/styled"
-import { mainColor } from "app/utils";
+import { mainColor, randomIntGenerator } from "app/utils";
 import { Contact } from "app/Components/Contact";
 import { Reveal } from "app/Components/Reveal";
 
@@ -57,7 +57,9 @@ export default function GearPage() {
           <RequirementH1>GEAR REQUIREMENTS</RequirementH1>
             {GearRequirements.map(item => {
               return (
-                <Reveal>
+                <Reveal
+                key={randomIntGenerator()}
+                >
                   <RequirementP>
                     {item}
                   </RequirementP>
