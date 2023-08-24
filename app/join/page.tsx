@@ -2,7 +2,7 @@
 
 import Separator from "app/Components/Separator";
 import { JoinHeader, JoinHeaderContent, JoinPrimaryTypography, JoinRoot, JoinSecondaryTypography, JoinStyledButton, Learnmorecontainer, RangeCard, RangeCardSubText, RangeCardTextContainer, RangeContainer } from "./JoinStyles";
-import { randomIntGenerator } from "app/utils";
+import { mainColor, randomIntGenerator } from "app/utils";
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { Reveal } from "app/Components/Reveal";
 import JoinPaypalSep from "app/Components/JoinPaypalSep";
@@ -25,19 +25,6 @@ const MyMarker = ({ text }: any) => (
 )
 
 export default function JoinPage() {
-  let mouseX = useMotionValue(0);
-  let mouseY = useMotionValue(0);
-
-  function handleMouseMove({
-    currentTarget,
-    clientX,
-    clientY,
-  }: MouseEvent) {
-    let { left, top } = currentTarget.getBoundingClientRect();
-
-    mouseX.set(clientX - left);
-    mouseY.set(clientY - top);
-  }
 
   return (
     <JoinRoot>
@@ -70,9 +57,7 @@ export default function JoinPage() {
               backgroundPosition: 'center',
             }}
             >
-              <RangeCard
-                // key={randomIntGenerator()}
-              >
+              <RangeCard>
                 <RangeCardTextContainer>
                   <h1>{range.title}</h1>
                   <div style={{display: 'flex', flexDirection: 'row'}}>
@@ -84,12 +69,7 @@ export default function JoinPage() {
                     <RangeCardSubText>{range.secondaryDescription}</RangeCardSubText>
                   </div>
                 </RangeCardTextContainer>
-                <CardMapContainer
-                // style={{
-                //   // opacity: '1',
-                //   backgroundColor: 'white',
-                // }}
-                >
+                <CardMapContainer>
                   <GoogleMapReact
                     bootstrapURLKeys={{ 
                       key: String(apiKey) 
@@ -115,25 +95,17 @@ export default function JoinPage() {
           )
         })}
       </Learnmorecontainer>
-      <JoinHeader>
+      <div style={{width: '100%', height: '10vh', backgroundColor: mainColor}} />
+      {/* <JoinHeader> */}
         {/* <Reveal> */}
-          <JoinHeaderContent>
+          {/* <JoinHeaderContent>
             <JoinPrimaryTypography>Help Our Cause</JoinPrimaryTypography>
             <JoinSecondaryTypography>Your support and contributions will enable us to meet our goals and improve conditions. Your generous donation will fund our mission.</JoinSecondaryTypography>
             <PaypalDonateComponent />
-          </JoinHeaderContent>
+          </JoinHeaderContent> */}
         {/* </Reveal> */}
-      </JoinHeader>
+      {/* </JoinHeader> */}
       <Contact />
     </JoinRoot>
   )
 }
-{/* <div
-style={{
-  width: '100%',
-  height: '40vh',
-  backgroundImage: `url(${range.image2})`,
-  backgroundSize: 'cover',
-  backgroundPosition: 'center',
-}}
-> */}
