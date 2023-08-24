@@ -158,14 +158,14 @@ export default function FullScreenDialog( props: any ) {
           <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
             Send Email Blast
           </Typography>
-          <Button 
+          {/* <Button 
             color="warning" 
             variant="contained"
             onClick={handleTestSend}
             // disabled={emailBody.length === 0 || subjectLine.length === 0}
           >
             TEST!
-          </Button>
+          </Button> */}
           <Button 
             color="warning" 
             variant="contained"

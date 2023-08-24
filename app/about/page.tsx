@@ -92,7 +92,7 @@ const peopleList = [
   },
 ]
 
-export const TempContainer = styled('div')({
+const TempContainer = styled('div')({
   position: 'relative',
   height: '100vh',
   backgroundImage: `url(${whoWeAreImage})`,
@@ -102,7 +102,7 @@ export const TempContainer = styled('div')({
   marginBottom: '10px',
 })
 
-export const TempContainerTwo = styled('div')({
+const TempContainerTwo = styled('div')({
   position: 'relative',
   height: '100vh',
   backgroundImage: `url(${whatWeDoImage})`,
@@ -112,7 +112,7 @@ export const TempContainerTwo = styled('div')({
   marginBottom: '10px',
 });
 
-export const TempContent = styled('div')({
+const TempContent = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
@@ -125,7 +125,7 @@ export const TempContent = styled('div')({
   color: 'white',
 })
 
-export const TempContentTwo = styled('div')({
+const TempContentTwo = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
@@ -138,7 +138,7 @@ export const TempContentTwo = styled('div')({
   color: 'white',
 });
 
-export const TempH1 = styled('h1')({
+const TempH1 = styled('h1')({
   fontSize: 'clamp(2rem, 2.5vw, 5rem)',
   marginBottom: 10,
   fontFamily: 'sans-serif',
@@ -149,7 +149,7 @@ export const TempH1 = styled('h1')({
   backdropFilter: 'blur(6px) saturate(150%)',
 })
 
-export const TempP = styled('p')({
+const TempP = styled('p')({
   fontSize: 'clamp(1.5rem, 1.5vw, 3.5rem)',
   fontFamily: 'sans-serif',
   width: '60%',
