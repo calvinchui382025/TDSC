@@ -11,6 +11,7 @@ import { useRouter } from 'next/navigation';
 const navItems = [
   'home', //short bit of all pages
   'about', // who what and bios
+  'requirements',
   'locations', //chapters gear and proficiency requirements + calibers
   'contact',
   'join', //join now and sign up

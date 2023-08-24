@@ -6,7 +6,6 @@ import Separator, { CustomParallax, ParallaxContainer, ParallaxContent, Parallax
 import { AboutButton, AboutImage, AboutRoot, BiosCard, BiosGrid, StyledDescription, StyledName, StyledTitle, WhatWeDoTextContainer, WhoWeAreContainer, WhoWeAreTextContainer } from "./AboutStyles";
 import { Button } from "@mui/material";
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-// import { Footer } from "app/Components/footer/footer";
 import { greyColorCustomLight, mainColor, mainGradient } from "app/utils";
 import { Reveal } from "app/Components/Reveal";
 import { Contact } from "app/Components/Contact";
@@ -47,14 +46,6 @@ const LeaderBiosComponent = () => {
               <StyledDescription>{person.descriptiontwo}</StyledDescription>
               <StyledDescription>{person.descriptionthree}</StyledDescription>
               <StyledDescription>{person.descriptionfour}</StyledDescription>
-              {/* <Button
-                style={{
-                  color: 'rgb(102, 164, 255)',
-                  fontWeight: 'bold',
-                }}
-              >
-                Contact <KeyboardArrowRightIcon style={{backgroundImage: 'linear-gradient(to right, rgb(37, 83, 185), rgb(102, 164, 255)', borderRadius: '50%', color: greyColorCustomLight, marginLeft: 7}}/>
-              </Button> */}
             </BiosCard>
           ))}
         </BiosGrid>
@@ -101,15 +92,7 @@ const peopleList = [
   },
 ]
 
-// const pageSeparatorData = {
-//   title: 'Club leader bios',
-//   // content: 'Meet our ',
-//   image: separateBanner,
-//   separatorheight: '85vh',
-//   dom: <LeaderBiosComponent />,
-// }
-
-const TempContainer = styled('div')({
+export const TempContainer = styled('div')({
   position: 'relative',
   height: '100vh',
   backgroundImage: `url(${whoWeAreImage})`,
@@ -119,7 +102,7 @@ const TempContainer = styled('div')({
   marginBottom: '10px',
 })
 
-const TempContainerTwo = styled('div')({
+export const TempContainerTwo = styled('div')({
   position: 'relative',
   height: '100vh',
   backgroundImage: `url(${whatWeDoImage})`,
@@ -129,7 +112,7 @@ const TempContainerTwo = styled('div')({
   marginBottom: '10px',
 });
 
-const TempContent = styled('div')({
+export const TempContent = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
@@ -142,7 +125,7 @@ const TempContent = styled('div')({
   color: 'white',
 })
 
-const TempContentTwo = styled('div')({
+export const TempContentTwo = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
@@ -155,8 +138,7 @@ const TempContentTwo = styled('div')({
   color: 'white',
 });
 
-const TempH1 = styled('h1')({
-  // fontSize: 'xx-large',
+export const TempH1 = styled('h1')({
   fontSize: 'clamp(2rem, 2.5vw, 5rem)',
   marginBottom: 10,
   fontFamily: 'sans-serif',
@@ -167,8 +149,7 @@ const TempH1 = styled('h1')({
   backdropFilter: 'blur(6px) saturate(150%)',
 })
 
-const TempP = styled('p')({
-  // fontSize: 'large',
+export const TempP = styled('p')({
   fontSize: 'clamp(1.5rem, 1.5vw, 3.5rem)',
   fontFamily: 'sans-serif',
   width: '60%',
