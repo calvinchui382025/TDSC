@@ -56,7 +56,7 @@ export const PlaceContainer = styled('div')({
     fontFamily: 'sans-serif',
     backdropFilter: 'blur(6px) saturate(150%)',
     color: 'white',
-    fontSize: '3rem',
+    fontSize: '4rem',
     fontStyle: 'italic',
     margin: 10,
     '@media (max-width: 1100px)': {
