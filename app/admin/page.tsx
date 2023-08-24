@@ -118,7 +118,6 @@ export default function AdminPage() {
     }
   }
   
-
   return (
     <AdminRoot>
       <ToastContainer />
