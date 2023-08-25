@@ -1,6 +1,7 @@
 "use client"
 
 import styled from "@emotion/styled"
+import { mainColor } from "app/utils"
 
 export const ContactRoot = styled('div')({
   display: 'flex',
@@ -9,7 +10,7 @@ export const ContactRoot = styled('div')({
   alignItems: 'center',
   width: '100%',
   color: 'white',
-  backgroundColor: 'black',
+  backgroundColor: mainColor,
   marginTop: '7vh',
   '@media (max-width: 3000px)': {
     marginTop: '7vh',
@@ -22,7 +23,7 @@ export const ContactHeader = styled('div')({
   justifyContent: 'center',
   alignItems: 'center',
   textAlign: 'center',
-  backgroundColor: 'black',
+  backgroundColor: mainColor,
   width: '70%',
   height: '25vh',
 })

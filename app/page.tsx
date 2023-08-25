@@ -33,8 +33,9 @@ const HeroVideoContainer = styled('div')({
   },
 })
 const HeroVideo = styled('video')({
-  transform: 'scale(2)',
+  // transform: 'scale(2)',
   objectFit: 'cover',
+  height: '120%',
 })
 const HomeText = styled(Typography)({
   color: '#e7e7e7',
@@ -116,9 +117,11 @@ const PrepareVideoContainer = styled('div')({
   width: '100%',
   maxWidth: '50vw',
   height: '50vh',
-  margin: '24px 0px',
+  margin: '14px 0px',
   '@media (max-width: 600px)': {
-    width: 'auto',
+    width: '90vw',
+    maxWidth: '90vw',
+    height: '60%',
   },
 })
 const PrepareVideo = styled('video')({
@@ -126,6 +129,11 @@ const PrepareVideo = styled('video')({
   padding: '1px',
   background: 'linear-gradient(to right, rgb(37, 83, 185), rgb(102, 164, 255))',
   borderRadius: '12px',
+  width: '80%',
+  '@media (max-width: 600px)': {
+    width: '100%',
+    height: '100%',
+  }
 })
 const PrepareSubTextContainer = styled('div')({
   display: 'flex',
@@ -137,6 +145,8 @@ const PrepareSubTextContainer = styled('div')({
   maxWidth: '50vw',
   '@media (max-width: 600px)': {
     width: 'auto',
+    maxWidth: '90vw',
+    height: '30vh',
   },
 })
 const PrepareSubTextTitle = styled(HomeText)({
@@ -168,7 +178,7 @@ export default function HomePage() {
           playsInline
         >
           <source 
-            src='/Videos/pexels-range.mp4' 
+            src='/Videos/finalhome.mp4' 
             type='video/mp4'
           />
         </HeroVideo>
@@ -212,7 +222,7 @@ export default function HomePage() {
             playsInline
           >
             <source
-              src='/Videos/pexels-walking-in-woods.mp4'
+              src='/Videos/croppedcalvin.mp4'
               type='video/mp4'
             />
           </PrepareVideo>
@@ -238,7 +248,7 @@ export default function HomePage() {
             playsInline
           >
             <source
-              src='/Videos/pexels-man-holding-gun.mp4'
+              src='/Videos/croppedslowmo.mp4'
               type='video/mp4'
             />
           </PrepareVideo>

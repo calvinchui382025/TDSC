@@ -35,3 +35,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+TODO.txt
+yarn.lock
+package-lock.json
+app/api/certificate.crt

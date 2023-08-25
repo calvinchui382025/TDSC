@@ -27,18 +27,25 @@ export const BiosGrid = styled('div')({
   '@media (max-width: 1268px)': {
     top: 0,
   },
-  '@media (max-width: 768px)': {
+  '@media (max-width: 1068px)': {
+    width: '90%',
+  },
+  '@media (max-width: 968px)': {
     gridTemplateColumns: 'repeat(2, 1fr)',
   },
-  '@media (max-width: 368px)': {
+  '@media (max-width: 668px)': {
     gridTemplateColumns: 'repeat(1, 1fr)',
+  },
+  '@media (max-width: 400px)': {
+    width: '95%',
   },
 })
 
 export const BiosCard = styled('div')({
   backgroundColor: greyColorCustomLight,
-  padding: '52px',
-  width: '60%',
+  padding: '32px',
+  // width: '60%',
+  margin: '10px',
   justifyContent: 'center',
   alignItems: 'center',
   textAlign: 'center',
@@ -46,6 +53,16 @@ export const BiosCard = styled('div')({
   '&:hover': {
     border: '1px solid rgb(37, 83, 185)',
     transition: 'all 0.2s ease-in-out',
+  },
+  '@media (max-width: 1268px)': {
+    padding: '32px',
+  },
+  '@media (max-width: 768px)': {
+    padding: '12px',
+  },
+  '@media (max-width: 968px)': {
+    width: '95%',
+    margin: 5,
   },
 })
 
@@ -101,18 +118,27 @@ export const StyledDescription = styled('p')({
   fontFamily: 'sans-serif',
   margin: 5,
   color: 'gainsboro',
+  '@media (max-width: 1268px)': {
+    fontSize: '15px',
+  },
 })
 
 export const StyledTitle = styled('h3')({
   fontFamily: 'sans-serif',
   margin: 5,
   color: 'gainsboro',
+  '@media (max-width: 1268px)': {
+    fontSize: '12px',
+  },
 })
 
 export const StyledName = styled('h2')({
   fontFamily: 'sans-serif',
   margin: 5,
   color: 'gainsboro',
+  '@media (max-width: 1268px)': {
+    fontSize: '22px',
+  },
 })
 
 export const AboutButton = styled(Button)({

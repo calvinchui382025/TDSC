@@ -52,8 +52,7 @@ const EmailSignupContainer = styled('div')({
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
-  // border: '2px solid red',
-  width: 'clamp(200px, 80%, 900px)',
+  width: 'clamp(200px, 100%, 700px)',
   paddingBottom: '4em',
 })
 
@@ -67,12 +66,12 @@ const StyledFormControl = styled('form')({
 })
 
 const Customtextfield = styled(TextField)({
-  width: '70%',
+  width: '90%',
   backgroundColor: 'gainsboro',
 })
 
 const StyledButton = styled(Button)({
-  width: '70%',
+  width: '90%',
   height: '3.5em',
   borderBottom: '2px solid rgba(51, 51, 51, 0.85)',
   borderRadius: 0,
@@ -122,10 +121,53 @@ export const Emailsignup = () => {
     setEmail(e.target.value);
   };
 
-  const handleEmailSignUp = (e) => {
+  const handleEmailSignUp = async (e) => {
+    const emailBody = "Thank you for signing up for email alerts! We will send you an email when we have a new shoot scheduled. Please consider joining the club to help support our efforts!"
+    const emailSubject = "Texas Defensive Shooting Club. Thank you for signing up for email alerts!"
+
+    const emailListURL = process.env.NEXT_PUBLIC_USER_LIST_URL
     e.preventDefault();
-    console.log('email sign up')
-  }
+    if (isFormValid) {
+      if (firstname === "") {
+        setFirstname(null);
+      }
+      if (lastname === "") {
+        setLastname(null);
+      }
+      const newUser = {
+        email: email,
+        first_name: firstname,
+        last_name: lastname,
+        isEmailSubscribed: 1
+      };
+      //logic for endpoint
+      try {
+        const response = await fetch(emailListURL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(newUser),
+        });
+  
+        const data = await response.json();
+        
+        if (data.success) {
+          toast.success('You have successfully signed up for email alerts!');
+        } else {
+          if (data.error && data.error === 'Email already exists in the database') {
+            toast.error('That emailed is already signed up for alerts!');
+            console.log(data.error)
+          } else {
+            toast.error('Failed to sign up for email alerts.');
+          }
+        }
+      } catch (error) {
+        toast.error('An error occurred while signing up.');
+      }
+    };
+  };
+  
 
   return (
     <EmailSignupContainer>

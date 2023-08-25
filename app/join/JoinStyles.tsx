@@ -123,13 +123,28 @@ export const Learnmorecontainer = styled('div')({
   }
 })
 
+export const RangeContainer = styled('div')({
+  width: '100%',
+  height: '50vh',
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'center',
+  alignItems: 'center',
+  '@media (max-width: 600px)': {
+    height: '80vh',
+  },
+})
+
 export const RangeCard = styled('div')({
-  marginBottom: '20px',
+  // marginBottom: '20px',
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'space-around',
   alignItems: 'flex-start',
-  borderRadius: '12px',
+  // backdropFilter: 'blur(12px)',
+  borderRadius: '4px',
+  backgroundColor: 'rgba(45, 49, 52, 0.8)',
+  // opacity: '0.8',
   border: '1px solid gainsboro',
   '&:hover': {
     border: '1px solid rgb(52,124,245)',
@@ -148,8 +163,8 @@ export const RangeCard = styled('div')({
   '& > h1': {
     fontFamily: 'Arial Narrow, sans-serif',
     color: 'rgb(52,124,245)',
-    lineHeight: '1.5rem',
-    letterSpacing: '0px',
+    // lineHeight: '1.5rem',
+    // letterSpacing: '0px',
     fontSize: '2rem',
     margin: 10,
     '@media (max-width: 1100px)': {
@@ -225,7 +240,8 @@ export const RangeCardTextContainer = styled('div')({
 export const RangeCardSubText = styled('h1')({
   margin: 10,
   fontFamily: 'Arial Narrow, sans-serif',
-  color: 'rgb(118,119,111)',
+  // color: 'rgb(118,119,111)',
+  color: 'gainsboro',
   fontSize: '1.5rem',
   '@media (max-width: 1100px)': {
     fontSize: '1rem',
