@@ -198,7 +198,8 @@ export default function HomePage() {
       {/* <ActivitiesComponent /> */}
       {/* <BasicTimeline /> */}
       <JoinPaypalSep />
-      <Reveal>
+      <div style={{width: '100%', height: '10vh', backgroundColor: mainColor}} />
+      {/* <Reveal>
         <JoinHeader 
           style={{
             // width: '100vw', marginBottom: '2.5rem'
@@ -211,7 +212,7 @@ export default function HomePage() {
           <JoinSecondaryTypography>Your support and contributions will enable us to meet our goals and improve conditions. Your generous donation will fund our mission.</JoinSecondaryTypography>
           <PaypalDonateComponent />
         </JoinHeader>
-      </Reveal>
+      </Reveal> */}
       {/* <img src={TransparentImage} alt='test' height='600' width='600' /> */}
       <Row>
         <PrepareVideoContainer>
@@ -262,6 +263,7 @@ export default function HomePage() {
           </PrepareSubTextContainer>
         </Reveal>
       </FlippedRow>
+      <div style={{width: '100%', height: '10vh', backgroundColor: mainColor}} />
       <Contact />
     </HomeRoot>
   )

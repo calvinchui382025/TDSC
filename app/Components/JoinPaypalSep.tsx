@@ -9,16 +9,9 @@ import { toast } from 'react-toastify';
 import {
     PayPalScriptProvider,
     PayPalButtons,
-    usePayPalScriptReducer,
-    PayPalMarks,
 } from "@paypal/react-paypal-js";
 import { CustomParallax, ParallaxContainer, ParallaxContent, ParallaxTitle } from "./Separator";
-// import { Parallax } from 'react-parallax';
-// import main from './banner2.jpg';
-// import secondary from './banner3.jpg';
-// import { CustomParallax, ParallaxContainer, ParallaxContent, ParallaxTitle } from './SeparatorBar/SeparatorStyles';
-
-// const JoinBanner = 'https://preview.free3d.com/img/2019/07/2400324917364000180/l7bb2nw3.jpg'
+import axios from "axios";
 const JoinBanner = 'https://github.com/snyperifle/TDSC/blob/luke/public/Images/croppedjoin.jpg?raw=true'
 
 const PaypalContainer = styled('div')({
@@ -37,6 +30,8 @@ const JoinPaypalSep = () => {
   const [email, setEmail] = useState('');
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
+  const [userData, setUserData] = useState({});
+  const [bearToken, setBearToken] = useState('');
 
   const isFormValid = email;
   const paypalURL = process.env.NEXT_PUBLIC_PAYPAL_URL
@@ -83,37 +78,69 @@ const JoinPaypalSep = () => {
       }
     };
   };
-  
-  const SubscribeButtonWrapper = ({ type }) => {
-    const [{ options }, dispatch] = usePayPalScriptReducer();
-  
-    useEffect(() => {
-          dispatch({
-              type: "resetOptions",
-              value: {
-                  ...options,
-                  intent: "subscription",
-              },
-          });
-      }, [type]);
-  
-    return (<PayPalButtons
-      createSubscription={(data, actions) => {
-        return actions.subscription
-          .create({
-            plan_id: "P-3RX065706M3469222L5IFM4I",
-          })
-          .then((orderId) => {
-            // Your code here after create the order
-            return orderId;
-          });
-      }}
-      style={{
-        label: "subscribe",
-      }}
-    />);
-  }
 
+  // const getBearerToken = async () => {
+  //   const clientId = 'AcKPjLnrK2JAm-TRMLWFtKPelOiKM1eMBrO1DrtYJXxjlH27MP3w5WAWWftvlctu3l3n1s4OnZ1Uurvk';
+  //   const clientSecret = 'EDoj-48PevJ8SOg0EftNgMnMEvt45RR-9dkG3HX-SO82zC2uswhMximin2wsXSHnwUpwTkKfdqxrBUw3';
+  
+  //   const authString = `${clientId}:${clientSecret}`;
+  //   const base64Auth = btoa(authString); // Encode the auth string in base64
+  
+  //   const requestOptions = {
+  //     method: 'POST',
+  //     headers: {
+  //       'Authorization': `Basic ${base64Auth}`,
+  //       'Content-Type': 'application/x-www-form-urlencoded',
+  //     },
+  //     body: 'grant_type=client_credentials',
+  //   };
+  
+  //   try {
+  //     const response = await fetch('https://api-m.sandbox.paypal.com/v1/oauth2/token', requestOptions);
+  //     const data = await response.json();
+  //     const accessToken = data.access_token;
+  
+  //     // Now you have the access token, you can use it for further requests
+  //     console.log('Access Token:', accessToken);
+  //     setBearToken(accessToken);
+  //     return accessToken;
+  //   } catch (error) {
+  //     console.error('Error fetching access token:', error);
+  //     throw error;
+  //   }
+  // };
+
+  const handleApprove = (data, actions) => {
+    const order = data.orderID;
+    console.log("Order information:", data);
+    console.log("Payer information:", order);
+    //take the order id and pass it into paypal id and gather json response
+    const endpointURL = `https://api-m.sandbox.paypal.com/v2/checkout/orders/${order}`
+
+    // getBearerToken()
+
+    fetch(endpointURL, {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer A21AAKckvGosXlIqDzUvMgw8S2TKn2Jy8BBMF9WnGyyLF67Lrn7kH8fCs-1goNVhCyikPw720IXm1CQs55RRjJk9rr0NS-EYw',
+        'Content-Type': 'application/json',
+      }
+    }).then(response => {
+      setUserData(response)
+      console.log(response)
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+    });
+    return actions.order.capture();
+  };
+
+  const [payerEmail, setPayerEmail] = useState("");
+
+  const paypalOptions = {
+    "client-id": "AcKPjLnrK2JAm-TRMLWFtKPelOiKM1eMBrO1DrtYJXxjlH27MP3w5WAWWftvlctu3l3n1s4OnZ1Uurvk",
+  };
+  
   return (
     <CustomParallax
     style={{
@@ -128,25 +155,78 @@ const JoinPaypalSep = () => {
       }}
       >
         <ParallaxTitle>Annual membership fee</ParallaxTitle>
+        {/* <button onClick={getBearerToken}>test</button> */}
         <ParallaxContent>$75</ParallaxContent>
-        <PaypalContainer
-        style={{
-          zIndex: 99,
-        }}
-        >
-          <PayPalScriptProvider
-            options={{
-              clientId: "test",
-              components: "buttons",
-              intent: "subscription",
-              vault: true,
+        <PaypalContainer>
+        {/* @ts-ignore */}
+        <PayPalScriptProvider options={paypalOptions}>
+          <PayPalButtons
+            style={{ layout: "vertical", label: "subscribe", color: "gold", shape: "rect", tagline: false,}}
+            createOrder={(data, actions) => {
+              // console.log(data)
+              // Set up the order details
+              return actions.order.create({
+                purchase_units: [
+                  {
+                    amount: {
+                      value: "1.00",
+                    },
+                    description: "Membership Fee",
+                  },
+                ],
+              });
             }}
-          >
-            <SubscribeButtonWrapper type="subscription" />
-          </PayPalScriptProvider>
+            onApprove={handleApprove}
+          />
+        </PayPalScriptProvider>
         </PaypalContainer>
-      </ParallaxContainer>
-    </CustomParallax>
+        </ParallaxContainer>
+      </CustomParallax>
 )};
 
 export default JoinPaypalSep;
+{/* <PaypalContainer
+style={{
+  zIndex: 99,
+}}
+>
+  <PayPalScriptProvider
+    options={{
+      clientId: "test",
+      components: "buttons",
+      intent: "subscription",
+      vault: true,
+    }}
+  >
+    <SubscribeButtonWrapper type="subscription" />
+  </PayPalScriptProvider>
+</PaypalContainer> */}
+  // const SubscribeButtonWrapper = ({ type }) => {
+  //   const [{ options }, dispatch] = usePayPalScriptReducer();
+  
+  //   useEffect(() => {
+  //         dispatch({
+  //             type: "resetOptions",
+  //             value: {
+  //                 ...options,
+  //                 intent: "subscription",
+  //             },
+  //         });
+  //     }, [type]);
+  
+  //   return (<PayPalButtons
+  //     createSubscription={(data, actions) => {
+  //       return actions.subscription
+  //         .create({
+  //           plan_id: "P-3RX065706M3469222L5IFM4I",
+  //         })
+  //         .then((orderId) => {
+  //           // Your code here after create the order
+  //           return orderId;
+  //         });
+  //     }}
+  //     style={{
+  //       label: "subscribe",
+  //     }}
+  //   />);
+  // }
