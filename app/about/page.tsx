@@ -15,16 +15,16 @@ const whatWeDoImage = 'https://github.com/snyperifle/TDSC/blob/lukebranch/app/Co
 const separateBanner = 'https://github.com/snyperifle/TDSC/blob/lukebranch/app/Components/assets/biosedit.jpg?raw=true'
 
 const BiosParallaxContainer = styled(ParallaxContainer)({
-  height: '85vh',
+  height: '100vh',
   '@media (max-width: 668px)': {
-    height: '120vh',
+    height: '140vh',
   },
 })
 
 const BiosCustomParallax = styled(CustomParallax)({
-  height: '85vh',
+  height: '100vh',
   '@media (max-width: 668px)': {
-    height: '120vh',
+    height: '140vh',
   },
 })
 
