@@ -67,6 +67,8 @@ const rangeOptions = [
   'G2G Gun Range',
 ]
 
+const updateURL = process?.env?.NEXT_PUBLIC_TABLEUPDATE_URL
+
 export default function FullScreenDialog( props: any ) {
   const { isOpen, closeFunc } = props;
   const [ selectedRange, setSelectedRange ] = React.useState(rangeOptions[0]);
@@ -85,21 +87,28 @@ export default function FullScreenDialog( props: any ) {
 
   const { userData } = props;
 
-  const handleSaveClick = () => {
+  const handleSaveClick = (item) => {
     const newData = {
-      ...updatedData,
-      [stagedRow]: {
-        id: userData.id || '',
-        email: updatedEmail || '',
-        first_name: updatedFirstName || '',
-        last_name: updatedLastName || '',
-      },
+      id: item.id || '',
+      email: item.email || '',
+      first_name: updatedFirstName || null,
+      last_name: updatedLastName || null,
+      isEmailSubscribed: item.isEmailSubscribed,
+      membershipDate: item.membershipDate,
     };
     const confirmation = window.confirm('Are you sure you want to save the changes?');
   
     if (confirmation) {
       setUpdatedData(newData);
       console.log("Updated Data:", newData);
+      //send newData to the endpoint to update the data
+      axios.post(updateURL, newData)
+      .then(response => {
+        console.log(response);
+      }).catch(error => {
+        console.log(error);
+      });
+
       setStagedRow('');
       window.alert('Changes were saved successfully!');
     } else {
@@ -252,12 +261,15 @@ export default function FullScreenDialog( props: any ) {
                     </StyledTableCell>
                     <StyledTableCell>{item.id}</StyledTableCell>
                     <StyledTableCell><UpdateTextField inputProps={{ style: { color: 'gainsboro' } }} variant="outlined" value={updatedEmail || item.email} onChange={(e) => setUpdatedEmail(e.target.value)}/></StyledTableCell>
-                    <StyledTableCell><UpdateTextField inputProps={{ style: { color: 'gainsboro' } }} variant="outlined" value={item.first_name} onChange={(e) => setUpdatedFirstName(e.target.value)} /></StyledTableCell>
-                    <StyledTableCell><UpdateTextField inputProps={{ style: { color: 'gainsboro' } }} variant="outlined" value={item.last_name} onChange={(e) => setUpdatedLastName(e.target.value)} /></StyledTableCell>
+                    <StyledTableCell><UpdateTextField inputProps={{ style: { color: 'gainsboro' } }} variant="outlined" value={updatedFirstName || item.first_name} onChange={(e) => setUpdatedFirstName(e.target.value)} /></StyledTableCell>
+                    <StyledTableCell><UpdateTextField inputProps={{ style: { color: 'gainsboro' } }} variant="outlined" value={updatedLastName || item.last_name} onChange={(e) => setUpdatedLastName(e.target.value)} /></StyledTableCell>
                     <StyledTableCell>{item.isEmailSubscribed ? 'Yes' : 'No'}</StyledTableCell>
                     <StyledTableCell>{item.membershipDate ? moment(item.membershipDate).format("MM/DD/YYYY") : ""}</StyledTableCell>
                     <StyledTableCell>
-                      <Button variant="contained" onClick={handleSaveClick}>Save</Button>
+                      <Button variant="contained" onClick={() => {
+                        // const itemObjectForUpdate = item.id
+                        handleSaveClick(item)
+                      }}>Save</Button>
                     </StyledTableCell>
                   </>
                 )
