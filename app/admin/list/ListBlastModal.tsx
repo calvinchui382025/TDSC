@@ -10,7 +10,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
 import styled from '@emotion/styled';
-import { FormControl, InputLabel, Select, MenuItem, TextField, Table, TableHead, TableRow, TableBody, TableCell } from '@mui/material';
+import { FormControl, InputLabel, Select, MenuItem, TextField, Table, TableHead, TableRow, TableBody, TableCell, Checkbox, Switch } from '@mui/material';
 import { greyColorCustomLight, randomIntGenerator } from 'app/utils';
 import "setimmediate"
 import axios from 'axios';
@@ -26,7 +26,7 @@ const Transition = React.forwardRef(function Transition(
 
 const StyledTableCell = styled(TableCell)({
   color: 'gainsboro',
-  borderBottom: '1px solid gainsboro',
+  // borderBottom: '1px solid gainsboro',
   fontWeight: '300',
   letterSpacing: '0.5px',
 })
@@ -50,11 +50,24 @@ const StyledFormControl = styled(FormControl)({
     width: '40%',
   }
 })
+
+const UpdateTextField = styled(TextField)({
+  color: 'gainsboro',
+  outline: '2px solid gainsboro',
+  borderRadius: '6px',
+  '& input': {
+    color: 'gainsboro',
+  },
+  //active
+
+})
 //======================================================
 const rangeOptions = [
   'Wallis-Orchard Gun Range',
   'G2G Gun Range',
 ]
+
+const updateURL = process?.env?.NEXT_PUBLIC_TABLEUPDATE_URL
 
 export default function FullScreenDialog( props: any ) {
   const { isOpen, closeFunc } = props;
@@ -63,12 +76,55 @@ export default function FullScreenDialog( props: any ) {
   const [ emailBody, setEmailBody ] = React.useState('');
   const [ emailSignOff, setEmailSignOff ] = React.useState('');
   const [ filter, setFilter ] = React.useState('');
+  const [ stagedRow, setStagedRow ] = React.useState('')
+
+  const [ updatedEmail, setUpdatedEmail ] = React.useState('');
+  const [ updatedFirstName, setUpdatedFirstName ] = React.useState('');
+  const [ updatedLastName, setUpdatedLastName ] = React.useState('');
+
+  // const [ newData, setNewData ] = React.useState({})
+  const [updatedData, setUpdatedData] = React.useState({});
 
   const { userData } = props;
 
-  // if (!userData || !userData.users) {
-  //   return null; // Return null or a loading indicator here if data is still being fetched or if there's an error
-  // }
+  const handleSaveClick = (item) => {
+    const newData = {
+      id: item.id || '',
+      email: item.email || '',
+      first_name: updatedFirstName || null,
+      last_name: updatedLastName || null,
+      isEmailSubscribed: item.isEmailSubscribed,
+      membershipDate: item.membershipDate,
+    };
+    const confirmation = window.confirm('Are you sure you want to save the changes?');
+  
+    if (confirmation) {
+      setUpdatedData(newData);
+      console.log("Updated Data:", newData);
+      //send newData to the endpoint to update the data
+      axios.post(updateURL, newData)
+      .then(response => {
+        console.log(response);
+      }).catch(error => {
+        console.log(error);
+      });
+
+      setStagedRow('');
+      window.alert('Changes were saved successfully!');
+    } else {
+    }
+  };
+
+  const handleDeleteRow = ({itemObjectForDeletion}) => {
+    const tempVar = itemObjectForDeletion
+    const confirmation = window.confirm(`Are you sure you want to delete ${tempVar.email}? from the database`);
+  
+    if (confirmation) {
+      console.log(`Successfully removed ${tempVar.email}? from the database`)
+    } else {
+      console.log(`There was an error removing ${tempVar.email}? from the database`)
+    }
+  }
 
   const handleRangeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedRange(event.target.value);
@@ -168,12 +224,14 @@ export default function FullScreenDialog( props: any ) {
       <Table size='small' >
         <TableHead sx={{ backgroundColor: 'rgb(32, 36, 43)' }}>
           <TableRow>
+            <StyledTableCell >Select</StyledTableCell>
             <StyledTableCell >ID</StyledTableCell>
             <StyledTableCell >Email</StyledTableCell>
             <StyledTableCell >First Name</StyledTableCell>
             <StyledTableCell >Last Name</StyledTableCell>
             <StyledTableCell >Email Subscribed</StyledTableCell>
             <StyledTableCell >Membership Date</StyledTableCell>
+            <StyledTableCell >Save</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -184,12 +242,65 @@ export default function FullScreenDialog( props: any ) {
               }}
               key={index}
             >
-              <StyledTableCell>{item.id}</StyledTableCell>
-              <StyledTableCell>{item.email}</StyledTableCell>
-              <StyledTableCell>{item.first_name ? item.first_name : "N/A"}</StyledTableCell>
-              <StyledTableCell>{item.last_name ? item.last_name : "N/A"}</StyledTableCell>
-              <StyledTableCell>{item.isEmailSubscribed ? 'Yes' : 'No'}</StyledTableCell>
-              <StyledTableCell>{item.membershipDate ? moment(item.membershipDate).format("MM/DD/YYYY") : ""}</StyledTableCell>
+              {
+                item.id === stagedRow ? (
+                  <>
+                    <StyledTableCell>
+                      <Checkbox
+                        style={{color: 'gainsboro'}}
+                        onChange={() => {
+                          //clear staged data
+                          setUpdatedEmail('')
+                          setUpdatedFirstName('')
+                          setUpdatedLastName('')
+                          setUpdatedData({})
+                          setStagedRow(prevRow => (prevRow === item.id ? '' : item.id))
+                        }}
+                        checked={stagedRow === item.id}
+                      />
+                    </StyledTableCell>
+                    <StyledTableCell>{item.id}</StyledTableCell>
+                    <StyledTableCell><UpdateTextField inputProps={{ style: { color: 'gainsboro' } }} variant="outlined" value={updatedEmail || item.email} onChange={(e) => setUpdatedEmail(e.target.value)}/></StyledTableCell>
+                    <StyledTableCell><UpdateTextField inputProps={{ style: { color: 'gainsboro' } }} variant="outlined" value={updatedFirstName || item.first_name} onChange={(e) => setUpdatedFirstName(e.target.value)} /></StyledTableCell>
+                    <StyledTableCell><UpdateTextField inputProps={{ style: { color: 'gainsboro' } }} variant="outlined" value={updatedLastName || item.last_name} onChange={(e) => setUpdatedLastName(e.target.value)} /></StyledTableCell>
+                    <StyledTableCell>{item.isEmailSubscribed ? 'Yes' : 'No'}</StyledTableCell>
+                    <StyledTableCell>{item.membershipDate ? moment(item.membershipDate).format("MM/DD/YYYY") : ""}</StyledTableCell>
+                    <StyledTableCell>
+                      <Button variant="contained" onClick={() => {
+                        // const itemObjectForUpdate = item.id
+                        handleSaveClick(item)
+                      }}>Save</Button>
+                    </StyledTableCell>
+                  </>
+                )
+                :
+                (
+                  <>
+                    <StyledTableCell>
+                      <Checkbox
+                        style={{color: 'gainsboro'}}
+                        onChange={() => setStagedRow(item.id)}
+                        checked={stagedRow === item.id}
+                      />
+                    </StyledTableCell>
+                    <StyledTableCell>{item.id}</StyledTableCell>
+                    <StyledTableCell>{item.email}</StyledTableCell>
+                    <StyledTableCell>{item.first_name ? item.first_name : 'N/A'}</StyledTableCell>
+                    <StyledTableCell>{item.last_name ? item.last_name : 'N/A'}</StyledTableCell>
+                    <StyledTableCell>{item.isEmailSubscribed ? 'Yes' : 'No'}</StyledTableCell>
+                    <StyledTableCell>{item.membershipDate ? moment(item.membershipDate).format("MM/DD/YYYY") : ""}</StyledTableCell>
+                    <StyledTableCell>
+                      <Button variant="contained" color="error" onClick={() => {
+                        const itemObjectForDeletion = item
+                        handleDeleteRow({itemObjectForDeletion})
+                      }}
+                      >
+                      Delete
+                      </Button>
+                    </StyledTableCell>
+                  </>
+                )
+              }
             </TableRow>
           ))}
         </TableBody>
