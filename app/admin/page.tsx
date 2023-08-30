@@ -61,6 +61,7 @@ const customTheme = (outerTheme: Theme) =>
 
 import EmailBlastModal from './email/EmailBlastModal'
 import ListBlastModal from "./list/ListBlastModal";
+import axios from "axios";
 
 export default function AdminPage() {
   const outerTheme = useTheme();
@@ -97,24 +98,52 @@ export default function AdminPage() {
       });
   };
 
-  const handleAdminLogin = () => {
-    if (
-        adminUserName === process?.env?.NEXT_PUBLIC_ADMIN_USERNAME 
-        && adminPassword === process?.env?.NEXT_PUBLIC_ADMIN_PASSWORD
-      ) {
-      setAdminLoggedIn(true);
-    }
-    else {
-      toast.warn('Invalid username or password', {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-        });
+  const handleAdminLogin = async (event) => {
+    event.preventDefault();
+    const loginURL = process.env.NEXT_PUBLIC_LOGIN_URL;
+    
+    try {
+      const response = await axios.post(loginURL, {
+        username: adminUserName,
+        password: adminPassword,
+      });
+      if(response.status === 200){
+        toast.success('Successfully logged in!', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          });
+        setAdminLoggedIn(true);
+      } else if(response.status === 401) {
+        toast.warn('Invalid username or password', {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "dark",
+              });
+      } else {
+        toast.warn('There was an error in logging in!', {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "dark",
+              });
+      }
+    } catch (error) {
+      console.error('An error has occured: ', error);
     }
   }
   
