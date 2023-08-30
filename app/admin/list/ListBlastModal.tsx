@@ -14,6 +14,7 @@ import { FormControl, InputLabel, Select, MenuItem, TextField, Table, TableHead,
 import { greyColorCustomLight, randomIntGenerator } from 'app/utils';
 import "setimmediate"
 import axios from 'axios';
+import { toast } from 'react-toastify';
 //======================================================
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -115,15 +116,41 @@ export default function FullScreenDialog( props: any ) {
     }
   };
 
-  const handleDeleteRow = ({itemObjectForDeletion}) => {
-    const tempVar = itemObjectForDeletion
-    const confirmation = window.confirm(`Are you sure you want to delete ${tempVar.email}? from the database`);
-  
-    if (confirmation) {
-      console.log(`Successfully removed ${tempVar.email}? from the database`)
-    } else {
-      console.log(`There was an error removing ${tempVar.email}? from the database`)
-    }
+  const handleDeleteRow =  async ({itemObjectForDeletion}) => {
+    console.log("disabled for further development")
+    // const item = itemObjectForDeletion
+    // const identifier = itemObjectForDeletion.email
+    // const deleteURL = process.env.NEXT_PUBLIC_DELETE_URL;
+
+    // const confirmation = window.confirm(`Are you sure you want to delete ${item.email}? from the database`);
+
+    // if (confirmation) {
+    //   //logic for endpoint
+    //   try {
+    //     const response = await axios.delete(deleteURL, {
+    //       data: { identifier },
+    //     });
+    //     if(response.status === 200) {
+    //       toast.success(`Successfully removed ${item.email}? from the database`, {
+    //         position: "top-right",
+    //         autoClose: 3000,
+    //         hideProgressBar: false,
+    //         closeOnClick: true,
+    //         pauseOnHover: true,
+    //         draggable: true,
+    //         progress: undefined,
+    //         theme: "dark",
+    //         });
+    //     } else if (response.status === 500) {
+    //       console.log("Internal server error:", response.status)
+    //     }
+    //   } catch (error) {
+    //     console.error('An error has occured: ', error);
+    //   }
+    //   // console.log(`Successfully removed ${item.email}? from the database`)
+    // } else {
+    //   console.log(`There was an error removing ${item.email}? from the database`)
+    // }
   }
 
   const handleRangeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -161,27 +188,27 @@ export default function FullScreenDialog( props: any ) {
     return true; // Default case
   });
 
-  function handleSend() {
-    axios.post('/api/sendEmail', {
-        selectedRange,
-        subjectLine,
-        emailBody,
-        emailSignOff,
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      }
-      ).then((res) => {
-        console.log(res);
-      }).catch((err) => {
-        console.log(err);
-      });
+  // function handleSend() {
+  //   axios.post('/api/sendEmail', {
+  //       selectedRange,
+  //       subjectLine,
+  //       emailBody,
+  //       emailSignOff,
+  //     },
+  //     {
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       }
+  //     }
+  //     ).then((res) => {
+  //       console.log(res);
+  //     }).catch((err) => {
+  //       console.log(err);
+  //     });
 
-    // setEmailBody('');
-    closeFunc(false);
-  }
+  //   // setEmailBody('');
+  //   closeFunc(false);
+  // }
 
   return (
     <Dialog
