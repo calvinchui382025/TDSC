@@ -25,6 +25,7 @@ const PaypalContainer = styled('div')({
     width: "250px",
     height: "35px",
   },
+  zIndex: 90,
 })
 
 const emailBody = "Thank you for signing up for email alerts! We will send you an email when we have a new shoot scheduled. Please consider joining the club to help support our efforts!"
