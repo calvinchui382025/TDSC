@@ -13,6 +13,7 @@ import { Button, TextField } from "@mui/material";
 import { render } from "@react-email/render";
 import { EmailTemplate } from "app/admin/email/EmailTemplate";
 import axios from "axios";
+import { MemberTemplate } from "app/admin/MemberTemplate/MemberTemplate";
 
 const customTheme = (outerTheme) =>
   createTheme({
@@ -138,10 +139,13 @@ export const Emailsignup = () => {
     const adminEmailSubject = "New email alerts member!"
     const adminSelectedRange = " "
     const adminEmailSignOff = "TDSC";
-    const adminNewAlert = render(EmailTemplate(adminSelectedRange, adminEmailBody, adminEmailSignOff))
+    const adminNewAlert = render(MemberTemplate(adminSelectedRange, adminEmailBody, adminEmailSignOff))
     //-------------------------------------------------------
 
     const emailListURL = process.env.NEXT_PUBLIC_USER_LIST_URL
+    const sendAdminAlertURL = process.env.NEXT_PUBLIC_SEND_ADMIN_ALERT_URL
+    const sendUserAlertURL = process.env.NEXT_PUBLIC_SEND_USER_ALERT_URL
+
     e.preventDefault();
     if (isFormValid) {
       if (firstname === "") {
@@ -171,7 +175,7 @@ export const Emailsignup = () => {
         if (data.success) {
           toast.success('You have successfully signed up for email alerts!');
           //--------logic to send email alert to admins--------
-          axios.post('https://ec2-3-17-167-220.us-east-2.compute.amazonaws.com/sendAlertToAdmins', {
+          axios.post(sendAdminAlertURL, {
             adminNewAlert,
             adminEmailSubject
           },
@@ -187,7 +191,7 @@ export const Emailsignup = () => {
           });
           //---------------------------------------------------
           //--------logic to send email alert to admins--------
-          axios.post('https://ec2-3-17-167-220.us-east-2.compute.amazonaws.com/sendAlertToUser', {
+          axios.post(sendUserAlertURL, {
             emailDestination,
             newAlert,
             emailSubject

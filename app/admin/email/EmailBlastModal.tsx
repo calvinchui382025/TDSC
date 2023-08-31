@@ -104,10 +104,10 @@ export default function FullScreenDialog( props: any ) {
       }
       ).then((res) => {
         console.log(res);
-        console.log(selectedRange);
-        console.log(subjectLine);
-        console.log(emailBody);
-        console.log(emailSignOff);
+        // console.log(selectedRange);
+        // console.log(subjectLine);
+        // console.log(emailBody);
+        // console.log(emailSignOff);
       }).catch((err) => {
         console.log(err);
       });

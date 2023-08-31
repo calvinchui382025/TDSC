@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import qs from "qs";
 import 'react-toastify/dist/ReactToastify.css';
@@ -13,13 +13,16 @@ import { CustomParallax, ParallaxContainer, ParallaxContent, ParallaxTitle } fro
 import axios from "axios";
 import { render } from "@react-email/render";
 import { EmailTemplate } from "app/admin/email/EmailTemplate";
+import { MemberTemplate } from "app/admin/MemberTemplate/MemberTemplate";
 const JoinBanner = 'https://github.com/snyperifle/TDSC/blob/luke/public/Images/croppedjoin.jpg?raw=true'
 
-const clientID = 'AcKPjLnrK2JAm-TRMLWFtKPelOiKM1eMBrO1DrtYJXxjlH27MP3w5WAWWftvlctu3l3n1s4OnZ1Uurvk'
-const clientSecret = 'EDoj-48PevJ8SOg0EftNgMnMEvt45RR-9dkG3HX-SO82zC2uswhMximin2wsXSHnwUpwTkKfdqxrBUw3'
-// const clientID = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID
-// const clientSecret = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_SECRET
-const paypalToken = process.env.NEXT_PUBLIC_PAYPAL_TOKEN
+// const clientID = 'AcKPjLnrK2JAm-TRMLWFtKPelOiKM1eMBrO1DrtYJXxjlH27MP3w5WAWWftvlctu3l3n1s4OnZ1Uurvk'
+// const clientSecret = 'EDoj-48PevJ8SOg0EftNgMnMEvt45RR-9dkG3HX-SO82zC2uswhMximin2wsXSHnwUpwTkKfdqxrBUw3'
+const clientID = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID
+const clientSecret = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_SECRET
+const sendAdminAlertURL = process.env.NEXT_PUBLIC_SEND_ADMIN_ALERT_URL
+const sendUserAlertURL = process.env.NEXT_PUBLIC_SEND_USER_ALERT_URL
+// const paypalToken = process.env.NEXT_PUBLIC_PAYPAL_TOKEN
 
 const PaypalContainer = styled('div')({
   width: "450px",
@@ -45,7 +48,7 @@ const JoinPaypalSep = () => {
   const paypalURL = process.env.NEXT_PUBLIC_PAYPAL_URL
 
   const getBearerToken = async () => {
-    
+
     const authString = `${clientID}:${clientSecret}`;
     const authBase64 = Buffer.from(authString).toString('base64');
 
@@ -63,7 +66,6 @@ const JoinPaypalSep = () => {
         headers: headers
       });
       if(response.status === 200) {
-        // console.log(response.data);
         const tempTokenVar = response.data.access_token;
         setBearToken(tempTokenVar)
       } else if (response.status === 500) {
@@ -77,9 +79,10 @@ const JoinPaypalSep = () => {
   useEffect(() => {
     getBearerToken()
   }, []);
-  
-  // console.log("Bear Token updated:", bearToken);
-  //lifecycle
+
+  useEffect(() => {
+    // console.log(`new bear token: ${bearToken}`)
+  }, [bearToken]);
 
   const handleNewPaypalMember = async (shapedUserData) => {
     const currentWorkflowEmail = shapedUserData.email
@@ -93,10 +96,10 @@ const JoinPaypalSep = () => {
     //-------------------------------------------------------
     //variables for sending alert to admins-----------------
     const adminEmailBody = `${currentWorkflowEmail} has enrolled to become a member. You should receive their payment on paypal soon.`
-    const adminEmailSubject = "New email alerts member!"
+    const adminEmailSubject = "New club member!"
     const adminSelectedRange = " "
     const adminEmailSignOff = "TDSC";
-    const adminNewAlert = render(EmailTemplate(adminSelectedRange, adminEmailBody, adminEmailSignOff))
+    const adminNewAlert = render(MemberTemplate(adminSelectedRange, adminEmailBody, adminEmailSignOff))
     //-------------------------------------------------------
 
     try {
@@ -104,7 +107,7 @@ const JoinPaypalSep = () => {
 
       if (response.data.message === 'User inserted successfully' || response.data.message === 'User updated successfully') {
         toast.success('You have successfully subscribed to our membership program!');
-        axios.post('https://ec2-3-17-167-220.us-east-2.compute.amazonaws.com/sendAlertToAdmins', {
+        axios.post(sendAdminAlertURL, {
             adminNewAlert,
             adminEmailSubject
           },
@@ -120,7 +123,7 @@ const JoinPaypalSep = () => {
           });
           //---------------------------------------------------
           //--------logic to send email alert to admins--------
-          axios.post('https://ec2-3-17-167-220.us-east-2.compute.amazonaws.com/sendAlertToUser', {
+          axios.post(sendUserAlertURL, {
             emailDestination,
             newAlert,
             emailSubject
@@ -142,8 +145,8 @@ const JoinPaypalSep = () => {
         toast.error('An error occurred while signing up.');
       }
     }
-
-  const handleApprove = async (data, actions) => {
+  
+    const handleApprove = async (data, actions) => {
     const order = data.orderID;
     // console.log("bear token --->", bearToken)
     const endpointURL = `https://api-m.sandbox.paypal.com/v2/checkout/orders/${order}`
@@ -167,7 +170,7 @@ const JoinPaypalSep = () => {
         isEmailSubscribed: 1
       }
 
-      console.log("data:", shapedUserData);
+      // console.log("data:", shapedUserData);
       handleNewPaypalMember(shapedUserData);
       setUserData(shapedUserData);
     } catch (error) {
@@ -176,9 +179,8 @@ const JoinPaypalSep = () => {
     return actions.order.capture();
   };
 
-
   const paypalOptions = {
-    "client-id": clientID,
+    "clientId": clientID,
   };
   
   return (
@@ -197,9 +199,9 @@ const JoinPaypalSep = () => {
         <ParallaxTitle>Annual membership fee</ParallaxTitle>
         <ParallaxContent>$75</ParallaxContent>
         <PaypalContainer>
-        {/* @ts-ignore */}
         <PayPalScriptProvider options={paypalOptions}>
           <PayPalButtons
+            forceReRender={[bearToken]}
             style={{ layout: "vertical", label: "subscribe", color: "gold", shape: "rect", tagline: false,}}
             createOrder={(data, actions) => {
               return actions.order.create({
@@ -216,9 +218,9 @@ const JoinPaypalSep = () => {
             onApprove={handleApprove}
           />
         </PayPalScriptProvider>
-        </PaypalContainer>
-        </ParallaxContainer>
-      </CustomParallax>
+      </PaypalContainer>
+    </ParallaxContainer>
+  </CustomParallax>
 )};
 
 export default JoinPaypalSep;
