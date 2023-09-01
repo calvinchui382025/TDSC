@@ -174,17 +174,17 @@ export const Contact = () => {
       });
     })
     .catch((error) => {
-      console.error('Error:', error);
-      toast.error("Error!", {
-        position: "top-left",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
+      // console.error('Error:', error);
+      // toast.error("Error!", {
+      //   position: "top-left",
+      //   autoClose: 5000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: "dark",
+      // });
     });
   };
 
