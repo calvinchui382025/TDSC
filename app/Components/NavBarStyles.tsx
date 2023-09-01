@@ -89,7 +89,7 @@ export const StyledExitButton = styled('button')({
   backgroundColor: 'transparent',
   border: 'none',
   display: "none",
-  '@media (max-width: 1022px)': {
+  '@media (max-width: 1122px)': {
     display: "block",
   },
 })

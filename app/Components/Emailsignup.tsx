@@ -10,6 +10,10 @@ import { toast } from 'react-toastify';
 import { useRef } from "react";
 import { useState } from 'react';
 import { Button, TextField } from "@mui/material";
+import { render } from "@react-email/render";
+import { EmailTemplate } from "app/admin/email/EmailTemplate";
+import axios from "axios";
+import { MemberTemplate } from "app/admin/MemberTemplate/MemberTemplate";
 
 const customTheme = (outerTheme) =>
   createTheme({
@@ -122,10 +126,26 @@ export const Emailsignup = () => {
   };
 
   const handleEmailSignUp = async (e) => {
+    // variables for sending alert to new user---------------
     const emailBody = "Thank you for signing up for email alerts! We will send you an email when we have a new shoot scheduled. Please consider joining the club to help support our efforts!"
     const emailSubject = "Texas Defensive Shooting Club. Thank you for signing up for email alerts!"
+    const selectedRange = "Email Alerts enabled!";
+    const emailSignOff = "TDSC";
+    const emailDestination = email;
+    const newAlert = render(EmailTemplate(selectedRange, emailBody, emailSignOff))
+    //-------------------------------------------------------
+    //variables for sending alert to admins-----------------
+    const adminEmailBody = `${email} has signed up for Email Alerts`
+    const adminEmailSubject = "New email alerts member!"
+    const adminSelectedRange = " "
+    const adminEmailSignOff = "TDSC";
+    const adminNewAlert = render(MemberTemplate(adminSelectedRange, adminEmailBody, adminEmailSignOff))
+    //-------------------------------------------------------
 
     const emailListURL = process.env.NEXT_PUBLIC_USER_LIST_URL
+    const sendAdminAlertURL = process.env.NEXT_PUBLIC_SEND_ADMIN_ALERT_URL
+    const sendUserAlertURL = process.env.NEXT_PUBLIC_SEND_USER_ALERT_URL
+
     e.preventDefault();
     if (isFormValid) {
       if (firstname === "") {
@@ -154,10 +174,43 @@ export const Emailsignup = () => {
         
         if (data.success) {
           toast.success('You have successfully signed up for email alerts!');
+          //--------logic to send email alert to admins--------
+          axios.post(sendAdminAlertURL, {
+            adminNewAlert,
+            adminEmailSubject
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            }
+          }
+          ).then((res) => {
+            // console.log(res)
+          }).catch((err) => {
+            // console.log(err);
+          });
+          //---------------------------------------------------
+          //--------logic to send email alert to admins--------
+          axios.post(sendUserAlertURL, {
+            emailDestination,
+            newAlert,
+            emailSubject
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            }
+          }
+          ).then((res) => {
+            // console.log(res)
+          }).catch((err) => {
+            // console.log(err);
+          });
+          //---------------------------------------------------
         } else {
           if (data.error && data.error === 'Email already exists in the database') {
             toast.error('That emailed is already signed up for alerts!');
-            console.log(data.error)
+            // console.log(data.error)
           } else {
             toast.error('Failed to sign up for email alerts.');
           }
@@ -168,7 +221,6 @@ export const Emailsignup = () => {
     };
   };
   
-
   return (
     <EmailSignupContainer>
       {/* <StyledFormControl ref={form}> */}

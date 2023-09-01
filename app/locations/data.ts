@@ -16,8 +16,9 @@ export const locations = [
     description: 'Texas Defensive Shooting Club shoots every Saturday morning at Wallis-Orchard Gun Range. 1st saturday of each month is EDC (Every Day Carry) Shoot 2nd Saturday of each month is 2 Gun Shoot 3rd Saturday of each month is 2 Gun Shoot 4th Saturday of each month is 2 Gun Shoot',
     lat: 29.61956987312184,
     lng: -96.00511493214641,
-    imagelink: 'https://scontent-hou1-1.xx.fbcdn.net/v/t1.18169-9/28685755_1107134146093230_8216510516899223890_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=cdbe9c&_nc_ohc=eoFyTuyA2EYAX8CLNN6&_nc_ht=scontent-hou1-1.xx&oh=00_AfCjbia9bYTlLSpBm4jkv3hVbKyx5bhKrvpIDSlb-SS_Sg&oe=64E7ED4C',
+    imagelink: 'https://www.staradvertiser.com/wp-content/uploads/2023/04/web1_CTY-RANGE-312.jpeg',
     image2: 'https://github.com/snyperifle/TDSC/blob/luke/public/Images/wogrbg.jpg?raw=true',
+    mapslink: 'https://goo.gl/maps/Si5Ce8eiy9GWRxxu8'
   },
   {
     range: 'G2G Family Shooting Range',
@@ -34,8 +35,9 @@ export const locations = [
     description: 'Texas Defensive Shooting Club shoots every Wednesday evening at G2G Family Shooting Range. Registration starts at 6:15pm Safety Briefing is at 6:45pm Hammer Down is at 7:00pm',
     lat: 29.536622245457856, 
     lng: -95.76785290331114,
-    imagelink: 'https://s3-media0.fl.yelpcdn.com/bphoto/4lz1Pi39Hi2miLX7Joytng/348s.jpg',
+    imagelink: 'https://nenameseck.com/wp-content/uploads/2018/10/indoor-pistol-range-panorama-1024x370.jpg',
     image2: 'https://github.com/snyperifle/TDSC/blob/luke/public/Images/g2gbg.jpg?raw=true',
+    mapslink: 'https://goo.gl/maps/HDEDAbgGk1Rw2p3Q7'
   },
   // {
   //   range: 'Big Kountry Indoor Shooting Range',

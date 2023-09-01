@@ -117,40 +117,40 @@ export default function FullScreenDialog( props: any ) {
   };
 
   const handleDeleteRow =  async ({itemObjectForDeletion}) => {
-    console.log("disabled for further development")
-    // const item = itemObjectForDeletion
-    // const identifier = itemObjectForDeletion.email
-    // const deleteURL = process.env.NEXT_PUBLIC_DELETE_URL;
+    // console.log("disabled for further development")
+    const item = itemObjectForDeletion
+    const identifier = itemObjectForDeletion.email
+    const deleteURL = process.env.NEXT_PUBLIC_DELETE_URL;
 
-    // const confirmation = window.confirm(`Are you sure you want to delete ${item.email}? from the database`);
+    const confirmation = window.confirm(`Are you sure you want to delete ${item.email}? from the database`);
 
-    // if (confirmation) {
-    //   //logic for endpoint
-    //   try {
-    //     const response = await axios.delete(deleteURL, {
-    //       data: { identifier },
-    //     });
-    //     if(response.status === 200) {
-    //       toast.success(`Successfully removed ${item.email}? from the database`, {
-    //         position: "top-right",
-    //         autoClose: 3000,
-    //         hideProgressBar: false,
-    //         closeOnClick: true,
-    //         pauseOnHover: true,
-    //         draggable: true,
-    //         progress: undefined,
-    //         theme: "dark",
-    //         });
-    //     } else if (response.status === 500) {
-    //       console.log("Internal server error:", response.status)
-    //     }
-    //   } catch (error) {
-    //     console.error('An error has occured: ', error);
-    //   }
-    //   // console.log(`Successfully removed ${item.email}? from the database`)
-    // } else {
-    //   console.log(`There was an error removing ${item.email}? from the database`)
-    // }
+    if (confirmation) {
+      //logic for endpoint
+      try {
+        const response = await axios.delete(deleteURL, {
+          data: { identifier },
+        });
+        if(response.status === 200) {
+          toast.success(`Successfully removed ${item.email}? from the database`, {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            });
+        } else if (response.status === 500) {
+          console.log("Internal server error:", response.status)
+        }
+      } catch (error) {
+        console.error('An error has occured: ', error);
+      }
+      // console.log(`Successfully removed ${item.email}? from the database`)
+    } else {
+      console.log(`There was an error removing ${item.email}? from the database`)
+    }
   }
 
   const handleRangeChange = (event: React.ChangeEvent<HTMLInputElement>) => {

@@ -31,7 +31,7 @@ export default function DrawerAppBar() {
 
   React.useEffect(() => {
     function handleResize() {
-      setIsMobile(window.innerWidth < 1000);
+      setIsMobile(window.innerWidth < 1122);
     }
     window.addEventListener('resize', handleResize);
     handleResize();
