@@ -14,6 +14,7 @@ import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import emailjs from "@emailjs/browser";
 import { CustomParallax, ParallaxContainer, ParallaxTitle } from "./Separator";
+import moment from "moment";
 // const ContactBannerJoin = 'https://flintriverindoorshootingrange.com/wp-content/uploads/2021/05/three-1-a.jpg'
 // const ContactBannerJoin = 'https://github.com/snyperifle/TDSC/blob/luke/public/Images/croppedcontact.jpg?raw=true'
 const ContactBannerJoin = 'https://github.com/snyperifle/TDSC/blob/luke/public/Images/croppedteaching.jpg?raw=true'
@@ -103,6 +104,7 @@ export const Contact = () => {
   const service = process.env.REACT_APP_SERVICE_ID;
   const template = process.env.REACT_APP_TEMPLATE_ID;
   const user = process.env.REACT_APP_USER_ID;
+  const receiveEmailURL = process.env.REACT_APP_RECEIVE_EMAIL_URL;
   const form = useRef();
   let lastExecutionTime = 0;
   const [name, setName] = useState('');
@@ -141,13 +143,28 @@ export const Contact = () => {
 
   const sendEmail = (e) => {
     e.preventDefault();
-    const currentTime = Date.now();
-    const timeElapsed = currentTime - lastExecutionTime;
-    if (timeElapsed < 30000) {
-      const remainingTime = Math.ceil((30000 - timeElapsed) / 1000);
-      toast.error(`Please wait ${remainingTime} seconds before sending another email.`, {
+    const emailPayload = {
+      email: email,
+      name: name,
+      message: message,
+      timestamp: moment().format('MMMM Do YYYY, h:mm:ss a'),
+    }
+
+    console.log(emailPayload)
+
+    fetch('https://ec2-3-17-167-220.us-east-2.compute.amazonaws.com/receiveEmail', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(emailPayload),
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log('Success:', data);
+      toast.success("Message Sent Successfully!", {
         position: "top-left",
-        autoClose: 3000,
+        autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -155,56 +172,21 @@ export const Contact = () => {
         progress: undefined,
         theme: "light",
       });
-      return;
-    }
-
-    if (form.current) {
-      emailjs
-        .sendForm(service || "", template || "", form.current, user)
-        .then(
-          (result) => {
-            console.log(result.text);
-            console.log("message sent");
-            toast.success("Message Sent Successfully!", {
-              position: "top-left",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-            });
-          },
-          (error) => {
-            console.log(error.text);
-            toast.error("Error!", {
-              position: "top-left",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-            });
-          }
-        );
-      lastExecutionTime = currentTime;
-      } else {
-        console.log("Form is not defined");
-        toast.error("Error!", {
-          position: "top-left",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
-      }
-    };
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      toast.error("Error!", {
+        position: "top-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    });
+  };
 
   return (
     <CustomParallax
