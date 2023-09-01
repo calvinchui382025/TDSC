@@ -185,9 +185,9 @@ export const Emailsignup = () => {
             }
           }
           ).then((res) => {
-            console.log(res)
+            // console.log(res)
           }).catch((err) => {
-            console.log(err);
+            // console.log(err);
           });
           //---------------------------------------------------
           //--------logic to send email alert to admins--------
@@ -202,15 +202,15 @@ export const Emailsignup = () => {
             }
           }
           ).then((res) => {
-            console.log(res)
+            // console.log(res)
           }).catch((err) => {
-            console.log(err);
+            // console.log(err);
           });
           //---------------------------------------------------
         } else {
           if (data.error && data.error === 'Email already exists in the database') {
             toast.error('That emailed is already signed up for alerts!');
-            console.log(data.error)
+            // console.log(data.error)
           } else {
             toast.error('Failed to sign up for email alerts.');
           }

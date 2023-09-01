@@ -66,10 +66,10 @@ const JoinPaypalSep = () => {
         const tempTokenVar = response.data.access_token;
         setBearToken(tempTokenVar)
       } else if (response.status === 500) {
-        console.log("Internal server error:", response.status)
+        // console.log("Internal server error:", response.status)
       }
     } catch (error) {
-      console.error('An error has occured: ', error);
+      // console.error('An error has occured: ', error);
     }
   }
 
@@ -131,9 +131,9 @@ const JoinPaypalSep = () => {
             }
           }
           ).then((res) => {
-            console.log(res)
+            // console.log(res)
           }).catch((err) => {
-            console.log(err);
+            // console.log(err);
           });
       } else {
         toast.error('Failed to sign up for membership program.');
@@ -171,7 +171,7 @@ const JoinPaypalSep = () => {
       handleNewPaypalMember(shapedUserData);
       setUserData(shapedUserData);
     } catch (error) {
-      console.log('Error fetching data:', error);
+      // console.log('Error fetching data:', error);
     }
     return actions.order.capture();
   };

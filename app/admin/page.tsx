@@ -88,13 +88,13 @@ export default function AdminPage() {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         const usersData = data.data;
         setUserData(usersData);
         setIsUserListOpen(true);
       })
       .catch((error) => {
-        console.error('Error fetching data:', error);
+        // console.error('Error fetching data:', error);
       });
   };
 
