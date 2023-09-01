@@ -16,13 +16,10 @@ import { EmailTemplate } from "app/admin/email/EmailTemplate";
 import { MemberTemplate } from "app/admin/MemberTemplate/MemberTemplate";
 const JoinBanner = 'https://github.com/snyperifle/TDSC/blob/luke/public/Images/croppedjoin.jpg?raw=true'
 
-// const clientID = 'AcKPjLnrK2JAm-TRMLWFtKPelOiKM1eMBrO1DrtYJXxjlH27MP3w5WAWWftvlctu3l3n1s4OnZ1Uurvk'
-// const clientSecret = 'EDoj-48PevJ8SOg0EftNgMnMEvt45RR-9dkG3HX-SO82zC2uswhMximin2wsXSHnwUpwTkKfdqxrBUw3'
 const clientID = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID
 const clientSecret = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_SECRET
 const sendAdminAlertURL = process.env.NEXT_PUBLIC_SEND_ADMIN_ALERT_URL
 const sendUserAlertURL = process.env.NEXT_PUBLIC_SEND_USER_ALERT_URL
-// const paypalToken = process.env.NEXT_PUBLIC_PAYPAL_TOKEN
 
 const PaypalContainer = styled('div')({
   width: "450px",

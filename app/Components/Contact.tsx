@@ -100,12 +100,9 @@ const Contactbutton = styled(Button)({
 
 export const Contact = () => {
   const outerTheme = useTheme();
-  // const service = process.env.REACT_APP_SERVICE_ID;
-  const service = 'service_5mukv29'
-  // const template = process.env.REACT_APP_TEMPLATE_ID;
-  const template = 'template_mw4n6lp'
-  // const user = process.env.REACT_APP_USER_ID;
-  const user = '9MiD9Ax_KWYMrjDtH'
+  const service = process.env.REACT_APP_SERVICE_ID;
+  const template = process.env.REACT_APP_TEMPLATE_ID;
+  const user = process.env.REACT_APP_USER_ID;
   const form = useRef();
   let lastExecutionTime = 0;
   const [name, setName] = useState('');
