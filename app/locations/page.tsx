@@ -4,7 +4,7 @@ import { locations } from './data';
 // import { mapStyles } from './mapStyles';
 // import GoogleMapReact from 'google-map-react';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import { LocationRoot, WholeCard, CardDataContainer, RangeNameText, PriceText, RegularText, InfoContainer, CardMapContainer, RangeCardImage } from './locationStyles';
+import { LocationRoot, WholeCard, CardDataContainer, RangeNameText, PriceText, RegularText, InfoContainer, CardMapContainer, RangeCardImage, AddressLink, StyledRegularText } from './locationStyles';
 import Separator from 'app/Components/Separator';
 import { Contact } from 'app/Components/Contact';
 // import { Reveal } from 'app/Components/Reveal';
@@ -28,26 +28,33 @@ export default function LocationPage() {
     <LocationRoot>
       {
         locations.map((location, i) => {
-          const { range, cost, street, city, state, zip, phone, description, lat, lng, imagelink } = location
+          const { range, cost, street, city, state, zip, phone, description, lat, lng, imagelink, mapslink } = location
           return (
-            <WholeCard key={i}>
+            <WholeCard key={i}
+            style={{
+              backgroundImage: `url(${imagelink})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
+            >
 
               <CardDataContainer>
 
                 <RangeNameText>{range}</RangeNameText>
                 <PriceText>{cost}</PriceText>
                 <RegularText>{description}</RegularText>
-
-                <InfoContainer>
-                  <RegularText>{phone}</RegularText>
-                  <RegularText>{street}</RegularText>
-                  <RegularText>{city}, {state}, {zip}</RegularText>
-                </InfoContainer>
+                <AddressLink href={mapslink} target="_blank">
+                  <InfoContainer>
+                    <RegularText>{phone}</RegularText>
+                    <StyledRegularText>{street}</StyledRegularText>
+                    <StyledRegularText>{city}, {state}, {zip}</StyledRegularText>
+                  </InfoContainer>
+                </AddressLink>
 
               </CardDataContainer>
 
               <CardMapContainer>
-                <RangeCardImage src={imagelink} width="100" alt="locationPicture"/>
+                {/* <RangeCardImage src={imagelink} width="100" alt="locationPicture"/> */}
               </CardMapContainer>
 
             </WholeCard>
