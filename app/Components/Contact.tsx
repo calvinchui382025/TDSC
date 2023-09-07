@@ -15,6 +15,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import emailjs from "@emailjs/browser";
 import { CustomParallax, ParallaxContainer, ParallaxTitle } from "./Separator";
 import moment from "moment";
+import { isIfStatement } from "typescript";
 // const ContactBannerJoin = 'https://flintriverindoorshootingrange.com/wp-content/uploads/2021/05/three-1-a.jpg'
 // const ContactBannerJoin = 'https://github.com/snyperifle/TDSC/blob/luke/public/Images/croppedcontact.jpg?raw=true'
 const ContactBannerJoin = 'https://github.com/snyperifle/TDSC/blob/luke/public/Images/croppedteaching.jpg?raw=true'
@@ -143,6 +144,7 @@ export const Contact = () => {
 
   const sendEmail = (e) => {
     e.preventDefault();
+
     const emailPayload = {
       email: email,
       name: name,
@@ -150,7 +152,22 @@ export const Contact = () => {
       timestamp: moment().format('MMMM Do YYYY, h:mm:ss a'),
     }
 
-    console.log(emailPayload)
+    const currentTime = Date.now();
+    const timeElapsed = currentTime - lastExecutionTime;
+    if(timeElapsed < 30000) {
+      const remainingTime = Math.ceil((30000 - timeElapsed) / 1000)
+      toast.error(`Please wait ${remainingTime} seconds before sending another message.`, {
+        position: "top-left",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return;
+    }
 
     fetch('https://ec2-3-17-167-220.us-east-2.compute.amazonaws.com/receiveEmail', {
       method: 'POST',
@@ -159,9 +176,7 @@ export const Contact = () => {
       },
       body: JSON.stringify(emailPayload),
     })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log('Success:', data);
+    .then((response) => {
       toast.success("Message Sent Successfully!", {
         position: "top-left",
         autoClose: 5000,
@@ -172,20 +187,25 @@ export const Contact = () => {
         progress: undefined,
         theme: "light",
       });
+      response.json()
+    })
+    .then((data) => {
+      console.log('Success:');
     })
     .catch((error) => {
-      // console.error('Error:', error);
-      // toast.error("Error!", {
-      //   position: "top-left",
-      //   autoClose: 5000,
-      //   hideProgressBar: false,
-      //   closeOnClick: true,
-      //   pauseOnHover: true,
-      //   draggable: true,
-      //   progress: undefined,
-      //   theme: "dark",
-      // });
+      console.error('Error:', error);
+      toast.error("Error!", {
+        position: "top-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     });
+    lastExecutionTime = currentTime;
   };
 
   return (
@@ -237,7 +257,6 @@ export const Contact = () => {
             </Contactbutton>
           </ThemeProvider>
         </ContactRoot>
-        {/*  */}
       </ParallaxContainer>
     </CustomParallax>
   )
