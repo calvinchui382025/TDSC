@@ -12,12 +12,8 @@ import { createTheme, ThemeProvider, Theme, useTheme } from '@mui/material/style
 import SendIcon from '@mui/icons-material/Send';
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import emailjs from "@emailjs/browser";
 import { CustomParallax, ParallaxContainer, ParallaxTitle } from "./Separator";
 import moment from "moment";
-import { isIfStatement } from "typescript";
-// const ContactBannerJoin = 'https://flintriverindoorshootingrange.com/wp-content/uploads/2021/05/three-1-a.jpg'
-// const ContactBannerJoin = 'https://github.com/snyperifle/TDSC/blob/luke/public/Images/croppedcontact.jpg?raw=true'
 const ContactBannerJoin = 'https://github.com/snyperifle/TDSC/blob/luke/public/Images/croppedteaching.jpg?raw=true'
 
 //======================================================
@@ -102,14 +98,11 @@ const Contactbutton = styled(Button)({
 
 export const Contact = () => {
   const outerTheme = useTheme();
-  const service = process.env.REACT_APP_SERVICE_ID;
-  const template = process.env.REACT_APP_TEMPLATE_ID;
-  const user = process.env.REACT_APP_USER_ID;
-  const receiveEmailURL = process.env.REACT_APP_RECEIVE_EMAIL_URL;
   const form = useRef();
   let lastExecutionTime = 0;
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [emailConfirmation, setEmailConfirmation] = useState('');
   const [message, setMessage] = useState('');
   const [numRows, setNumRows] = React.useState(7); // Initial number of rows
 
@@ -128,23 +121,11 @@ export const Contact = () => {
     };
   }, []);
 
-  const isFormValid = name && email && message;
-
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-  };
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handleMessageChange = (e) => {
-    setMessage(e.target.value);
-  };
+  const isFormValid = name && email && message && email.includes('@') && email.includes('.') && email === emailConfirmation;
 
   const sendEmail = (e) => {
     e.preventDefault();
-
+  
     const emailPayload = {
       email: email,
       name: name,
@@ -169,32 +150,48 @@ export const Contact = () => {
       return;
     }
 
-    fetch('https://ec2-3-17-167-220.us-east-2.compute.amazonaws.com/receiveEmail', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(emailPayload),
-    })
-    .then((response) => {
-      toast.success("Message Sent Successfully!", {
-        position: "top-left",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
+    const confirmation = window.confirm(`Are you sure you want to send an email from ${emailPayload.email}?`);
+
+    if(confirmation){
+      fetch('https://ec2-3-17-167-220.us-east-2.compute.amazonaws.com/receiveEmail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(emailPayload),
+      })
+      .then((response) => {
+        toast.success("Message Sent Successfully!", {
+          position: "top-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        response.json()
+      })
+      .then((data) => {
+        console.log('Success:');
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        toast.error("Error!", {
+          position: "top-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
       });
-      response.json()
-    })
-    .then((data) => {
-      console.log('Success:');
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-      toast.error("Error!", {
+    } else {
+      console.log(`Email from ${emailPayload.email} abandoned.`)
+      toast.error(`Email from ${emailPayload.email} abandoned.`, {
         position: "top-left",
         autoClose: 5000,
         hideProgressBar: false,
@@ -204,7 +201,7 @@ export const Contact = () => {
         progress: undefined,
         theme: "dark",
       });
-    });
+    }
     lastExecutionTime = currentTime;
   };
 
@@ -225,19 +222,26 @@ export const Contact = () => {
         {/*  */}
         <ContactRoot ref={form}>
           <ThemeProvider theme={customTheme(outerTheme)}>
-            <Namefield
-              variant="filled"
-              id="mui-theme-provider-filled-input"
-              label="Name"
-              value={name}
-              onChange={handleNameChange}
-            />
             <Emailfield
               variant="filled"
               id="mui-theme-provider-filled-input"
               label="Email"
               value={email}
-              onChange={handleEmailChange}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <Namefield
+              variant="filled"
+              id="mui-theme-provider-filled-input"
+              label="Confirm Email"
+              value={emailConfirmation}
+              onChange={(e) => setEmailConfirmation(e.target.value)}
+            />
+            <Namefield
+              variant="filled"
+              id="mui-theme-provider-filled-input"
+              label="Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
             <TextField
               variant="filled"
@@ -246,7 +250,7 @@ export const Contact = () => {
               multiline
               rows={numRows}
               value={message}
-              onChange={handleMessageChange}
+              onChange={(e) => setMessage(e.target.value)}
               style={{width: '90%', backgroundColor: 'gainsboro', opacity: '0.8',}}
             />
             <Contactbutton
