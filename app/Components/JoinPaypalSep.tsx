@@ -195,7 +195,8 @@ const JoinPaypalSep = () => {
       >
         <ParallaxTitle>Annual membership fee</ParallaxTitle>
         <ParallaxContent>$75</ParallaxContent>
-        <PaypalContainer>
+        <ParallaxContent>To join please reach out to Greg Baker via the contact page!</ParallaxContent>
+        {/* <PaypalContainer>
         <PayPalScriptProvider options={paypalOptions}>
           <PayPalButtons
             forceReRender={[bearToken]}
@@ -215,7 +216,7 @@ const JoinPaypalSep = () => {
             onApprove={handleApprove}
           />
         </PayPalScriptProvider>
-      </PaypalContainer>
+      </PaypalContainer> */}
     </ParallaxContainer>
   </CustomParallax>
 )};
