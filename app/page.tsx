@@ -223,7 +223,7 @@ export default function HomePage() {
             playsInline
           >
             <source
-              src='/Videos/croppedcalvin.mp4'
+              src='/Videos/hopec2cropped.mp4'
               type='video/mp4'
             />
           </PrepareVideo>
