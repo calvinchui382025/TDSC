@@ -83,8 +83,6 @@ export default function AdminPage() {
   const handleAdminLogin = async (event) => {
     event.preventDefault();
     const loginURL = process.env.NEXT_PUBLIC_LOGIN_URL;
-    // const test = true;
-    // console.log(loginURL)
     
     try {
       const response = await axios.post(loginURL, {

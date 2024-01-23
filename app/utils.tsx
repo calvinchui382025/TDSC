@@ -1,12 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { Button, 
-  // FormControl, TextField, 
-  keyframes } from '@mui/material';
-// import { useEffect } from "react";
-import Separator from "./Components/Separator";
-import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import { keyframes } from '@mui/material';
 import { Timeline, TimelineConnector, TimelineContent, TimelineDot, TimelineItem, TimelineOppositeContent, TimelineSeparator } from "@mui/lab";
 import { locations } from "./locations/data";
 import { CardMapContainer } from "./locations/locationStyles";

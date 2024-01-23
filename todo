@@ -13,3 +13,31 @@ Vorstellen281@gmail.com
 
 
 ldmjvhsjtpnndusk
+
+
+//====================================================== Backend stuff
+//====================================================== ACCOUNTS
+
+AWS
+  texasdefensiveshootingclub@gmail.com
+  TDSClub1111
+
+//======================================================
+
+
+          Certificate Manager
+           |            |
+EC2 -> CloudFront -> Route 53 -> Users
+
+TDSClub111
+Host TDSCbackend
+    HostName ec2-18-227-161-229.us-east-2.compute.amazonaws.com
+    IdentityFile "C:\Users\lucas\pem\tdscpem.pem"
+    User ec2-user
+
+texasdefensiveshootingclub@gmail.com
+https://us-east-2.console.aws.amazon.com/ec2/home?region=us-east-2#Instances:instanceState=running
+
+
+Domain -> Namecheap
+DNS -> Netlify

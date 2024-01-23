@@ -1,8 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react";
 import { GearRequirementContainer, GearRequirementContent, NoteContainer, PlaceContainer, ProficiencyTitle, ReqContainer, RequirementH1, RequirementP } from "./requirementstyles";
-import styled from "@emotion/styled"
 import { mainColor, randomIntGenerator } from "app/utils";
 import { Contact } from "app/Components/Contact";
 import { Reveal } from "app/Components/Reveal";

@@ -1,9 +1,7 @@
 "use client"
 
 import styled from "@emotion/styled"
-import { greyColorCustom, greyColorCustomDark, greyColorCustomLight } from "app/utils"
-import TableRowsIcon from '@mui/icons-material/TableRows';
-import EmailIcon from '@mui/icons-material/Email';
+import { greyColorCustom, greyColorCustomLight } from "app/utils"
 import { Card, TextField } from '@mui/material';
 
 export const AdminRoot = styled('div')({
@@ -34,8 +32,6 @@ export const AdminContent = styled('div')({
 
 export const AdminLoginWrapper = styled(Card)({
   display: 'flex',
-  // height: '100%',
-  // width: '100%',
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',

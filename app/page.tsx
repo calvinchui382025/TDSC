@@ -1,15 +1,9 @@
 'use client'
 
-import { ActivitiesComponent } from './Components/Activities';
 import { styled, Typography } from '@mui/material';
 import { fadeIn, mainColor } from './utils';
-// import { Footer } from './Components/footer/footer';
-import Separator from './Components/Separator';
-// import { BiosCard, BiosGrid } from './about/AboutStyles';
-import { JoinHeader, JoinPrimaryTypography, JoinSecondaryTypography } from './join/JoinStyles';
 import JoinPaypalSep from './Components/JoinPaypalSep';
 import { Reveal } from './Components/Reveal';
-import { PaypalDonateComponent } from './Components/PaypalDonateComponent';
 import { Contact } from './Components/Contact';
 
 //======================================================
@@ -19,8 +13,6 @@ const HomeRoot = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  // marginTop: '10vh',
-  // overflowX: 'hidden',
 })
 const HeroVideoContainer = styled('div')({
   display: 'flex',
@@ -33,7 +25,6 @@ const HeroVideoContainer = styled('div')({
   },
 })
 const HeroVideo = styled('video')({
-  // transform: 'scale(2)',
   objectFit: 'cover',
   height: '120%',
 })
@@ -70,7 +61,6 @@ const Gradient = styled('div')({
   transform: 'translate(-50%, -50%)',
   width: '100%',
   height: '100%',
-  // background: 'linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.5) 100%)',
   backgroundImage: `linear-gradient(180deg, rgba(37, 27, 74, 0) 42%, ${mainColor} 93%)`,
   zIndex: 2,
 })
@@ -98,7 +88,6 @@ const PrepareTextContainer = styled('div')({
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  // width: '100%',
   padding: '36px',
 
 })
@@ -195,25 +184,8 @@ export default function HomePage() {
           <PrepareText variant='h2'>PREPARE TO PROTECT</PrepareText>
         </PrepareTextContainer>
       </Row>
-      {/* <ActivitiesComponent /> */}
-      {/* <BasicTimeline /> */}
       <JoinPaypalSep />
       <div style={{width: '100%', height: '10vh', backgroundColor: mainColor}} />
-      {/* <Reveal>
-        <JoinHeader 
-          style={{
-            // width: '100vw', marginBottom: '2.5rem'
-            width: '100%',
-            display: 'flex',
-            justifyContent: 'center',
-          }}
-        >
-          <JoinPrimaryTypography>Help Our Cause</JoinPrimaryTypography>
-          <JoinSecondaryTypography>Your support and contributions will enable us to meet our goals and improve conditions. Your generous donation will fund our mission.</JoinSecondaryTypography>
-          <PaypalDonateComponent />
-        </JoinHeader>
-      </Reveal> */}
-      {/* <img src={TransparentImage} alt='test' height='600' width='600' /> */}
       <Row>
         <PrepareVideoContainer>
           <PrepareVideo
