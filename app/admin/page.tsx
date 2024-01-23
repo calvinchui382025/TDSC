@@ -2,25 +2,10 @@
 
 import react, { useState } from "react"
 import { AdminContent, AdminRoot, AdminNavBar, AdminLoginWrapper, LoginTitle, CustomTextField } from "./AdminStyles"
-// import TableRowsIcon from '@mui/icons-material/TableRows';
-// import EmailIcon from '@mui/icons-material/Email';
-import { Button, 
-  // Checkbox, 
-  Divider, 
-  // TextField 
-} from "@mui/material";
+import { Button, Divider} from "@mui/material";
 import { createTheme, ThemeProvider, Theme, useTheme } from '@mui/material/styles';
-// import Table from '@mui/material/Table';
-// import TableBody from '@mui/material/TableBody';
-// import TableCell from '@mui/material/TableCell';
-// import TableContainer from '@mui/material/TableContainer';
-// import TableHead from '@mui/material/TableHead';
-// import TableRow from '@mui/material/TableRow';
-// import Paper from '@mui/material/Paper';
-// import { greyColorCustom, greyColorCustomDark, greyColorCustomLight } from "app/utils";
-// import DarkModeIcon from '@mui/icons-material/DarkMode';
-// import LightModeIcon from '@mui/icons-material/LightMode';
 import { ToastContainer, toast } from 'react-toastify';
+import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 
 const customTheme = (outerTheme: Theme) =>
@@ -61,7 +46,6 @@ const customTheme = (outerTheme: Theme) =>
 
 import EmailBlastModal from './email/EmailBlastModal'
 import ListBlastModal from "./list/ListBlastModal";
-import axios from "axios";
 
 export default function AdminPage() {
   const outerTheme = useTheme();
@@ -88,19 +72,19 @@ export default function AdminPage() {
         return response.json();
       })
       .then((data) => {
-        // console.log(data);
         const usersData = data.data;
         setUserData(usersData);
         setIsUserListOpen(true);
       })
       .catch((error) => {
-        // console.error('Error fetching data:', error);
       });
   };
 
   const handleAdminLogin = async (event) => {
     event.preventDefault();
     const loginURL = process.env.NEXT_PUBLIC_LOGIN_URL;
+    // const test = true;
+    // console.log(loginURL)
     
     try {
       const response = await axios.post(loginURL, {

@@ -40,7 +40,7 @@ const CustomTextField = styled(TextField) ({
 //======================================================
 const rangeOptions = [
   'Wallis-Orchard Gun Range',
-  'G2G Gun Range',
+  'Big Kountry Indoor Gun Range',
 ]
 
 export default function FullScreenDialog( props: any ) {
@@ -49,26 +49,8 @@ export default function FullScreenDialog( props: any ) {
   const [ subjectLine, setSubjectLine ] = React.useState('');
   const [ emailBody, setEmailBody ] = React.useState('');
   const [ emailSignOff, setEmailSignOff ] = React.useState('');
-  // const [ emailList, setEmailList] = React.useState([]);
 
-  // const sendEmailURL = String(process?.env?.NEXT_PUBLIC_SENDEMAIL_URL) || '';
-  const sendEmailURL = 'https://ec2-3-17-167-220.us-east-2.compute.amazonaws.com/sendemails'
-  // const userListURL = String(process?.env?.NEXT_PUBLIC_USER_LIST_URL) || '';
-
-  // React.useEffect(() => {
-  //   axios.get(userListURL)
-  //   .then((res) => {
-
-  //     const newEmailList = res?.data?.data?.map((user: any) => {
-  //       return user.email;
-  //     });
-
-  //     console.log('newEmailList', newEmailList)
-  //     setEmailList(newEmailList);
-  //   }).catch((err) => {
-  //     console.log(err);
-  //   });
-  // }, [userListURL])
+  const sendEmailURL = String(process?.env?.NEXT_PUBLIC_SENDEMAIL_URL) || '';
 
   const handleRangeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedRange(event.target.value);
@@ -92,7 +74,6 @@ export default function FullScreenDialog( props: any ) {
 
   function handleSend() {
     const newEmail = render(EmailTemplate(selectedRange, emailBody, emailSignOff))
-    // axios.post('/api/sendEmail', {
     axios.post(sendEmailURL, {
         newEmail,
         subjectLine
@@ -104,15 +85,9 @@ export default function FullScreenDialog( props: any ) {
       }
       ).then((res) => {
         console.log(res);
-        // console.log(selectedRange);
-        // console.log(subjectLine);
-        // console.log(emailBody);
-        // console.log(emailSignOff);
       }).catch((err) => {
         console.log(err);
       });
-
-    // setEmailBody('');
     closeFunc(false);
   }
 
@@ -136,14 +111,6 @@ export default function FullScreenDialog( props: any ) {
           <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
             Send Email Blast
           </Typography>
-          {/* <Button 
-            color="warning" 
-            variant="contained"
-            onClick={handleTestSend}
-            // disabled={emailBody.length === 0 || subjectLine.length === 0}
-          >
-            TEST!
-          </Button> */}
           <Button 
             color="warning" 
             variant="contained"
